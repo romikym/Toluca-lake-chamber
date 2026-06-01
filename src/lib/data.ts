@@ -38,34 +38,9 @@ export type Business = {
   hue: number; // for avatar gradient
 };
 
-const A = "4150 W Riverside Dr, Toluca Lake, CA 91505";
-
-export const businesses: Business[] = [
-  { slug: "destiny-home-health", name: "Destiny Home Health Inc", category: "health", tier: "PREMIUM", tagline: "Compassionate in-home care", description: "Skilled nursing and therapy delivered with warmth across the San Fernando Valley.", phone: "818-555-0142", website: "destinyhomehealth.com", address: A, hue: 152 },
-  { slug: "skin-agency", name: "Skin Agency", category: "health", tier: "FEATURED", tagline: "Modern medical aesthetics", description: "Results-driven skincare and aesthetic treatments in a calm, luxe Village studio.", address: A, hue: 165 },
-  { slug: "the-family-room", name: "The Family Room", category: "arts", tier: "STANDARD", tagline: "A creative gathering space", description: "Community-minded events, classes, and gatherings for Toluca Lake families.", address: A, hue: 140 },
-  { slug: "align-define-pilates", name: "Align & Define: A Pilates Studio", category: "health", tier: "FEATURED", tagline: "Strength through precision", description: "Boutique reformer Pilates focused on alignment, mobility, and longevity.", website: "aligndefine.com", address: A, hue: 158 },
-  { slug: "purefection-la", name: "Purefection LA, Inc", category: "home", tier: "STANDARD", tagline: "Spotless, every time", description: "Premium residential and commercial cleaning for discerning Village homes.", address: A, hue: 148 },
-  { slug: "vanguard-home-health", name: "Vanguard Home Health Care Inc", category: "health", tier: "STANDARD", tagline: "Care you can trust", description: "Personalized home health services supporting independence and recovery.", address: A, hue: 150 },
-  { slug: "saul-berger-md", name: "Saul R. Berger, M.D.", category: "health", tier: "STANDARD", tagline: "Pulmonary & sleep medicine", description: "Board-certified physician serving the community for over two decades.", address: A, hue: 172 },
-  { slug: "the-strength-code", name: "The Strength Code", category: "health", tier: "PREMIUM", tagline: "Train smarter, live stronger", description: "Personal training and small-group strength coaching led by Sheila Melody.", website: "thestrengthcode.com", address: A, hue: 145 },
-  { slug: "belmont-village", name: "Belmont Village Senior Living", category: "health", tier: "FEATURED", tagline: "Vibrant senior living", description: "Award-winning assisted living and memory care in the heart of the Village.", address: A, hue: 160 },
-  { slug: "wildflower-acupuncture", name: "Wildflower Acupuncture", category: "health", tier: "STANDARD", tagline: "Balance & renewal", description: "Acupuncture and herbal medicine for whole-body wellness.", address: A, hue: 138 },
-  { slug: "nurture-bodywork", name: "Nurture Bodywork & Wellness", category: "health", tier: "STANDARD", tagline: "Restorative bodywork", description: "Therapeutic massage and wellness treatments tailored to you.", address: A, hue: 156 },
-  { slug: "golden-fist-martial-arts", name: "Golden Fist Training Method & Martial Arts", category: "education", tier: "STANDARD", tagline: "Discipline, confidence, community", description: "Martial arts instruction for all ages in a supportive Village dojo.", address: A, hue: 142 },
-  { slug: "compass-real-estate", name: "Compass Real Estate — Toluca Lake", category: "realestate", tier: "PREMIUM", tagline: "Your Village real estate experts", description: "Local agents Taylor Montana and Corrie Sommers help you buy and sell in Toluca Lake.", website: "compass.com", address: A, hue: 168 },
-  { slug: "priscillas-coffee", name: "Priscilla's Gourmet Coffee", category: "restaurant", tier: "PREMIUM", tagline: "The Village's living room", description: "Beloved neighborhood coffee house and gathering spot — and home of our Community Cleanup.", address: "4150 W Riverside Dr A, Burbank, CA 91505", hue: 135 },
-  { slug: "tolucan-times", name: "The Tolucan Times", category: "advertising", tier: "FEATURED", tagline: "Local news since 1986", description: "Community newspaper covering Toluca Lake and the greater valley.", address: A, hue: 175 },
-  { slug: "ramsey-schilling", name: "Ramsey-Schilling & Associates", category: "realestate", tier: "FEATURED", tagline: "Trusted property advisors", description: "Full-service real estate and property management for the Tolucas.", address: A, hue: 170 },
-  { slug: "easy-tax", name: "Ea$y Tax", category: "finance", tier: "STANDARD", tagline: "Stress-free tax prep", description: "Friendly, thorough tax preparation and bookkeeping for individuals and small business.", address: A, hue: 162 },
-  { slug: "fresh-bins-la", name: "Fresh Bins LA", category: "home", tier: "STANDARD", tagline: "Cleaner cans, happier curb", description: "Trash bin cleaning and sanitizing that keeps your home fresh.", address: A, hue: 146 },
-  { slug: "kali-audio", name: "Kali Audio", category: "technology", tier: "FEATURED", tagline: "Studio sound for everyone", description: "Designers of acclaimed studio monitors and pro-audio gear, based locally.", website: "kaliaudio.com", address: A, hue: 178 },
-  { slug: "savvi", name: "Savvi", category: "retail", tier: "STANDARD", tagline: "Activewear with purpose", description: "Community-driven activewear brand represented by Rhoda Minger.", address: A, hue: 154 },
-  { slug: "allstate-tigran", name: "Destiny Insurance & Allstate — Tigran Grigoryan", category: "finance", tier: "STANDARD", tagline: "Protecting Village families", description: "Insurance and home health services with a personal, local touch.", address: A, hue: 164 },
-  { slug: "toluca-lake-florist", name: "Toluca Lake Florist", category: "retail", tier: "STANDARD", tagline: "Blooms for every occasion", description: "Hand-arranged florals and gifts in the heart of the Village.", address: A, hue: 133 },
-  { slug: "village-veterinary", name: "Village Veterinary Care", category: "pet", tier: "FEATURED", tagline: "Gentle care for your pets", description: "Full-service veterinary medicine for the Village's beloved companions.", address: A, hue: 149 },
-  { slug: "toluca-auto-works", name: "Toluca Auto Works", category: "automotive", tier: "STANDARD", tagline: "Honest, expert service", description: "Trusted auto repair and maintenance keeping the neighborhood on the road.", address: A, hue: 167 },
-];
+// Member businesses are managed in the database via the admin panel.
+// The directory starts empty and is populated with real members there.
+export const businesses: Business[] = [];
 
 export type Plan = {
   key: string;

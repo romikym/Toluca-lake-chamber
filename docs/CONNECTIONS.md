@@ -80,11 +80,25 @@ Powers the site assistant and member/admin content tools.
 - Update hard-coded production URL in `src/app/layout.tsx` (`metadataBase`),
   `src/app/sitemap.ts`, and `src/app/robots.ts` to the real domain.
 
-## 7. ⚪ Maps (Mapbox) — ⬜
-Only when directory/event **map views** are built (planned).
-```
-NEXT_PUBLIC_MAPBOX_TOKEN="pk...."
-```
+## 7. ⚪ Maps (Google Maps Embed) — ⬜
+Powers the location map on each directory listing. **Without a key it still
+works** — listings show a styled fallback that links out to Google Maps.
+
+To enable embedded maps:
+1. In [Google Cloud Console](https://console.cloud.google.com/), create a
+   project and enable **billing** (Google gives a $200/mo free credit).
+2. Enable the **Maps Embed API**.
+3. Create an **API key** (APIs & Services → Credentials).
+4. Restrict it: Application restriction → **HTTP referrers** → add
+   `https://toluca-lake-chamber.netlify.app/*` and your real domain;
+   API restriction → **Maps Embed API** only.
+5. **Set:**
+   ```
+   GOOGLE_MAPS_API_KEY="AIza..."
+   ```
+- Future add-ons (optional): Maps JavaScript + Geocoding (one directory-wide
+  map with pins), Places Autocomplete (clean address entry), Place Details
+  (auto-pull Google hours/photos/reviews — needs a Place ID per business).
 
 ## 8. ⚪ OAuth social login (Google) — ⬜
 Optional faster sign-in (architecture supports it; not yet enabled).

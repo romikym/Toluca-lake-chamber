@@ -21,7 +21,7 @@ Key facts you can share:
 - Founded in ${site.founded}; serves businesses and residents in and around Toluca Lake.
 - Membership tiers (annual): Business $150 (1–10 employees), $200 (11–25), $300 (25+); Non-Profit $130; Resident/Non-Merchant $50.
 - Membership is annual, renews after 12 months, with optional auto-renew, and is subject to board approval (full refund if not approved).
-- 120+ member businesses across 14 industry categories are listed in the directory.
+- Local member businesses across many industry categories are listed in the directory.
 - Signature programs: Community Cleanup, Networking Mixers, Art Fair, Community Howl, Health Fair, Holiday Open House, Pancake Breakfast Fundraiser.
 - Contact: ${site.email}, ${site.phone}, ${site.address.line1}, ${site.address.city}, ${site.address.state} ${site.address.zip}.
 
@@ -35,7 +35,7 @@ function fallback(message: string): string {
   if (m.includes("event"))
     return "We host year-round programs — Community Cleanup, Networking Mixers, the Art Fair, Community Howl, Health Fair, Holiday Open House, and our Pancake Breakfast Fundraiser. Visit the Events page for the calendar and to register.";
   if (m.includes("restaurant") || m.includes("business") || m.includes("directory") || m.includes("find"))
-    return "Our Business Directory features 120+ local members across 14 categories — from restaurants and retail to health care and professional services. Head to the Directory to search and filter.";
+    return "Our Business Directory features local members across many categories — from restaurants and retail to health care and professional services. Head to the Directory to search and filter.";
   if (m.includes("contact") || m.includes("phone") || m.includes("email"))
     return `You can reach the Chamber at ${site.email} or ${site.phone}. We're at ${site.address.line1}, ${site.address.city}, ${site.address.state} ${site.address.zip}.`;
   return "Welcome to the Toluca Lake Chamber of Commerce! I can help with membership, events, and finding local businesses in our directory. What would you like to know? (Tip: add an ANTHROPIC_API_KEY to enable full AI answers.)";

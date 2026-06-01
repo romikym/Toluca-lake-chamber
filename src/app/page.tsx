@@ -181,23 +181,25 @@ export default async function HomePage() {
       </section>
 
       {/* FEATURED MEMBERS */}
-      <section className="bg-brand-50/60 py-20">
-        <Container>
-          <div className="flex items-end justify-between gap-4">
-            <SectionHeader eyebrow="Member spotlight" title="Featured local businesses" />
-            <ButtonLink href="/directory" variant="tertiary" className="hidden shrink-0 sm:inline-flex">
-              Browse all 120+ <ArrowRight className="h-4 w-4" />
-            </ButtonLink>
-          </div>
-          <Stagger className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredMembers.map((b) => (
-              <StaggerItem key={b.slug}>
-                <BusinessCard b={b} />
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </Container>
-      </section>
+      {featuredMembers.length > 0 && (
+        <section className="bg-brand-50/60 py-20">
+          <Container>
+            <div className="flex items-end justify-between gap-4">
+              <SectionHeader eyebrow="Member spotlight" title="Featured local businesses" />
+              <ButtonLink href="/directory" variant="tertiary" className="hidden shrink-0 sm:inline-flex">
+                Browse the directory <ArrowRight className="h-4 w-4" />
+              </ButtonLink>
+            </div>
+            <Stagger className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredMembers.map((b) => (
+                <StaggerItem key={b.slug}>
+                  <BusinessCard b={b} />
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </Container>
+        </section>
+      )}
 
       {/* BENEFITS */}
       <section className="py-20">

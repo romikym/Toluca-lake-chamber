@@ -94,13 +94,13 @@ async function main() {
   const member = await db.user.create({
     data: {
       email: "taylor@compass.com", name: "Taylor Montana", role: "MEMBER",
-      passwordHash: memberHash, businessSlug: "compass-real-estate",
+      passwordHash: memberHash,
     },
   });
 
   await db.membership.create({
     data: {
-      userId: member.id, planKey: "business_large", businessSlug: "compass-real-estate",
+      userId: member.id, planKey: "business_large",
       status: "ACTIVE", startedAt: new Date("2026-03-14"), expiresAt: new Date("2027-03-14"),
       autoRenew: true,
     },

@@ -6,8 +6,9 @@ import { PageHero } from "@/components/layout/page-hero";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
-import { GradientAvatar, GradientCover, gradientStyle } from "@/components/ui/gradient";
+import { GradientAvatar, GradientCover } from "@/components/ui/gradient";
 import { BusinessCard } from "@/components/cards/business-card";
+import { BusinessMap } from "@/components/directory/business-map";
 import { Reveal } from "@/components/ui/reveal";
 import { categoryName } from "@/lib/data";
 import { getBusiness, getBusinesses, getRelatedBusinesses } from "@/server/queries";
@@ -65,18 +66,8 @@ export default async function BusinessProfile({ params }: { params: Promise<{ sl
               <h2 className="font-display text-xl font-semibold text-brand-900">About</h2>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{b.description}</p>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-                {b.name} is a proud member of the Toluca Lake Chamber of Commerce, part of a
-                network of 120+ local businesses serving the Village.
+                {b.name} is a proud member of the Toluca Lake Chamber of Commerce.
               </p>
-            </Reveal>
-
-            <Reveal delay={0.05} className="mt-10">
-              <h2 className="font-display text-xl font-semibold text-brand-900">Gallery</h2>
-              <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="aspect-[4/3] rounded-xl" style={gradientStyle(b.hue + i * 6, true)} />
-                ))}
-              </div>
             </Reveal>
 
             {related.length > 0 && (
@@ -99,7 +90,9 @@ export default async function BusinessProfile({ params }: { params: Promise<{ sl
                 {b.website && <li className="flex items-center gap-3 text-ink-soft"><Globe className="h-4 w-4 text-brand-500" /> {b.website}</li>}
                 <li className="flex items-center gap-3 text-ink-soft"><Mail className="h-4 w-4 text-brand-500" /> via Chamber</li>
               </ul>
-              <div className="mt-5 aspect-video rounded-xl bg-grid" style={gradientStyle(b.hue, true)} />
+              <div className="mt-5">
+                <BusinessMap address={b.address} name={b.name} hue={b.hue} />
+              </div>
               <ButtonLink href="/contact" className="mt-5 w-full">Contact this business</ButtonLink>
             </div>
           </div>
