@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { EventCard } from "@/components/cards/event-card";
 import type { ChamberEvent, Program } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -32,22 +32,18 @@ export function EventsBrowser({
         ))}
       </div>
 
-      <motion.div layout className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((e) => (
-            <motion.div
-              key={e.slug}
-              layout
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-            >
-              <EventCard e={e} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {filtered.map((e) => (
+          <motion.div
+            key={e.slug}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
+          >
+            <EventCard e={e} />
+          </motion.div>
+        ))}
+      </div>
 
       {filtered.length === 0 && (
         <p className="mt-12 text-center text-muted">No events in this program yet — check back soon.</p>

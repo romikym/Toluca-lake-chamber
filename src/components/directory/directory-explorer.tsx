@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Search, LayoutGrid, List, SlidersHorizontal, X } from "lucide-react";
 import { BusinessCard } from "@/components/cards/business-card";
 import { Icon } from "@/components/ui/icon";
@@ -117,28 +117,23 @@ export function DirectoryExplorer({
           <span className="font-semibold text-brand-700">{results.length}</span> {active ? categoryName(active) : "member"} {results.length === 1 ? "business" : "businesses"}
         </p>
 
-        <motion.div
-          layout
+        <div
           className={cn(
             "mt-5 grid gap-5",
             view === "grid" ? "sm:grid-cols-2 xl:grid-cols-3" : "grid-cols-1"
           )}
         >
-          <AnimatePresence mode="popLayout">
-            {results.map((b) => (
-              <motion.div
-                key={b.slug}
-                layout
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-              >
-                <BusinessCard b={b} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+          {results.map((b) => (
+            <motion.div
+              key={b.slug}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
+            >
+              <BusinessCard b={b} />
+            </motion.div>
+          ))}
+        </div>
 
         {results.length === 0 && (
           <div className="mt-12 rounded-2xl border border-dashed border-line bg-surface p-12 text-center">
