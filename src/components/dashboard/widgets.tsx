@@ -6,10 +6,10 @@ import { Counter } from "@/components/ui/counter";
 import { cn } from "@/lib/utils";
 
 export function StatTile({
-  icon: Icon, label, value, prefix, suffix, delta, deltaTone = "up",
+  icon: Icon, label, value, prefix, suffix, delta, deltaTone = "up", raw = false,
 }: {
   icon: LucideIcon; label: string; value: number; prefix?: string; suffix?: string;
-  delta?: string; deltaTone?: "up" | "down" | "flat";
+  delta?: string; deltaTone?: "up" | "down" | "flat"; raw?: boolean;
 }) {
   return (
     <div className="group rounded-2xl border border-line bg-surface p-5 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-md">
@@ -31,7 +31,7 @@ export function StatTile({
         )}
       </div>
       <div className="mt-4 font-display text-3xl font-bold text-brand-900">
-        <Counter value={value} prefix={prefix} suffix={suffix} />
+        {raw ? <span>{prefix}{value}{suffix}</span> : <Counter value={value} prefix={prefix} suffix={suffix} />}
       </div>
       <div className="mt-1 text-sm text-muted">{label}</div>
     </div>
