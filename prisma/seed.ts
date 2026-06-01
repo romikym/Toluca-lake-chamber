@@ -1,11 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { randomBytes } from "node:crypto";
 import {
   categories, businesses, plans, programs, events, board, faqs,
   spotlightArticles, sponsors,
 } from "../src/lib/data";
 
 const db = new PrismaClient();
+
+// Strong demo passwords. Override with SEED_ADMIN_PASSWORD / SEED_MEMBER_PASSWORD,
+// otherwise random ones are generated (and printed below) — never the breached defaults.
+const ALPHA = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789";
+const token = (n = 8) => Array.from(randomBytes(n)).map((b) => ALPHA[b % ALPHA.length]).join("");
+const ADMIN_PW = process.env.SEED_ADMIN_PASSWORD || `TLChamber-${token()}`;
+const MEMBER_PW = process.env.SEED_MEMBER_PASSWORD || `Member-${token()}`;
 
 async function main() {
   console.log("Seeding database…");
@@ -76,8 +84,8 @@ async function main() {
   await db.sponsor.createMany({ data: sponsors.map((s) => ({ name: s.name, tier: s.tier, hue: s.hue })) });
 
   // Demo users
-  const adminHash = await bcrypt.hash("admin123", 10);
-  const memberHash = await bcrypt.hash("member123", 10);
+  const adminHash = await bcrypt.hash(ADMIN_PW, 10);
+  const memberHash = await bcrypt.hash(MEMBER_PW, 10);
 
   await db.user.create({
     data: { email: "admin@tolucalakechamber.com", name: "Rosie Blosser", role: "ADMIN", passwordHash: adminHash },
@@ -99,6 +107,9 @@ async function main() {
   });
 
   console.log(`Seeded: ${categories.length} categories, ${businesses.length} businesses, ${events.length} events, ${board.length} board members, 2 users.`);
+  console.log("\nDemo logins (save these):");
+  console.log(`  Admin:  admin@tolucalakechamber.com  /  ${ADMIN_PW}`);
+  console.log(`  Member: taylor@compass.com           /  ${MEMBER_PW}`);
 }
 
 main()

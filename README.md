@@ -31,10 +31,10 @@ npm start
 
 ### Demo accounts
 
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | `admin@tolucalakechamber.com` | `admin123` |
-| Member | `taylor@compass.com` | `member123` |
+Two seeded accounts: **admin** `admin@tolucalakechamber.com` and **member**
+`taylor@compass.com`. Their passwords are **generated at seed time and printed by
+`npm run db:seed`** (or set them yourself via `SEED_ADMIN_PASSWORD` /
+`SEED_MEMBER_PASSWORD`) — they are never committed to the repo.
 
 Sign in at `/login`. Admins land on `/admin`, members on `/portal`. Both areas are
 protected by middleware.
