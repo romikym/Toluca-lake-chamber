@@ -10,5 +10,9 @@
   # Don't fail the build on peer-dep warnings.
   NPM_FLAGS = "--no-audit --no-fund"
 
+# Force the Prisma query engine binary into the serverless function bundle.
+[functions]
+  included_files = ["node_modules/.prisma/client/**", "node_modules/@prisma/client/**"]
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
