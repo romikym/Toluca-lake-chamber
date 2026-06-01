@@ -38,8 +38,9 @@ export default async function HomePage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10" style={gradientStyle(150)} />
         <div className="absolute inset-0 -z-10 bg-grid opacity-20" />
-        <div className="absolute -left-24 top-24 -z-10 h-72 w-72 rounded-full bg-brand-300/30 blur-3xl" />
-        <div className="absolute -right-16 -top-10 -z-10 h-72 w-72 rounded-full bg-brand-400/20 blur-3xl" />
+        <div className="animate-float-slow absolute -left-24 top-24 -z-10 h-72 w-72 rounded-full bg-brand-300/30 blur-3xl" />
+        <div className="animate-float-slower absolute -right-16 -top-10 -z-10 h-72 w-72 rounded-full bg-brand-400/20 blur-3xl" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-px bg-white/10" />
 
         <Container className="relative grid gap-10 py-20 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-7">
@@ -49,7 +50,7 @@ export default async function HomePage() {
               </Badge>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] text-white sm:text-6xl text-balance">
+              <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.03] text-white sm:text-[4rem] text-balance">
                 Empowering local business in Toluca Lake
               </h1>
             </Reveal>
@@ -74,11 +75,11 @@ export default async function HomePage() {
           {/* Glass stat card */}
           <div className="lg:col-span-5">
             <Reveal delay={0.2} className="h-full">
-              <div className="glass h-full rounded-3xl p-6 shadow-glass">
+              <div className="glass luxe-edge h-full rounded-3xl p-6 shadow-luxe">
                 <p className="font-display text-sm font-semibold text-brand-800">Community at a glance</p>
                 <div className="mt-4 grid grid-cols-2 gap-3">
                   {impactStats.map((s) => (
-                    <div key={s.label} className="rounded-2xl bg-white/70 p-4">
+                    <div key={s.label} className="luxe-edge rounded-2xl bg-white/70 p-4 transition-transform duration-300 hover:-translate-y-0.5">
                       <div className="font-display text-3xl font-bold text-brand-700">
                         <Counter value={s.value} suffix={s.suffix ?? ""} />
                       </div>
@@ -111,8 +112,8 @@ export default async function HomePage() {
                 { icon: Store, k: "Promote", v: "Directory & marketing exposure" },
                 { icon: ShieldCheck, k: "Protect", v: "A unified local voice" },
               ].map((c) => (
-                <div key={c.k} className="rounded-2xl border border-line bg-surface p-5 shadow-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
+                <div key={c.k} className="group rounded-2xl border border-line bg-surface p-5 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-md">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
                     <c.icon className="h-5 w-5" />
                   </div>
                   <div className="mt-3 font-display font-semibold text-brand-900">{c.k}</div>
@@ -204,8 +205,8 @@ export default async function HomePage() {
           <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b) => (
               <StaggerItem key={b.title}>
-                <div className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 shadow-sm">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100 text-brand-600">
+                <div className="group flex h-full flex-col rounded-2xl border border-line bg-surface p-6 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
                     <b.icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-4 font-display text-lg font-semibold text-brand-900">{b.title}</h3>
@@ -223,7 +224,7 @@ export default async function HomePage() {
           <Stagger className="grid gap-6 lg:grid-cols-3">
             {testimonials.map((t) => (
               <StaggerItem key={t.name}>
-                <figure className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 shadow-sm">
+                <figure className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-md">
                   <Quote className="h-7 w-7 text-brand-300" />
                   <blockquote className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-soft">
                     &ldquo;{t.quote}&rdquo;

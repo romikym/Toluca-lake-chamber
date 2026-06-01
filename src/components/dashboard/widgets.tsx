@@ -12,9 +12,9 @@ export function StatTile({
   delta?: string; deltaTone?: "up" | "down" | "flat";
 }) {
   return (
-    <div className="rounded-2xl border border-line bg-surface p-5 shadow-sm">
+    <div className="group rounded-2xl border border-line bg-surface p-5 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-md">
       <div className="flex items-center justify-between">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
           <Icon className="h-5 w-5" />
         </div>
         {delta && (

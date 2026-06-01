@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Eye, CalendarCheck, MessageSquare, Sparkles, ArrowRight, BadgeCheck, Receipt } from "lucide-react";
+import { Eye, CalendarCheck, MessageSquare, Store, ArrowRight, BadgeCheck, Receipt } from "lucide-react";
 import { StatTile, BarChart, Panel, ProgressRing } from "@/components/dashboard/widgets";
 import { Badge } from "@/components/ui/badge";
 import { events } from "@/lib/data";
@@ -68,14 +68,14 @@ export default function PortalDashboard() {
           </Panel>
         </div>
 
-        <Link href="/portal/ai" className="group flex flex-col justify-between rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-700 to-brand-500 p-6 text-white shadow-sm">
+        <Link href="/portal/business" className="group flex flex-col justify-between rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-700 to-brand-500 p-6 text-white shadow-sm">
           <div>
-            <Sparkles className="h-7 w-7" />
-            <h3 className="mt-3 font-display text-lg font-semibold">AI member tools</h3>
-            <p className="mt-1 text-sm text-white/80">Write your business description, social posts, and more with Claude.</p>
+            <Store className="h-7 w-7" />
+            <h3 className="mt-3 font-display text-lg font-semibold">Manage your listing</h3>
+            <p className="mt-1 text-sm text-white/80">Keep your business profile, photos, and details up to date for the directory.</p>
           </div>
           <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium">
-            Open AI tools <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            Edit listing <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
         </Link>
       </div>

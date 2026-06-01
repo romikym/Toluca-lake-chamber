@@ -23,13 +23,13 @@ export function Modal({
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto p-4 sm:p-8"
         >
-          <div className="fixed inset-0 bg-brand-900/30 backdrop-blur-sm" onClick={onClose} />
+          <div className="fixed inset-0 bg-brand-900/40 backdrop-blur-md" onClick={onClose} />
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.98 }}
+            initial={{ opacity: 0, y: 18, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
-            className="relative z-10 my-auto w-full max-w-lg rounded-2xl border border-line bg-surface shadow-lg"
+            transition={{ duration: 0.34, ease: [0.16, 1, 0.3, 1] }}
+            className="luxe-edge relative z-10 my-auto w-full max-w-lg rounded-2xl border border-line bg-surface shadow-luxe"
           >
             <div className="flex items-center justify-between border-b border-line px-5 py-4">
               <h2 className="font-display text-lg font-semibold text-brand-900">{title}</h2>

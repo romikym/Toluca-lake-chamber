@@ -7,7 +7,6 @@ const nav: NavLink[] = [
   { href: "/admin/members", label: "Members", icon: "Users" },
   { href: "/admin/events", label: "Events", icon: "CalendarDays" },
   { href: "/admin/content", label: "Content", icon: "FileText" },
-  { href: "/admin/ai", label: "AI Studio", icon: "Sparkles" },
   { href: "/admin/reports", label: "Reports", icon: "BarChart3" },
 ];
 

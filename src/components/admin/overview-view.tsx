@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Users, DollarSign, CalendarDays, UserPlus, Sparkles, ArrowRight, Heart } from "lucide-react";
+import { Users, DollarSign, CalendarDays, UserPlus, ArrowRight, Heart } from "lucide-react";
 import { StatTile, BarChart, Panel } from "@/components/dashboard/widgets";
 import { Badge } from "@/components/ui/badge";
 import { GradientAvatar } from "@/components/ui/gradient";
@@ -82,13 +82,13 @@ export function OverviewView({ data, pending }: { data: Data; pending: { id: str
           </ul>
         </Panel>
 
-        <Link href="/admin/ai" className="group flex flex-col justify-between rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-700 to-brand-500 p-6 text-white shadow-sm">
+        <Link href="/admin/events" className="group flex flex-col justify-between rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-700 to-brand-500 p-6 text-white shadow-sm">
           <div>
-            <Sparkles className="h-7 w-7" />
-            <h3 className="mt-3 font-display text-lg font-semibold">AI Studio</h3>
-            <p className="mt-1 text-sm text-white/80">{data.aiGenerations} generations logged. Draft newsletters, spotlights, and reports.</p>
+            <CalendarDays className="h-7 w-7" />
+            <h3 className="mt-3 font-display text-lg font-semibold">Manage events</h3>
+            <p className="mt-1 text-sm text-white/80">Create, edit, and publish community events for the calendar.</p>
           </div>
-          <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium">Open AI Studio <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+          <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium">Open events <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
         </Link>
       </div>
     </div>

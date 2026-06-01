@@ -7,7 +7,6 @@ const nav: NavLink[] = [
   { href: "/portal/business", label: "My Listing", icon: "Store" },
   { href: "/portal/events", label: "My Events", icon: "CalendarDays" },
   { href: "/portal/billing", label: "Billing", icon: "Receipt" },
-  { href: "/portal/ai", label: "AI Tools", icon: "Sparkles" },
   { href: "/portal/profile", label: "Profile", icon: "UserCog" },
 ];
 

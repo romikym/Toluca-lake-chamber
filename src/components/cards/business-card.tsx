@@ -10,7 +10,7 @@ export function BusinessCard({ b }: { b: Business }) {
     <Link
       href={`/directory/${b.slug}`}
       className={cn(
-        "group relative flex flex-col rounded-2xl border border-line bg-surface p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md",
+        "group relative flex flex-col rounded-2xl border border-line bg-surface p-5 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-lg",
         b.tier === "PREMIUM" && "ring-1 ring-brand-200"
       )}
     >

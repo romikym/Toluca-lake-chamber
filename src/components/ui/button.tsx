@@ -5,23 +5,23 @@ type Variant = "primary" | "secondary" | "tertiary" | "glass" | "subtle" | "dang
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] whitespace-nowrap";
+  "group/btn inline-flex items-center justify-center gap-2 font-medium rounded-full tracking-[0.01em] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.97] whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-brand-500 text-white shadow-sm hover:bg-brand-600 hover:shadow-md hover:-translate-y-px",
+    "bg-brand-600 text-white shadow-sm hover:bg-brand-700 hover:shadow-md hover:-translate-y-0.5",
   secondary:
-    "border border-brand-200 bg-white text-brand-700 hover:border-brand-300 hover:bg-brand-50 shadow-xs",
-  tertiary: "text-brand-600 hover:text-brand-700 hover:bg-brand-50",
-  glass: "glass text-brand-900 hover:bg-white/70 shadow-glass",
+    "border border-line-strong bg-surface text-brand-800 hover:border-brand-300 hover:bg-brand-50 hover:-translate-y-0.5 shadow-xs",
+  tertiary: "text-brand-700 hover:text-brand-800 hover:bg-brand-50",
+  glass: "glass luxe-edge text-brand-900 hover:bg-white/75 hover:-translate-y-0.5 shadow-glass",
   subtle: "bg-brand-50 text-brand-700 hover:bg-brand-100",
   danger: "bg-danger text-white hover:brightness-95 shadow-sm",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-sm",
-  md: "h-11 px-5 text-sm",
-  lg: "h-12 px-7 text-base",
+  sm: "h-9 px-4 text-sm",
+  md: "h-11 px-6 text-sm",
+  lg: "h-[52px] px-8 text-[15px]",
 };
 
 type CommonProps = {

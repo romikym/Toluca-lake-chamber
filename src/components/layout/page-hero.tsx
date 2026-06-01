@@ -23,8 +23,10 @@ export function PageHero({
   return (
     <section className="relative overflow-hidden" style={gradientStyle(hue)}>
       <div className="absolute inset-0 bg-grid opacity-20" />
-      <div className="absolute -right-16 -top-12 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-      <Container className="relative py-16 sm:py-20">
+      <div className="absolute -right-16 -top-12 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+      <div className="absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-brand-900/20 blur-3xl" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
+      <Container className="relative py-20 sm:py-28">
         {breadcrumb && (
           <nav className="mb-5 flex items-center gap-1 text-xs text-white/70">
             {breadcrumb.map((c, i) => (
@@ -41,11 +43,11 @@ export function PageHero({
         )}
         <Reveal>
           {eyebrow && <Eyebrow className="text-white/80">{eyebrow}</Eyebrow>}
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold text-white sm:text-5xl text-balance">
+          <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold text-white sm:text-[3.4rem] sm:leading-[1.05] text-balance">
             {title}
           </h1>
           {description && (
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85 text-balance">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 text-balance">
               {description}
             </p>
           )}

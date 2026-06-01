@@ -15,7 +15,7 @@ export function EventCard({ e }: { e: ChamberEvent }) {
   return (
     <Link
       href={`/events/${e.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-lg"
     >
       <GradientCover name={e.title} hue={e.hue} className="h-36">
         <div className="absolute left-4 top-4 flex flex-col items-center rounded-xl bg-white/95 px-3 py-1.5 shadow-sm">
