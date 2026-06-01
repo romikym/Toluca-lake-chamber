@@ -1,0 +1,244 @@
+// Toluca Lake Chamber — database schema
+// Provider: PostgreSQL (Neon / Supabase / any Postgres). Set DATABASE_URL.
+// Enums/JSON are stored as strings (portable; were chosen for the earlier SQLite dev DB).
+// To run fully offline on SQLite instead, set provider = "sqlite" and
+// DATABASE_URL="file:./dev.db".
+//
+// binaryTargets: "native" for local; "rhel-openssl-3.0.x" for the Netlify/AWS Lambda
+// runtime so the generated Prisma engine works in production.
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // pooled connection (Supabase Supavisor :6543) — used at runtime
+  directUrl = env("DIRECT_URL")   // direct connection (Supabase :5432) — used by migrations / db push
+}
+
+model User {
+  id            String              @id @default(cuid())
+  email         String              @unique
+  name          String?
+  role          String              @default("MEMBER") // ADMIN | STAFF | MEMBER
+  passwordHash  String?
+  businessSlug  String?
+  business      Business?           @relation(fields: [businessSlug], references: [slug])
+  memberships   Membership[]
+  registrations EventRegistration[]
+  notifications Notification[]
+  createdAt     DateTime            @default(now())
+}
+
+model Category {
+  key        String     @id
+  name       String
+  icon       String
+  sortOrder  Int        @default(0)
+  businesses Business[]
+}
+
+model Business {
+  slug        String       @id
+  name        String
+  categoryKey String
+  category    Category     @relation(fields: [categoryKey], references: [key])
+  tagline     String
+  description String
+  tier        String       @default("STANDARD") // STANDARD | FEATURED | PREMIUM
+  status      String       @default("PUBLISHED") // DRAFT | PENDING | PUBLISHED | HIDDEN
+  phone       String?
+  website     String?
+  address     String
+  city        String       @default("Toluca Lake")
+  state       String       @default("CA")
+  hue         Int          @default(150)
+  members     User[]
+  memberships Membership[]
+  createdAt   DateTime     @default(now())
+}
+
+model MembershipPlan {
+  key         String       @id
+  name        String
+  priceCents  Int
+  audience    String
+  eligibility String?
+  popular     Boolean      @default(false)
+  benefits    String // JSON array
+  sortOrder   Int          @default(0)
+  memberships Membership[]
+}
+
+model Membership {
+  id        String          @id @default(cuid())
+  userId    String
+  user      User            @relation(fields: [userId], references: [id])
+  planKey   String
+  plan      MembershipPlan  @relation(fields: [planKey], references: [key])
+  businessSlug String?
+  business  Business?       @relation(fields: [businessSlug], references: [slug])
+  status    String          @default("PENDING") // PENDING | ACTIVE | PAST_DUE | EXPIRED | CANCELLED
+  startedAt DateTime?
+  expiresAt DateTime?
+  autoRenew Boolean         @default(false)
+  createdAt DateTime        @default(now())
+}
+
+model Program {
+  slug     String  @id
+  name     String
+  blurb    String
+  icon     String
+  isActive Boolean @default(true)
+  events   Event[]
+}
+
+model Event {
+  slug         String              @id
+  title        String
+  programSlug  String?
+  program      Program?            @relation(fields: [programSlug], references: [slug])
+  start        DateTime
+  end          DateTime?
+  location     String
+  address      String
+  summary      String
+  description  String
+  membersOnly  Boolean             @default(false)
+  priceCents   Int                 @default(0)
+  capacity     Int                 @default(100)
+  registered   Int                 @default(0)
+  hue          Int                 @default(150)
+  status       String              @default("PUBLISHED")
+  registrations EventRegistration[]
+  createdAt    DateTime            @default(now())
+}
+
+model EventRegistration {
+  id         String   @id @default(cuid())
+  eventSlug  String
+  event      Event    @relation(fields: [eventSlug], references: [slug])
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id])
+  guestName  String?
+  guestEmail String?
+  status     String   @default("CONFIRMED")
+  createdAt  DateTime @default(now())
+}
+
+model BoardMember {
+  id        String  @id @default(cuid())
+  name      String
+  role      String
+  company   String?
+  email     String?
+  grp       String  @default("Director")
+  hue       Int     @default(150)
+  sortOrder Int     @default(0)
+}
+
+model Faq {
+  id        String @id @default(cuid())
+  question  String
+  answer    String
+  sortOrder Int    @default(0)
+}
+
+model Article {
+  slug    String   @id
+  title   String
+  excerpt String
+  date    DateTime
+  hue     Int      @default(150)
+  type    String   @default("SPOTLIGHT")
+  status  String   @default("PUBLISHED")
+}
+
+model Sponsor {
+  id   String @id @default(cuid())
+  name String
+  tier String
+  hue  Int    @default(150)
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  status    String   @default("PENDING")
+  source    String?
+  createdAt DateTime @default(now())
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  firstName String?
+  lastName  String?
+  email     String
+  phone     String?
+  interest  String?
+  message   String
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model AiLog {
+  id           String   @id @default(cuid())
+  feature      String
+  model        String
+  status       String
+  inputChars   Int      @default(0)
+  outputChars  Int      @default(0)
+  createdAt    DateTime @default(now())
+}
+
+model Notification {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  type      String
+  title     String
+  body      String?
+  link      String?
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId, readAt])
+}
+
+model AiDraft {
+  id         String   @id @default(cuid())
+  feature    String
+  title      String
+  content    String
+  author     String?
+  status     String   @default("PENDING") // PENDING | APPROVED | REJECTED
+  reviewedBy String?
+  createdAt  DateTime @default(now())
+}
+
+model Payment {
+  id              String   @id @default(cuid())
+  kind            String // membership | event | donation
+  amountCents     Int
+  currency        String   @default("usd")
+  status          String   @default("PENDING") // PENDING | SUCCEEDED | FAILED | SIMULATED
+  email           String?
+  refSlug         String? // event slug or plan key
+  stripeSessionId String?  @unique
+  stripePaymentId String?
+  createdAt       DateTime @default(now())
+}
+
+model Donation {
+  id              String   @id @default(cuid())
+  donorName       String?
+  donorEmail      String?
+  amountCents     Int
+  recurring       Boolean  @default(false)
+  status          String   @default("PENDING") // PENDING | SUCCEEDED | SIMULATED
+  stripeSessionId String?  @unique
+  createdAt       DateTime @default(now())
+}

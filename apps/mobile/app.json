@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "Toluca Lake Chamber",
+    "slug": "toluca-lake-chamber",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "tolucalake",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#073529",
+      "resizeMode": "contain"
+    },
+    "ios": { "supportsTablet": true },
+    "android": {
+      "adaptiveIcon": { "backgroundColor": "#073529" }
+    },
+    "plugins": ["expo-router"],
+    "experiments": { "typedRoutes": false }
+  }
+}

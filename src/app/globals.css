@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Toluca Lake Chamber — Design Tokens (Phase 3)
+   Green-only palette. No yellow/gold. Soft, glassy, premium.
+   ============================================================ */
+@theme {
+  /* Brand green scale */
+  /* Anchored on the official logo green (#177A5C) */
+  --color-brand-50: #ecf5f1;
+  --color-brand-100: #d2e9e0;
+  --color-brand-200: #a6d3c4;
+  --color-brand-300: #6fb6a0;
+  --color-brand-400: #3f9a7e;
+  --color-brand-500: #177a5c;
+  --color-brand-600: #136a50;
+  --color-brand-700: #0f5743;
+  --color-brand-800: #0b4435;
+  --color-brand-900: #073529;
+
+  /* Neutrals (soft white -> charcoal) */
+  --color-canvas: #f7f9f8;
+  --color-surface: #ffffff;
+  --color-line: #e1e6e4;
+  --color-line-strong: #c7cfcc;
+  --color-ink: #1a201e;
+  --color-ink-soft: #3a413f;
+  --color-muted: #6b7472;
+  --color-faint: #9aa4a1;
+
+  /* Semantic (green-compatible; bronze for caution, never bright yellow) */
+  --color-success: #177a5c;
+  --color-info: #2f6f8f;
+  --color-warning: #b8862a;
+  --color-danger: #b23b3b;
+  --color-danger-soft: #fbeded;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  /* Shadows (soft, green-tinted) */
+  --shadow-xs: 0 1px 2px rgba(7, 53, 41, 0.06);
+  --shadow-sm: 0 2px 8px rgba(7, 53, 41, 0.06);
+  --shadow-md: 0 8px 24px rgba(7, 53, 41, 0.08);
+  --shadow-lg: 0 16px 40px rgba(7, 53, 41, 0.12);
+  --shadow-glass: 0 8px 32px rgba(7, 53, 41, 0.1);
+
+  /* Fonts (wired to next/font variables in layout) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Container */
+  --breakpoint-2xl: 96rem;
+}
+
+/* Base layer */
+@layer base {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.4);
+  }
+
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-brand-900);
+  }
+
+  ::selection {
+    background-color: var(--color-brand-100);
+    color: var(--color-brand-900);
+  }
+
+  /* Focus visibility */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+}
+
+/* Reusable utilities */
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    border: 1px solid var(--glass-border);
+  }
+  .glass-dark {
+    background: rgba(7, 53, 41, 0.45);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-gradient-brand {
+    background: linear-gradient(120deg, var(--color-brand-700), var(--color-brand-400));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(7, 53, 41, 0.06) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

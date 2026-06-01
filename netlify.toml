@@ -1,0 +1,14 @@
+# Netlify configuration — Toluca Lake Chamber (Next.js 15)
+# The official Next.js plugin handles SSR, server actions, API routes, and
+# image optimization automatically.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Don't fail the build on peer-dep warnings.
+  NPM_FLAGS = "--no-audit --no-fund"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

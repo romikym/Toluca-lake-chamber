@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_in_Chrome__list_connected_browsers",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "WebFetch(domain:iamromik.wixstudio.com)",
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "Bash(pnpm --version)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(tee /tmp/tlc-dev.log)",
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Force)",
+      "PowerShell(\"node stopped\")",
+      "Bash(npx prisma *)",
+      "Bash(node -e 'const{PrismaClient}=require\\('\\\\''@prisma/client'\\\\''\\);const db=new PrismaClient\\(\\);db.contactSubmission.findMany\\({orderBy:{createdAt:'\\\\''desc'\\\\''},take:3}\\).then\\(r=>{console.log\\('\\\\''Contact submissions:'\\\\'',r.length\\);r.forEach\\(x=>console.log\\('\\\\'' -'\\\\'',x.firstName,x.email,'\\\\''|'\\\\'',x.interest\\)\\);return db.$disconnect\\(\\);}\\)')",
+      "Bash(node -e 'const{PrismaClient}=require\\('\\\\''@prisma/client'\\\\''\\);const db=new PrismaClient\\(\\);Promise.all\\([db.donation.findMany\\({orderBy:{createdAt:'\\\\''desc'\\\\''},take:3}\\),db.payment.count\\(\\)]\\).then\\(\\([d,p]\\)=>{console.log\\('\\\\''Donations:'\\\\'',d.length,'\\\\''| Payments total:'\\\\'',p\\);d.forEach\\(x=>console.log\\('\\\\''  -'\\\\'',\\(x.amountCents/100\\).toFixed\\(0\\),x.recurring?'\\\\''monthly'\\\\'':'\\\\''one-time'\\\\'',x.status\\)\\);return db.$disconnect\\(\\);}\\)')",
+      "Bash(node -e 'const{PrismaClient}=require\\('\\\\''@prisma/client'\\\\''\\);const db=new PrismaClient\\(\\);db.newsletterSubscriber.findMany\\({orderBy:{createdAt:'\\\\''desc'\\\\''},take:3}\\).then\\(r=>{console.log\\('\\\\''Subscribers:'\\\\'',r.length\\);r.forEach\\(x=>console.log\\('\\\\''  -'\\\\'',x.email,x.status\\)\\);return db.$disconnect\\(\\);}\\)')"
+    ]
+  }
+}
