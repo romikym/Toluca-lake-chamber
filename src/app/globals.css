@@ -5,31 +5,36 @@
    Green-only palette. No yellow/gold. Soft, glassy, premium.
    ============================================================ */
 @theme {
-  /* Brand green scale */
-  /* Anchored on the official logo green (#177A5C) */
-  --color-brand-50: #ecf5f1;
-  --color-brand-100: #d2e9e0;
-  --color-brand-200: #a6d3c4;
-  --color-brand-300: #6fb6a0;
-  --color-brand-400: #3f9a7e;
-  --color-brand-500: #177a5c;
-  --color-brand-600: #136a50;
-  --color-brand-700: #0f5743;
-  --color-brand-800: #0b4435;
-  --color-brand-900: #073529;
+  /* Brand green scale — Toluca Lake forest green
+     Primary #00563F · Dark forest #003726 · with emerald/spring accents */
+  --color-brand-50: #eef5f1;
+  --color-brand-100: #dde8e1;  /* soft sage */
+  --color-brand-200: #bcd6c8;
+  --color-brand-300: #8fc0a7;
+  --color-brand-400: #4f9e7e;
+  --color-brand-500: #00563f;  /* primary */
+  --color-brand-600: #004a36;
+  --color-brand-700: #003726;  /* dark forest */
+  --color-brand-800: #002a1d;
+  --color-brand-900: #001c13;
 
-  /* Neutrals — warm ivory canvas + green-ink for a heritage/luxury feel */
-  --color-canvas: #f6f5f0;
+  /* Fresh accents — emerald + spring green (never yellow/orange/blue) */
+  --color-emerald: #00a76d;
+  --color-spring: #35d08a;
+  --color-sage: #dde8e1;
+
+  /* Neutrals — cream canvas + charcoal ink (Apple-grade) */
+  --color-canvas: #f8f7f3;
   --color-surface: #ffffff;
-  --color-line: #e8e6dd;
-  --color-line-strong: #d5d2c6;
-  --color-ink: #1b1f1a;
-  --color-ink-soft: #41473e;
-  --color-muted: #6d7267;
-  --color-faint: #a1a497;
+  --color-line: #e7e5dd;
+  --color-line-strong: #d6d3c9;
+  --color-ink: #1d1d1f;
+  --color-ink-soft: #3c3f3b;
+  --color-muted: #6c6f68;
+  --color-faint: #a0a39a;
 
-  /* Semantic (green-compatible; bronze for caution, never bright yellow) */
-  --color-success: #177a5c;
+  /* Semantic */
+  --color-success: #00a76d;
   --color-info: #2f6f8f;
   --color-warning: #b8862a;
   --color-danger: #b23b3b;
@@ -52,7 +57,7 @@
 
   /* Fonts (wired to next/font variables in layout) */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
 
   /* Motion */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -91,11 +96,13 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.01em;
     color: var(--color-brand-900);
-    font-feature-settings: "kern", "liga", "ss01";
+    font-feature-settings: "kern", "liga";
   }
-  h1 { letter-spacing: -0.035em; }
+  h1 { letter-spacing: -0.02em; line-height: 1.04; }
+  /* Editorial italic accent used in display headlines */
+  .display-italic { font-style: italic; font-weight: 500; }
 
   ::selection {
     background-color: var(--color-brand-100);
@@ -139,6 +146,20 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+  /* Fresh emerald → spring italic accent (e.g. "elevated.") */
+  .text-gradient-spring {
+    background: linear-gradient(120deg, var(--color-emerald), var(--color-spring));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Soft emerald glow for primary CTAs */
+  .glow-emerald {
+    box-shadow: 0 10px 30px -8px rgba(0, 167, 109, 0.45), 0 2px 6px rgba(0, 55, 38, 0.18);
+  }
+  .glow-emerald:hover {
+    box-shadow: 0 16px 40px -10px rgba(0, 167, 109, 0.55), 0 3px 8px rgba(0, 55, 38, 0.22);
   }
   .bg-grid {
     background-image: radial-gradient(circle at 1px 1px, rgba(7, 53, 41, 0.06) 1px, transparent 0);

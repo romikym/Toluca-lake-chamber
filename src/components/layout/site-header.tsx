@@ -50,16 +50,14 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Main bar */}
-      <div
-        className={cn(
-          "border-b transition-all duration-300",
-          scrolled
-            ? "glass border-line/60 shadow-sm"
-            : "border-transparent bg-canvas/80 backdrop-blur-sm"
-        )}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:px-8">
+      {/* Main bar — floating glass pill */}
+      <div className="px-3 pt-3 sm:px-5 sm:pt-4">
+        <div
+          className={cn(
+            "glass luxe-edge mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-2xl border border-white/50 px-4 py-2.5 transition-all duration-300 sm:px-5",
+            scrolled ? "shadow-glass" : "shadow-md"
+          )}
+        >
           <Logo />
 
           {/* Desktop nav */}
@@ -118,15 +116,15 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <Link
               href="/directory"
-              className="hidden h-10 w-10 items-center justify-center rounded-full text-ink-soft hover:bg-brand-50 hover:text-brand-700 sm:flex"
+              className="hidden h-10 w-10 items-center justify-center rounded-full border border-line bg-surface/70 text-ink-soft transition hover:border-brand-300 hover:text-brand-700 sm:flex"
               aria-label="Search the directory"
             >
-              <Search className="h-5 w-5" />
+              <Search className="h-[18px] w-[18px]" />
             </Link>
             <ButtonLink href="/donate" variant="secondary" size="sm" className="hidden sm:inline-flex">
               Donate
             </ButtonLink>
-            <ButtonLink href="/membership/apply" size="sm" className="hidden sm:inline-flex">
+            <ButtonLink href="/membership/apply" size="sm" className="glow-emerald hidden sm:inline-flex">
               Join the Chamber
             </ButtonLink>
             <button
