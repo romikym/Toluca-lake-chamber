@@ -10,25 +10,37 @@ import { getEvents, getCategories } from "@/server/queries";
 
 export const dynamic = "force-dynamic";
 
-/* Layered photo backgrounds: a real photo (drop into /public/images) sits on top
-   of a tasteful green-scene gradient that shows if the photo isn't present yet. */
+/* Layered photo backgrounds. Priority: your local photo (drop into /public/images)
+   → a license-clear Unsplash placeholder → a green-scene gradient (never broken). */
+const HERO_PLACEHOLDER =
+  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80";
+
 const heroPhoto: React.CSSProperties = {
   backgroundImage:
-    "linear-gradient(180deg, rgba(0,28,19,0) 50%, rgba(0,28,19,0.55) 100%)," +
+    "linear-gradient(180deg, rgba(0,28,19,0) 55%, rgba(0,28,19,0.35) 100%)," +
     "url('/images/hero-toluca-lake.jpg')," +
-    "linear-gradient(165deg, #cfe7d6 0%, #8fbf9f 24%, #4f9e7e 46%, #1d7a59 64%, #00563f 82%, #003726 100%)",
-  backgroundSize: "cover, cover, cover",
-  backgroundPosition: "center, center, center",
+    `url('${HERO_PLACEHOLDER}'),` +
+    "linear-gradient(165deg, #cfe7d6 0%, #4f9e7e 46%, #00563f 82%, #003726 100%)",
+  backgroundSize: "cover, cover, cover, cover",
+  backgroundPosition: "center, center, center, center",
   backgroundRepeat: "no-repeat",
 };
 
-function eventCover(hue: number, slug: string): React.CSSProperties {
+// A few distinct license-clear placeholders so event cards read as photos.
+const EVENT_PLACEHOLDERS = [
+  "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80", // gathering
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80", // outdoors/nature
+  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80", // conference
+];
+
+function eventCover(hue: number, slug: string, idx: number): React.CSSProperties {
   return {
     backgroundImage:
       `url('/images/events/${slug}.jpg'),` +
+      `url('${EVENT_PLACEHOLDERS[idx % EVENT_PLACEHOLDERS.length]}'),` +
       `linear-gradient(150deg, hsl(${hue} 32% 52%), hsl(${hue} 42% 28%))`,
-    backgroundSize: "cover, cover",
-    backgroundPosition: "center, center",
+    backgroundSize: "cover, cover, cover",
+    backgroundPosition: "center, center, center",
     backgroundRepeat: "no-repeat",
   };
 }
@@ -80,23 +92,17 @@ export default async function HomePage() {
         {/* Large organic arc behind the photo */}
         <div className="absolute -right-40 -top-24 hidden h-[680px] w-[680px] rounded-full border border-white/10 lg:block" />
 
-        {/* Photo panel — bleeds to the right edge with an organic curved left side */}
-        <div className="absolute inset-y-0 right-0 hidden w-[58%] lg:block">
-          <div
-            className="absolute inset-0 my-8 mr-6 rounded-[2.75rem] shadow-luxe"
-            style={{ ...heroPhoto, clipPath: "ellipse(128% 92% at 82% 46%)" }}
-          />
-          {/* glass curved highlight along the boundary */}
-          <div
-            className="absolute inset-0 my-8 mr-6 rounded-[2.75rem] ring-1 ring-inset ring-white/15"
-            style={{ clipPath: "ellipse(128% 92% at 82% 46%)" }}
-          />
-          {/* floating glass chip on the photo */}
-          <div className="glass luxe-edge absolute bottom-16 left-16 flex items-center gap-3 rounded-2xl px-4 py-3 text-brand-900 shadow-glass">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-white"><MapPin className="h-4 w-4" /></span>
-            <div className="text-left">
-              <p className="text-xs text-muted">The Village</p>
-              <p className="text-sm font-semibold">Toluca Lake, California</p>
+        {/* Photo panel — large rounded card that bleeds toward the right edge */}
+        <div className="absolute inset-y-0 right-0 hidden w-[56%] lg:block">
+          <div className="absolute inset-0 my-10 ml-2 mr-8 overflow-hidden rounded-[2.5rem] shadow-luxe ring-1 ring-white/15">
+            <div className="absolute inset-0" style={heroPhoto} />
+            {/* floating glass chip on the photo */}
+            <div className="glass luxe-edge absolute bottom-6 left-6 flex items-center gap-3 rounded-2xl px-4 py-3 text-brand-900 shadow-glass">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-white"><MapPin className="h-4 w-4" /></span>
+              <div className="text-left">
+                <p className="text-xs text-muted">The Village</p>
+                <p className="text-sm font-semibold">Toluca Lake, California</p>
+              </div>
             </div>
           </div>
         </div>
@@ -228,7 +234,7 @@ export default async function HomePage() {
             </div>
 
             <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredEvents.map((e) => {
+              {featuredEvents.map((e, idx) => {
                 const d = new Date(e.start);
                 const month = d.toLocaleString("en-US", { month: "short" }).toUpperCase();
                 const day = d.getDate();
@@ -240,7 +246,7 @@ export default async function HomePage() {
                       href={`/events/${e.slug}`}
                       className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line bg-surface shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:shadow-lg"
                     >
-                      <div className="relative h-44" style={eventCover(e.hue, e.slug)}>
+                      <div className="relative h-44" style={eventCover(e.hue, e.slug, idx)}>
                         <div className="absolute inset-0 bg-gradient-to-t from-brand-900/25 to-transparent" />
                         <div className="absolute left-4 top-4 flex flex-col items-center rounded-2xl bg-white/95 px-3 py-1.5 shadow-md">
                           <span className="text-[10px] font-semibold tracking-wide text-emerald">{month}</span>
