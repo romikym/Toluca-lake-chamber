@@ -206,19 +206,6 @@ export const faqs = [
 
 export type Testimonial = { quote: string; name: string; business: string; hue: number };
 
-export const testimonials: Testimonial[] = [
-  { quote: "The Chamber connected us with neighbors and customers we'd never have met otherwise. The mixers alone paid for our membership.", name: "Sheila Melody", business: "The Strength Code", hue: 150 },
-  { quote: "Being in the directory put our studio on the map in the Village. It feels like a true community, not just a list.", name: "Studio Owner", business: "Align & Define Pilates", hue: 162 },
-  { quote: "Community Cleanup mornings at Priscilla's are the best part of my month. This is what a neighborhood should feel like.", name: "Longtime Member", business: "Toluca Lake Resident", hue: 142 },
-];
-
-export const impactStats = [
-  { label: "Member businesses", value: 120, suffix: "+" },
-  { label: "Years serving the Village", value: 86 },
-  { label: "Community events a year", value: 40, suffix: "+" },
-  { label: "Industry categories", value: 14 },
-];
-
 export const spotlightArticles = [
   { slug: "good-day-la-100th", title: "Good Day LA — Toluca Lake's 100th Anniversary", date: "2023-12-26", excerpt: "Celebrating a century of the Village with a look back at the people and places that made Toluca Lake home.", hue: 155 },
   { slug: "village-small-business-saturday", title: "Small Business Saturday in the Village", date: "2024-11-30", excerpt: "How Toluca Lake shows up for its local shops during the busiest weekend of the year.", hue: 148 },

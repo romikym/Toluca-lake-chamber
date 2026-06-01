@@ -39,7 +39,7 @@ export function DonateWidget() {
       <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="rounded-3xl border border-line bg-surface p-10 text-center shadow-sm">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 text-brand-600"><Heart className="h-8 w-8" /></div>
         <h2 className="mt-5 font-display text-2xl font-bold text-brand-900">Thank you!</h2>
-        <p className="mx-auto mt-3 max-w-sm text-ink-soft">Your generosity helps keep the Village thriving. (No payment was taken in this demo.)</p>
+        <p className="mx-auto mt-3 max-w-sm text-ink-soft">Your generosity helps keep the Village thriving.</p>
       </motion.div>
     );
   }

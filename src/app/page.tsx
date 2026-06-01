@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
-  ArrowRight, Sparkles, Quote, Network, Megaphone, Store, Users,
-  Calendar, ShieldCheck, TrendingUp,
+  ArrowRight, Sparkles, Network, Megaphone, Store, Users,
+  ShieldCheck, TrendingUp,
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
@@ -10,11 +10,10 @@ import { SectionHeader, Eyebrow } from "@/components/ui/section-header";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { Counter } from "@/components/ui/counter";
 import { Icon } from "@/components/ui/icon";
-import { GradientAvatar, gradientStyle } from "@/components/ui/gradient";
+import { gradientStyle } from "@/components/ui/gradient";
 import { BusinessCard } from "@/components/cards/business-card";
 import { EventCard } from "@/components/cards/event-card";
-import { testimonials, impactStats } from "@/lib/data";
-import { getBusinesses, getEvents, getPrograms } from "@/server/queries";
+import { getBusinesses, getEvents, getPrograms, getCategories } from "@/server/queries";
 
 const benefits = [
   { icon: Store, title: "Directory presence", body: "A rich profile with photo gallery that puts your business in front of the whole Village." },
@@ -26,11 +25,18 @@ const benefits = [
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [businesses, events, programs] = await Promise.all([
-    getBusinesses(), getEvents(), getPrograms(),
+  const [businesses, events, programs, categories] = await Promise.all([
+    getBusinesses(), getEvents(), getPrograms(), getCategories(),
   ]);
   const featuredEvents = events.slice(0, 3);
   const featuredMembers = businesses.filter((b) => b.tier !== "STANDARD").slice(0, 6);
+
+  const impactStats = [
+    { label: "Member businesses", value: businesses.length, suffix: "" },
+    { label: "Years serving the Village", value: new Date().getFullYear() - 1939, suffix: "" },
+    { label: "Events on the calendar", value: events.length, suffix: "" },
+    { label: "Industry categories", value: categories.length, suffix: "" },
+  ];
 
   return (
     <>
@@ -212,31 +218,6 @@ export default async function HomePage() {
                   <h3 className="mt-4 font-display text-lg font-semibold text-brand-900">{b.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{b.body}</p>
                 </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </Container>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="py-12">
-        <Container>
-          <Stagger className="grid gap-6 lg:grid-cols-3">
-            {testimonials.map((t) => (
-              <StaggerItem key={t.name}>
-                <figure className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-md">
-                  <Quote className="h-7 w-7 text-brand-300" />
-                  <blockquote className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-soft">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                  <figcaption className="mt-5 flex items-center gap-3">
-                    <GradientAvatar name={t.name} hue={t.hue} className="h-10 w-10 rounded-full text-xs" rounded="rounded-full" />
-                    <div>
-                      <div className="text-sm font-semibold text-brand-900">{t.name}</div>
-                      <div className="text-xs text-muted">{t.business}</div>
-                    </div>
-                  </figcaption>
-                </figure>
               </StaggerItem>
             ))}
           </Stagger>

@@ -62,7 +62,7 @@ export function JoinForm({ initialPlan }: { initialPlan?: string }) {
         <h2 className="mt-5 font-display text-2xl font-bold text-brand-900">Application received!</h2>
         <p className="mx-auto mt-3 max-w-md text-ink-soft">
           Thank you for applying to the Toluca Lake Chamber of Commerce. Your membership is
-          pending board review — you&apos;ll hear from us shortly. (No payment was taken in this demo.)
+          pending board review — you&apos;ll hear from us shortly.
         </p>
       </motion.div>
     );
@@ -134,7 +134,7 @@ export function JoinForm({ initialPlan }: { initialPlan?: string }) {
                 <p><strong>{form.name || "—"}</strong> · {form.email || "—"} · {form.phone || "—"}</p>
                 {form.business && <p className="mt-1">{form.business}</p>}
               </div>
-              <p className="text-xs text-muted">By submitting, you agree your membership is subject to board approval, with a full refund if not approved. Payment is collected securely via Stripe at the next step (disabled in this demo).</p>
+              <p className="text-xs text-muted">By submitting, you agree your membership is subject to board approval, with a full refund if not approved. Payment is collected securely via Stripe after approval.</p>
             </div>
           )}
         </motion.div>
