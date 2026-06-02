@@ -32,7 +32,7 @@ export function SiteHeader() {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div
-        className={cn("pointer-events-auto hidden border-b border-white/10 text-white/85 transition-opacity duration-500 md:block", scrolled ? "opacity-0" : "opacity-100")}
+        className={cn("pointer-events-auto hidden border-b border-white/10 text-white/85 transition-opacity duration-300 md:block", scrolled ? "opacity-0" : "opacity-100")}
         style={{ background: "rgba(0, 29, 22, 0.55)", backdropFilter: "blur(20px) saturate(160%)" }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1.5 text-[11px] tracking-wide lg:px-8">
@@ -53,7 +53,7 @@ export function SiteHeader() {
 
       <div className="pointer-events-auto px-3 pt-3 sm:px-5 sm:pt-4">
         <div
-          className={cn("nav-pill mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-[28px] px-4 py-2.5 text-white transition-all duration-500 sm:px-5", scrolled && "scale-[0.985] shadow-[0_24px_70px_rgba(0,20,14,0.4)]")}
+          className={cn("nav-pill mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-[28px] px-4 py-2.5 text-white transition-all duration-300 sm:px-5", scrolled && "scale-[0.985] shadow-[0_24px_70px_rgba(0,20,14,0.4)]")}
         >
           <Logo variant="light" />
 

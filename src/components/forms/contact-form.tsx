@@ -73,7 +73,7 @@ export function ContactForm() {
               key={i}
               onClick={() => setInterest(i)}
               className={cn(
-                "rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300",
+                "rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-200",
                 interest === i
                   ? "btn-gradient border-transparent text-white"
                   : "border-line bg-white/70 text-ink-soft hover:border-brand-300 hover:bg-brand-50"
@@ -92,7 +92,7 @@ export function ContactForm() {
           required
           rows={5}
           placeholder="How can we help?"
-          className="w-full rounded-2xl border border-line bg-white/70 p-4 text-sm outline-none transition-all duration-300 focus:border-brand-500 focus:bg-white focus:shadow-emerald-soft"
+          className="w-full rounded-2xl border border-line bg-white/70 p-4 text-sm outline-none transition-all duration-200 focus:border-brand-500 focus:bg-white focus:shadow-emerald-soft"
         />
       </label>
 
@@ -105,7 +105,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={state === "loading"}
-        className="btn-gradient mt-7 flex h-12 w-full items-center justify-center gap-2 rounded-full font-semibold text-white transition-all duration-500 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 sm:w-auto sm:px-9"
+        className="btn-gradient mt-7 flex h-12 w-full items-center justify-center gap-2 rounded-full font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 sm:w-auto sm:px-9"
       >
         {state === "loading" ? <Loader2 className="h-5 w-5 animate-spin" /> : (
           <>Send Message <Send className="h-4 w-4" /></>
@@ -141,7 +141,7 @@ function Field({ label, name, type = "text", required, full }: { label: string; 
         name={name}
         type={type}
         required={required}
-        className="h-11 w-full rounded-2xl border border-line bg-white/70 px-4 text-sm outline-none transition-all duration-300 focus:border-brand-500 focus:bg-white focus:shadow-emerald-soft"
+        className="h-11 w-full rounded-2xl border border-line bg-white/70 px-4 text-sm outline-none transition-all duration-200 focus:border-brand-500 focus:bg-white focus:shadow-emerald-soft"
       />
     </label>
   );

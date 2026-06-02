@@ -11,7 +11,7 @@ export function Reveal({
   delay = 0,
   y = 24,
   as = "div",
-  duration = 0.85,
+  duration = 0.45,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -38,7 +38,7 @@ export function Reveal({
 export function Stagger({
   children,
   className,
-  step = 0.08,
+  step = 0.05,
   as = "div",
 }: {
   children: React.ReactNode;
@@ -75,7 +75,7 @@ export function StaggerItem({
   const MotionTag = motion[as];
   const variants: Variants = {
     hidden: reduce ? { opacity: 0 } : { opacity: 0, y },
-    show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
   };
   return (
     <MotionTag className={cn(className)} variants={variants}>
@@ -86,7 +86,7 @@ export function StaggerItem({
 
 export function HoverLift({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <motion.div className={className} whileHover={{ y: -6 }} transition={{ duration: 0.6, ease: EASE }}>
+    <motion.div className={className} whileHover={{ y: -4 }} transition={{ duration: 0.28, ease: EASE }}>
       {children}
     </motion.div>
   );

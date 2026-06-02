@@ -13,7 +13,7 @@ type Size = "sm" | "md" | "lg" | "xl";
 
 const base =
   "group/btn inline-flex items-center justify-center gap-2 font-semibold rounded-full tracking-[0.005em] " +
-  "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] " +
+  "transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] " +
   "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand-500 " +
   "disabled:opacity-50 disabled:pointer-events-none active:scale-[0.97] whitespace-nowrap";
 

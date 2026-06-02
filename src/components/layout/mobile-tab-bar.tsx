@@ -29,7 +29,7 @@ export function MobileTabBar() {
               href={t.href}
               className={cn("flex flex-1 flex-col items-center gap-0.5 rounded-2xl py-1.5 text-[10px] font-semibold transition-colors", active ? "text-brand-800" : "text-muted")}
             >
-              <span className={cn("flex h-9 w-9 items-center justify-center rounded-full transition-all", active ? "btn-gradient text-white shadow-[0_8px_18px_-6px_rgba(0,167,109,0.55)]" : "bg-transparent")}>
+              <span className={cn("flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200", active ? "btn-gradient text-white shadow-[0_8px_18px_-6px_rgba(0,167,109,0.55)]" : "bg-transparent")}>
                 <Icon className="h-5 w-5" />
               </span>
               {t.label}

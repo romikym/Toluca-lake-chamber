@@ -19,7 +19,7 @@ export function Accordion({ items }: { items: { q: string; a: string }[] }) {
               aria-expanded={isOpen}
             >
               <span className="font-display text-[17px] font-semibold leading-snug text-brand-900">{item.q}</span>
-              <span className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-500", isOpen ? "btn-gradient rotate-45 text-white" : "bg-brand-50 text-brand-700")}>
+              <span className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-200", isOpen ? "btn-gradient rotate-45 text-white" : "bg-brand-50 text-brand-700")}>
                 <Plus className="h-4 w-4" strokeWidth={2.5} />
               </span>
             </button>
@@ -29,7 +29,7 @@ export function Accordion({ items }: { items: { q: string; a: string }[] }) {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
                   <p className="px-6 pb-6 text-[15px] leading-relaxed text-ink-soft">{item.a}</p>

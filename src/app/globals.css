@@ -171,7 +171,7 @@
     box-shadow: 0 14px 38px -12px rgba(0, 55, 38, 0.10);
   }
   .card-glass-lift {
-    transition: transform 0.6s var(--ease-spring), box-shadow 0.6s var(--ease-spring), border-color 0.6s var(--ease-spring);
+    transition: transform 0.32s var(--ease-spring), box-shadow 0.32s var(--ease-spring), border-color 0.32s var(--ease-spring);
   }
   .card-glass-lift:hover {
     transform: translateY(-6px);
