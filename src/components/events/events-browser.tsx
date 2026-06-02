@@ -57,8 +57,8 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
     <button
       onClick={onClick}
       className={cn(
-        "shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
-        active ? "border-brand-500 bg-brand-500 text-white" : "border-line bg-surface text-ink-soft hover:border-brand-300"
+        "shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all",
+        active ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(0,167,109,0.5)]" : "glass-strong text-ink-soft hover:text-brand-700 hover:-translate-y-0.5"
       )}
     >
       {children}

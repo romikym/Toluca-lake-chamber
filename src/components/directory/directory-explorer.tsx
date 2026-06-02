@@ -45,11 +45,11 @@ export function DirectoryExplorer({
     <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
       {/* Filters */}
       <aside className={cn("lg:block", showFilters ? "block" : "hidden")}>
-        <div className="lg:sticky lg:top-28">
-          <div className="mb-3 flex items-center justify-between">
+        <div className="glass-strong lg:sticky lg:top-28 rounded-3xl p-4 shadow-md">
+          <div className="mb-3 flex items-center justify-between px-1">
             <h2 className="font-display font-semibold text-brand-900">Industries</h2>
             {active && (
-              <button onClick={() => setActive(null)} className="text-xs text-brand-600 hover:underline">
+              <button onClick={() => setActive(null)} className="text-xs font-medium text-brand-600 hover:text-brand-800 hover:underline">
                 Clear
               </button>
             )}
@@ -58,8 +58,8 @@ export function DirectoryExplorer({
             <button
               onClick={() => setActive(null)}
               className={cn(
-                "flex items-center justify-between rounded-xl px-3 py-2 text-sm transition-colors",
-                !active ? "bg-brand-500 text-white" : "text-ink-soft hover:bg-brand-50"
+                "flex items-center justify-between rounded-xl px-3 py-2 text-sm transition-all",
+                !active ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(0,167,109,0.5)]" : "text-ink-soft hover:bg-white/70"
               )}
             >
               All members <span className="text-xs opacity-70">{businesses.length}</span>
@@ -69,8 +69,8 @@ export function DirectoryExplorer({
                 key={c.key}
                 onClick={() => setActive(c.key)}
                 className={cn(
-                  "flex items-center justify-between gap-2 rounded-xl px-3 py-2 text-left text-sm transition-colors",
-                  active === c.key ? "bg-brand-500 text-white" : "text-ink-soft hover:bg-brand-50"
+                  "flex items-center justify-between gap-2 rounded-xl px-3 py-2 text-left text-sm transition-all",
+                  active === c.key ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(0,167,109,0.5)]" : "text-ink-soft hover:bg-white/70"
                 )}
               >
                 <span className="flex items-center gap-2">
@@ -88,22 +88,22 @@ export function DirectoryExplorer({
       <div>
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative flex-1 min-w-[200px]">
-            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" />
+            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search businesses, services, categories…"
-              className="h-11 w-full rounded-xl border border-line bg-surface pl-10 pr-4 text-sm outline-none focus:border-brand-500"
+              className="glass-strong h-12 w-full rounded-2xl pl-11 pr-4 text-sm shadow-sm outline-none ring-1 ring-white/50 transition focus:ring-2 focus:ring-brand-400"
             />
           </div>
           <button
             onClick={() => setShowFilters((v) => !v)}
-            className="flex h-11 items-center gap-2 rounded-xl border border-line bg-surface px-4 text-sm font-medium text-ink-soft lg:hidden"
+            className="glass-strong flex h-12 items-center gap-2 rounded-2xl px-4 text-sm font-medium text-ink-soft shadow-sm lg:hidden"
           >
             {showFilters ? <X className="h-4 w-4" /> : <SlidersHorizontal className="h-4 w-4" />}
             Filters
           </button>
-          <div className="hidden items-center gap-1 rounded-xl border border-line bg-surface p-1 sm:flex">
+          <div className="glass-strong hidden items-center gap-1 rounded-2xl p-1 shadow-sm sm:flex">
             <button onClick={() => setView("grid")} className={cn("flex h-9 w-9 items-center justify-center rounded-lg", view === "grid" ? "bg-brand-100 text-brand-700" : "text-muted")} aria-label="Grid view">
               <LayoutGrid className="h-4 w-4" />
             </button>
@@ -136,7 +136,7 @@ export function DirectoryExplorer({
         </div>
 
         {results.length === 0 && (
-          <div className="mt-12 rounded-2xl border border-dashed border-line bg-surface p-12 text-center">
+          <div className="glass-strong mt-12 rounded-3xl p-12 text-center shadow-md">
             <p className="font-display text-lg font-semibold text-brand-900">No members found</p>
             <p className="mt-1 text-sm text-muted">Try a different search or category.</p>
           </div>
