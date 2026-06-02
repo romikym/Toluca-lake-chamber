@@ -4,16 +4,58 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, X, Search, Instagram, Facebook, User } from "lucide-react";
+import {
+  ChevronDown, ChevronRight, Menu, X, Search, Instagram, Facebook, User, ArrowRight,
+  Info, Users, Landmark, Sparkles, HelpCircle, CalendarDays, Leaf, Network,
+  Palette, Moon, HeartPulse, Gift, Utensils, Tag, BadgeCheck, UserPlus,
+  type LucideIcon,
+} from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { Magnetic } from "@/components/ui/magnetic";
 import { mainNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+/** Icon for each dropdown destination, keyed by href. */
+const NAV_ICONS: Record<string, LucideIcon> = {
+  "/about": Info,
+  "/about/board": Users,
+  "/about/legacy": Landmark,
+  "/about/spotlight": Sparkles,
+  "/about/faq": HelpCircle,
+  "/events": CalendarDays,
+  "/events/programs/community-cleanup": Leaf,
+  "/events/programs/networking-mixers": Network,
+  "/events/programs/art-fair": Palette,
+  "/events/programs/community-howl": Moon,
+  "/events/programs/health-fair": HeartPulse,
+  "/events/programs/holiday-open-house": Gift,
+  "/events/programs/pancake-breakfast": Utensils,
+  "/membership": Tag,
+  "/membership/benefits": BadgeCheck,
+  "/membership/apply": UserPlus,
+};
+
+const ICON_TINTS = ["icon-emerald", "icon-lake", "icon-sunset", "icon-twilight"];
+
+const dropdownVariants = {
+  hidden: { opacity: 0, y: 10, scale: 0.97 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.24, ease: [0.16, 1, 0.3, 1] } },
+  exit: { opacity: 0, y: 8, scale: 0.98, transition: { duration: 0.16, ease: [0.16, 1, 0.3, 1] } },
+};
+const gridVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.035, delayChildren: 0.05 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, x: -8 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -58,34 +100,73 @@ export function SiteHeader() {
         >
           <Logo variant="light" />
 
-          <nav className="hidden items-center gap-0.5 lg:flex">
+          <nav className="hidden items-center gap-0.5 lg:flex" onMouseLeave={() => { setHovered(null); setOpenMenu(null); }}>
             {mainNav.map((item) => {
               const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+              const showHi = hovered === item.label || (hovered === null && active);
+              const wide = (item.children?.length ?? 0) > 5;
               return (
-                <div key={item.label} className="relative" onMouseEnter={() => setOpenMenu(item.children ? item.label : null)} onMouseLeave={() => setOpenMenu(null)}>
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => { setHovered(item.label); setOpenMenu(item.children ? item.label : null); }}
+                >
                   <Link
                     href={item.href}
-                    className={cn("flex items-center gap-1 rounded-full px-3.5 py-2 text-[13px] font-semibold tracking-wide transition-all", active ? "bg-white/15 text-white" : "text-white/85 hover:bg-white/10 hover:text-white")}
+                    className={cn("relative flex items-center gap-1 rounded-full px-3.5 py-2 text-[13px] font-semibold tracking-wide transition-colors", showHi || active ? "text-white" : "text-white/80 hover:text-white")}
                   >
-                    {item.label}
-                    {item.children && <ChevronDown className="h-3 w-3 opacity-60" />}
+                    {showHi && (
+                      <motion.span
+                        layoutId="nav-highlight"
+                        className="absolute inset-0 -z-0 rounded-full bg-white/15 ring-1 ring-inset ring-white/15"
+                        transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                    {item.children && (
+                      <ChevronDown className={cn("relative z-10 h-3 w-3 opacity-70 transition-transform duration-300", openMenu === item.label && "rotate-180")} />
+                    )}
                   </Link>
+
                   <AnimatePresence>
                     {item.children && openMenu === item.label && (
                       <motion.div
-                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                        transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute left-0 top-full w-80 pt-3"
+                        variants={dropdownVariants}
+                        initial="hidden"
+                        animate="show"
+                        exit="exit"
+                        className={cn("absolute left-1/2 top-full -translate-x-1/2 pt-3.5", wide ? "w-[36rem]" : "w-[20rem]")}
                       >
-                        <div className="glass-strong overflow-hidden rounded-3xl p-2 shadow-luxe">
-                          {item.children.map((child) => (
-                            <Link key={child.href} href={child.href} className="block rounded-2xl px-4 py-3 transition-colors hover:bg-brand-50">
-                              <div className="text-sm font-semibold text-brand-900">{child.label}</div>
-                              {child.description && <div className="mt-0.5 text-xs text-muted">{child.description}</div>}
-                            </Link>
-                          ))}
+                        {/* caret */}
+                        <div className="absolute left-1/2 top-2.5 h-3 w-3 -translate-x-1/2 rotate-45 rounded-[3px] border-l border-t border-white/60 bg-white/80" />
+                        <div className="overflow-hidden rounded-[26px] p-[1px] shadow-luxe" style={{ background: "linear-gradient(140deg, rgba(91,226,161,0.5), rgba(58,166,230,0.32) 50%, rgba(120,102,217,0.36))" }}>
+                          <div className="glass-strong rounded-[25px] p-2">
+                            <motion.div variants={gridVariants} className={cn("grid gap-1", wide && "grid-cols-2")}>
+                              {item.children.map((child, i) => {
+                                const ChildIcon = NAV_ICONS[child.href] ?? Sparkles;
+                                return (
+                                  <motion.div key={child.href} variants={itemVariants}>
+                                    <Link href={child.href} className="group/item flex items-center gap-3 rounded-2xl px-3 py-2.5 transition-colors hover:bg-brand-50">
+                                      <span className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-white shadow-sm transition-transform duration-300 group-hover/item:scale-110 group-hover/item:-rotate-3", ICON_TINTS[i % ICON_TINTS.length])}>
+                                        <ChildIcon className="h-[18px] w-[18px]" strokeWidth={2} />
+                                      </span>
+                                      <span className="min-w-0 flex-1">
+                                        <span className="block truncate text-[13.5px] font-semibold text-brand-900">{child.label}</span>
+                                        {child.description && <span className="block truncate text-[11.5px] text-muted">{child.description}</span>}
+                                      </span>
+                                      <ChevronRight className="h-4 w-4 shrink-0 text-faint opacity-0 transition-all duration-300 group-hover/item:translate-x-0.5 group-hover/item:text-brand-500 group-hover/item:opacity-100" />
+                                    </Link>
+                                  </motion.div>
+                                );
+                              })}
+                            </motion.div>
+                            <motion.div variants={itemVariants} className="mt-1 px-1 pb-0.5">
+                              <Link href={item.href} className="link-arrow flex items-center justify-between rounded-2xl bg-gradient-to-r from-brand-50 to-transparent px-3 py-2.5 text-[12.5px] font-semibold text-brand-700">
+                                Explore all {item.label.toLowerCase()}
+                                <ArrowRight className="h-4 w-4" />
+                              </Link>
+                            </motion.div>
+                          </div>
                         </div>
                       </motion.div>
                     )}
@@ -131,12 +212,18 @@ export function SiteHeader() {
                     {item.label}
                   </Link>
                   {item.children && (
-                    <div className="ml-2 mb-1">
-                      {item.children.slice(1).map((c) => (
-                        <Link key={c.href} href={c.href} className="block rounded-xl px-4 py-2 text-sm text-muted transition hover:bg-brand-50 hover:text-brand-700">
-                          {c.label}
-                        </Link>
-                      ))}
+                    <div className="mb-1 ml-1">
+                      {item.children.slice(1).map((c, i) => {
+                        const ChildIcon = NAV_ICONS[c.href] ?? Sparkles;
+                        return (
+                          <Link key={c.href} href={c.href} className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-ink-soft transition hover:bg-brand-50 hover:text-brand-800">
+                            <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-white", ICON_TINTS[i % ICON_TINTS.length])}>
+                              <ChildIcon className="h-3.5 w-3.5" strokeWidth={2} />
+                            </span>
+                            {c.label}
+                          </Link>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
