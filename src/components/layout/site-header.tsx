@@ -28,7 +28,8 @@ export function SiteHeader() {
     setOpenMenu(null);
   }, [pathname]);
 
-  if (pathname.startsWith("/portal") || pathname.startsWith("/admin")) return null;
+  // The home page renders its own bespoke topline + glass nav (see app/page.tsx).
+  if (pathname === "/" || pathname.startsWith("/portal") || pathname.startsWith("/admin")) return null;
 
   return (
     <header className="sticky top-0 z-50">
