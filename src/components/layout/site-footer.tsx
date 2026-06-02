@@ -19,6 +19,8 @@ export function SiteFooter() {
     >
       <div className="aurora aurora-b h-[420px] w-[420px] -top-32 -left-24" />
       <div className="aurora aurora-c h-[340px] w-[340px] -bottom-20 right-10" />
+      <div className="aurora aurora-lake h-[300px] w-[300px] top-1/2 left-1/3 animate-float-slower opacity-30" />
+      <div className="aurora aurora-twilight h-[260px] w-[260px] bottom-20 left-10 animate-float-slow opacity-25" />
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-spring/40 to-transparent" />
 
       <Container className="relative py-20">

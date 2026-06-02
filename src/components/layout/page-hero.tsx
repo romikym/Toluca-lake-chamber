@@ -14,7 +14,6 @@ export function PageHero({
   eyebrow?: string;
   title: React.ReactNode;
   description?: string;
-  /** deprecated; ignored */
   hue?: number;
   breadcrumb?: { label: string; href?: string }[];
   children?: React.ReactNode;
@@ -26,10 +25,14 @@ export function PageHero({
         className="absolute inset-0 -z-10"
         style={{ background: "radial-gradient(110% 80% at 50% 0%, #00563f 0%, #003726 38%, #001d16 78%)" }}
       />
+      {/* Aurora orbs — mix of emerald, lake, and sunset for warmth + depth */}
       <div className="aurora aurora-a animate-float-slow h-[420px] w-[420px] -top-32 -left-24" />
-      <div className="aurora aurora-b animate-float-slower h-[460px] w-[460px] top-10 -right-32" />
+      <div className="aurora aurora-lake animate-float-slower h-[460px] w-[460px] top-10 -right-32" />
       <div className="aurora aurora-c h-[260px] w-[260px] bottom-0 left-1/3 animate-pulse-glow" />
+      <div className="aurora aurora-sunset h-[300px] w-[300px] top-1/2 left-1/2 animate-float-slow opacity-25" />
+      <div className="aurora aurora-twilight h-[220px] w-[220px] -bottom-10 right-1/4 animate-float-slower" />
 
+      {/* Glass arcs */}
       <div
         aria-hidden
         className="pointer-events-none absolute -right-40 top-20 hidden h-[560px] w-[560px] rounded-full border border-white/10 lg:block"

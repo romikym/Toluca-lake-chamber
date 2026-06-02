@@ -11,12 +11,16 @@
   --sage: #dfeae3;
   --cream: #f8f7f3;
   --ink: #0d2922;
+  --sunset: #ff8e72;
+  --lake: #3aa6e6;
+  --twilight: #7866d9;
   --serif: var(--font-display);
   --sans: var(--font-sans);
 }
 
 .tlc-home .container { width: min(1180px, 92vw); margin: auto; }
 
+/* ---------- Hero ---------- */
 .tlc-home .hero {
   position: relative;
   isolation: isolate;
@@ -37,9 +41,11 @@
 .tlc-home .hero-aurora {
   position: absolute; border-radius: 999px; filter: blur(90px); pointer-events: none; z-index: 0;
 }
-.tlc-home .hero-aurora.a { width: 480px; height: 480px; top: -160px; left: -120px; background: radial-gradient(circle, #5be2a1, transparent 70%); opacity: 0.55; }
-.tlc-home .hero-aurora.b { width: 560px; height: 560px; right: -200px; top: 100px; background: radial-gradient(circle, #1eb6a4, transparent 70%); opacity: 0.40; }
-.tlc-home .hero-aurora.c { width: 320px; height: 320px; right: 30%; bottom: 80px; background: radial-gradient(circle, #1cd693, transparent 70%); opacity: 0.45; }
+.tlc-home .hero-aurora.a { width: 480px; height: 480px; top: -160px; left: -120px; background: radial-gradient(circle, #5be2a1, transparent 70%); opacity: 0.55; animation: drift 14s ease-in-out infinite; }
+.tlc-home .hero-aurora.b { width: 560px; height: 560px; right: -200px; top: 100px; background: radial-gradient(circle, #6cc4f0, transparent 70%); opacity: 0.32; animation: drift 22s ease-in-out infinite reverse; }
+.tlc-home .hero-aurora.c { width: 320px; height: 320px; right: 30%; bottom: 80px; background: radial-gradient(circle, #1cd693, transparent 70%); opacity: 0.45; animation: pulse-glow 4s ease-in-out infinite; }
+.tlc-home .hero-aurora.d { width: 280px; height: 280px; left: 35%; top: 30%; background: radial-gradient(circle, #ff8e72, transparent 70%); opacity: 0.22; animation: drift 18s ease-in-out infinite; }
+.tlc-home .hero-aurora.e { width: 260px; height: 260px; right: 8%; bottom: -50px; background: radial-gradient(circle, #9b8df2, transparent 70%); opacity: 0.28; animation: drift 24s ease-in-out infinite reverse; }
 
 .tlc-home .glass-arc {
   position: absolute; border: 1px solid rgba(255,255,255,0.22); border-radius: 50%;
@@ -63,6 +69,7 @@
 .tlc-home .pill span {
   width: 8px; height: 8px; border-radius: 50%; background: var(--aurora);
   box-shadow: 0 0 18px var(--aurora);
+  animation: pulse-glow 2.4s ease-in-out infinite;
 }
 
 .tlc-home .hero h1 {
@@ -76,7 +83,7 @@
 }
 .tlc-home .hero em {
   font-style: italic; font-weight: 500;
-  background: linear-gradient(120deg, #5be2a1, #75f2c4 60%, #baf2d1);
+  background: linear-gradient(120deg, #5be2a1, #6cc4f0 50%, #9b8df2);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .tlc-home .hero p {
@@ -110,12 +117,15 @@
   object-fit: cover; border-radius: 48% 0 0 48%;
   box-shadow: 0 50px 110px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.5);
   filter: saturate(1.13) contrast(1.05);
+  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
 }
+.tlc-home .hero-image:hover img { transform: scale(1.02); }
 .tlc-home .image-glow {
   position: absolute; right: 160px; bottom: 30px; width: 250px; height: 120px;
-  background: linear-gradient(90deg, #5be2a1, #35d08a); filter: blur(56px); opacity: 0.38;
+  background: linear-gradient(90deg, #5be2a1, #6cc4f0 50%, #ff8e72); filter: blur(56px); opacity: 0.42;
 }
 
+/* ---------- Stats card ---------- */
 .tlc-home .stats-card {
   position: relative; z-index: 6; margin-top: -110px;
   background: linear-gradient(180deg, rgba(255,255,255,0.99), rgba(250,255,252,0.97));
@@ -132,9 +142,16 @@
 .tlc-home .stat-icon {
   grid-row: span 2; width: 52px; height: 52px; border-radius: 50%;
   display: grid; place-items: center; color: #fff; font-weight: 800;
-  background: radial-gradient(circle at 30% 20%, #5be2a1, #00a76d 55%, #006a44);
-  box-shadow: 0 14px 28px rgba(0,86,63,0.32), inset 0 1px 0 rgba(255,255,255,0.34);
+  box-shadow: 0 14px 28px rgba(0,86,63,0.28), inset 0 1px 0 rgba(255,255,255,0.34);
+  transition: transform 0.32s cubic-bezier(0.16,1,0.3,1);
 }
+.tlc-home .stat:hover .stat-icon { transform: scale(1.08) rotate(-3deg); }
+/* Rotating icon palette — emerald, lake, sunset, twilight */
+.tlc-home .stat:nth-child(1) .stat-icon { background: radial-gradient(circle at 30% 20%, #5be2a1, #00a76d 55%, #006a44); }
+.tlc-home .stat:nth-child(2) .stat-icon { background: radial-gradient(circle at 30% 20%, #6cc4f0, #3aa6e6 55%, #1f7eb8); box-shadow: 0 14px 28px rgba(31,126,184,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
+.tlc-home .stat:nth-child(3) .stat-icon { background: radial-gradient(circle at 30% 20%, #ffb89e, #ff8e72 55%, #d96b4d); box-shadow: 0 14px 28px rgba(217,107,77,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
+.tlc-home .stat:nth-child(4) .stat-icon { background: radial-gradient(circle at 30% 20%, #9b8df2, #7866d9 55%, #4f3fb0); box-shadow: 0 14px 28px rgba(79,63,176,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
+
 .tlc-home .stat strong {
   font-family: var(--serif);
   font-size: 44px; line-height: 1; font-weight: 700;
@@ -142,6 +159,7 @@
 }
 .tlc-home .stat span { font-size: 13px; line-height: 1.35; font-weight: 600; color: #17352e; }
 
+/* ---------- Main content ---------- */
 .tlc-home .main-content {
   position: relative;
   background: linear-gradient(180deg, var(--color-canvas) 0%, #eef6f1 100%);
@@ -150,8 +168,14 @@
 .tlc-home .main-content::before {
   content: ""; position: absolute; right: -80px; top: 140px;
   width: 420px; height: 420px;
-  background: radial-gradient(circle, rgba(53,208,138,0.20), transparent 60%);
+  background: radial-gradient(circle, rgba(53,208,138,0.18), transparent 60%);
   filter: blur(20px); pointer-events: none;
+}
+.tlc-home .main-content::after {
+  content: ""; position: absolute; left: -100px; top: 400px;
+  width: 380px; height: 380px;
+  background: radial-gradient(circle, rgba(108,196,240,0.18), transparent 60%);
+  filter: blur(24px); pointer-events: none;
 }
 
 .tlc-home .mission-grid {
@@ -167,7 +191,7 @@
 }
 .tlc-home .section-copy h2 em {
   font-style: italic;
-  background: linear-gradient(120deg, #00a76d, #35d08a 60%, #5be2a1);
+  background: linear-gradient(120deg, #00a76d, #3aa6e6 60%, #7866d9);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .tlc-home .section-copy p { line-height: 1.78; color: #263833; }
@@ -175,8 +199,9 @@
   display: inline-flex; gap: 10px; align-items: center;
   color: var(--green); font-weight: 800; margin-top: 18px;
   text-decoration: none; border-bottom: 1px solid var(--green); padding-bottom: 7px;
+  transition: gap 0.32s cubic-bezier(0.16,1,0.3,1), color 0.22s cubic-bezier(0.16,1,0.3,1);
 }
-.tlc-home .text-link:hover { color: var(--emerald); border-color: var(--emerald); }
+.tlc-home .text-link:hover { color: var(--emerald); border-color: var(--emerald); gap: 14px; }
 
 .tlc-home .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .tlc-home .feature-grid article {
@@ -189,7 +214,7 @@
 }
 .tlc-home .feature-grid article:hover,
 .tlc-home .event-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-7px) perspective(800px) rotateX(1.5deg);
   border-color: rgba(91,226,161,0.5);
   box-shadow:
     0 28px 64px -18px rgba(0,86,63,0.20),
@@ -199,9 +224,16 @@
 .tlc-home .feature-grid article > div {
   width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
   color: #fff; font-weight: 800;
-  background: linear-gradient(135deg, #5be2a1, #00a76d 60%, #006a44);
   box-shadow: 0 14px 28px rgba(0,86,63,0.32), inset 0 1px 0 rgba(255,255,255,0.34);
+  transition: transform 0.32s cubic-bezier(0.16,1,0.3,1);
 }
+.tlc-home .feature-grid article:hover > div { transform: scale(1.1) rotate(-4deg); }
+/* Each feature gets its own accent color */
+.tlc-home .feature-grid article:nth-child(1) > div { background: linear-gradient(135deg, #5be2a1, #00a76d 60%, #006a44); }
+.tlc-home .feature-grid article:nth-child(2) > div { background: linear-gradient(135deg, #6cc4f0, #3aa6e6 55%, #1f7eb8); box-shadow: 0 14px 28px rgba(31,126,184,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
+.tlc-home .feature-grid article:nth-child(3) > div { background: linear-gradient(135deg, #ffb89e, #ff8e72 55%, #d96b4d); box-shadow: 0 14px 28px rgba(217,107,77,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
+.tlc-home .feature-grid article:nth-child(4) > div { background: linear-gradient(135deg, #9b8df2, #7866d9 55%, #4f3fb0); box-shadow: 0 14px 28px rgba(79,63,176,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
+
 .tlc-home .feature-grid h3 {
   font-family: var(--serif); font-size: 22px; margin: 20px 0 8px; color: var(--ink);
   letter-spacing: -0.01em;
@@ -209,7 +241,9 @@
 .tlc-home .feature-grid p { line-height: 1.62; font-size: 14px; color: #263833; }
 .tlc-home .feature-grid article > span {
   position: absolute; right: 22px; bottom: 22px; color: var(--emerald); font-size: 22px;
+  transition: transform 0.32s cubic-bezier(0.16,1,0.3,1);
 }
+.tlc-home .feature-grid article:hover > span { transform: translateX(4px); }
 
 .tlc-home .events-grid {
   display: grid; grid-template-columns: 26% 1fr; gap: 40px; margin-top: 80px;
@@ -225,7 +259,9 @@
 .tlc-home .event-card img {
   width: 100%; height: 150px; object-fit: cover;
   filter: saturate(1.12); display: block;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
+.tlc-home .event-card:hover img { transform: scale(1.06); }
 .tlc-home .event-card .date {
   position: absolute; top: 104px; left: 18px;
   background: linear-gradient(135deg, #5be2a1, #00a76d);
@@ -254,10 +290,10 @@
   position: relative; overflow: hidden; gap: 28px;
 }
 .tlc-home .cta-band::after {
-  content: ""; position: absolute; right: 120px; bottom: -30px;
-  width: 260px; height: 110px;
-  background: linear-gradient(90deg, #5be2a1, #1eb6a4);
-  filter: blur(56px); opacity: 0.42;
+  content: ""; position: absolute; right: 60px; bottom: -60px;
+  width: 320px; height: 160px;
+  background: linear-gradient(90deg, #5be2a1, #6cc4f0 50%, #ff8e72);
+  filter: blur(60px); opacity: 0.55;
 }
 .tlc-home .seal {
   width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center;
@@ -274,7 +310,7 @@
 }
 .tlc-home .cta-band em {
   font-style: italic;
-  background: linear-gradient(120deg, #5be2a1, #75f2c4);
+  background: linear-gradient(120deg, #5be2a1, #6cc4f0 60%, #ffb89e);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .tlc-home .cta-band .primary {

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X, Search, Instagram, Facebook, User } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
+import { Magnetic } from "@/components/ui/magnetic";
 import { mainNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -101,9 +102,11 @@ export function SiteHeader() {
             <Link href="/donate" className="hidden h-10 items-center rounded-full border border-white/30 bg-white/5 px-5 text-[13px] font-semibold text-white transition hover:bg-white/15 sm:inline-flex">
               Donate
             </Link>
-            <Link href="/membership/apply" className="btn-gradient hidden h-10 items-center rounded-full px-5 text-[13px] font-semibold text-white transition hover:-translate-y-0.5 sm:inline-flex">
-              Join the Chamber
-            </Link>
+            <Magnetic className="hidden sm:inline-flex" strength={10}>
+              <Link href="/membership/apply" className="btn-gradient inline-flex h-10 items-center rounded-full px-5 text-[13px] font-semibold text-white transition hover:-translate-y-0.5">
+                Join the Chamber
+              </Link>
+            </Magnetic>
             <button onClick={() => setOpen((v) => !v)} className="flex h-10 w-10 items-center justify-center rounded-full text-white transition hover:bg-white/10 lg:hidden" aria-label="Toggle menu" aria-expanded={open}>
               {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>

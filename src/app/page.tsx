@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Leaf } from "lucide-react";
 import { getEvents, getCategories } from "@/server/queries";
+import { Magnetic } from "@/components/ui/magnetic";
 import "@/styles/home.css";
 
 export const dynamic = "force-dynamic";
@@ -36,6 +37,8 @@ export default async function HomePage() {
         <div className="hero-aurora a" />
         <div className="hero-aurora b" />
         <div className="hero-aurora c" />
+        <div className="hero-aurora d" />
+        <div className="hero-aurora e" />
         <div className="glass-arc arc-one" />
         <div className="glass-arc arc-two" />
         <div className="container hero-grid">
@@ -44,7 +47,7 @@ export default async function HomePage() {
             <h1>The village<br />business community,<br /><em>elevated.</em></h1>
             <p>Connecting Toluca Lake businesses, residents, and leaders through advocacy, events, and meaningful local relationships.</p>
             <div className="hero-buttons">
-              <Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link>
+              <Magnetic><Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link></Magnetic>
               <Link href="/directory" className="outline">Explore Members <span>&rarr;</span></Link>
             </div>
           </div>
@@ -114,7 +117,7 @@ export default async function HomePage() {
         <section className="container cta-band reveal">
           <div className="seal"><Leaf width={30} height={30} strokeWidth={1.5} /><span>1939</span></div>
           <h2>Stronger together.<br />Better for <em>Toluca Lake.</em></h2>
-          <Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link>
+          <Magnetic><Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link></Magnetic>
         </section>
       </div>
     </div>
