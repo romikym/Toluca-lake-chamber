@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { Leaf, Search } from "lucide-react";
+import { Leaf } from "lucide-react";
 import { getEvents, getCategories } from "@/server/queries";
 import "@/styles/home.css";
 
 export const dynamic = "force-dynamic";
 
-// Hero + event imagery (license-clear placeholders from the approved design).
-// Drop real photos into /public/images and swap these src values to use them.
 const HERO_IMG =
   "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=90";
 const EVENT_IMGS = [
@@ -16,10 +14,10 @@ const EVENT_IMGS = [
 ];
 
 const mission = [
-  { icon: "↗", title: "Grow", body: "Strategic programs and advocacy that support local business and sustainable growth." },
-  { icon: "☷", title: "Connect", body: "Networking events and community gatherings that build relationships and opportunity." },
-  { icon: "☰", title: "Promote", body: "Marketing exposure and visibility that showcases our members and the Village." },
-  { icon: "♢", title: "Protect", body: "Advocacy and leadership that protect our local voice and the future of our community." },
+  { icon: "+", title: "Grow", body: "Strategic programs and advocacy that support local business and sustainable growth." },
+  { icon: "*", title: "Connect", body: "Networking events and community gatherings that build relationships and opportunity." },
+  { icon: "~", title: "Promote", body: "Marketing exposure and visibility that showcases our members and the Village." },
+  { icon: "#", title: "Protect", body: "Advocacy and leadership that protect our local voice and the future of our community." },
 ];
 
 function eventCategory(slug: string) {
@@ -34,43 +32,10 @@ export default async function HomePage() {
 
   return (
     <div className="tlc-home">
-      <div className="ambient ambient-a" />
-      <div className="ambient ambient-b" />
-
-      {/* Utility bar */}
-      <header className="topline">
-        <div className="container top-inner">
-          <span>Serving the Village of Toluca Lake since 1939</span>
-          <div className="socials">
-            <a href="https://www.instagram.com/tolucalakechamber/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://www.facebook.com/TolucaLakeChamberOfCommerce" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <Link href="/login">Member Login</Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Floating glass nav */}
-      <nav className="container nav-glass">
-        <Link href="/" className="brand">
-          <Leaf className="mark" width={38} height={38} strokeWidth={1.5} />
-          <div><strong>TOLUCA LAKE</strong><span>Chamber of Commerce</span></div>
-        </Link>
-        <div className="nav-links">
-          <Link href="/about">About</Link>
-          <Link href="/directory">Directory</Link>
-          <Link href="/events">Events</Link>
-          <Link href="/membership">Membership</Link>
-          <Link href="/contact">Contact</Link>
-        </div>
-        <div className="nav-actions">
-          <Link href="/directory" className="icon-btn" aria-label="Search the directory"><Search width={20} height={20} /></Link>
-          <Link href="/donate" className="ghost">Donate</Link>
-          <Link href="/membership/apply" className="primary small">Join the Chamber</Link>
-        </div>
-      </nav>
-
-      {/* Hero */}
       <section className="hero">
+        <div className="hero-aurora a" />
+        <div className="hero-aurora b" />
+        <div className="hero-aurora c" />
         <div className="glass-arc arc-one" />
         <div className="glass-arc arc-two" />
         <div className="container hero-grid">
@@ -79,35 +44,33 @@ export default async function HomePage() {
             <h1>The village<br />business community,<br /><em>elevated.</em></h1>
             <p>Connecting Toluca Lake businesses, residents, and leaders through advocacy, events, and meaningful local relationships.</p>
             <div className="hero-buttons">
-              <Link href="/membership/apply" className="primary">Join the Chamber <span>→</span></Link>
-              <Link href="/directory" className="outline">Explore Members <span>→</span></Link>
+              <Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link>
+              <Link href="/directory" className="outline">Explore Members <span>&rarr;</span></Link>
             </div>
           </div>
           <div className="hero-image reveal">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={HERO_IMG} alt="Toluca Lake — lakeside village" />
+            <img src={HERO_IMG} alt="Toluca Lake lakeside village" />
             <div className="image-glow" />
           </div>
         </div>
       </section>
 
-      {/* Stats */}
       <section className="container stats-card reveal">
-        <div className="stat"><div className="stat-icon">☷</div><strong>120+</strong><span>Member Businesses</span></div>
-        <div className="stat"><div className="stat-icon">▣</div><strong>40+</strong><span>Community Events Each Year</span></div>
-        <div className="stat"><div className="stat-icon">◷</div><strong>{new Date().getFullYear() - 1939}</strong><span>Years Serving the Village</span></div>
-        <div className="stat"><div className="stat-icon">◇</div><strong>{categories.length || 14}</strong><span>Industry Categories</span></div>
+        <div className="stat"><div className="stat-icon">B</div><strong>120+</strong><span>Member Businesses</span></div>
+        <div className="stat"><div className="stat-icon">E</div><strong>40+</strong><span>Community Events Each Year</span></div>
+        <div className="stat"><div className="stat-icon">Y</div><strong>{new Date().getFullYear() - 1939}</strong><span>Years Serving the Village</span></div>
+        <div className="stat"><div className="stat-icon">C</div><strong>{categories.length || 14}</strong><span>Industry Categories</span></div>
       </section>
 
       <div className="main-content">
-        {/* Mission */}
         <section className="container mission-grid">
           <div className="section-copy reveal">
-            <span className="eyebrow">Our Mission</span>
+            <span className="eyebrow-text">Our Mission</span>
             <h2>A driving force behind<br />our community&rsquo;s <em>vitality.</em></h2>
             <p>Since 1939, the Toluca Lake Chamber of Commerce has brought together local businesses, residents, and community leaders to support the neighborhood we all care about.</p>
             <p>From local events and business networking to community partnerships and advocacy, the Chamber plays an active role in preserving the character of Toluca Lake while helping it continue to grow and thrive.</p>
-            <Link className="text-link" href="/about">Learn more about us <span>→</span></Link>
+            <Link className="text-link" href="/about">Learn more about us <span>&rarr;</span></Link>
           </div>
           <div className="feature-grid reveal">
             {mission.map((m) => (
@@ -115,18 +78,17 @@ export default async function HomePage() {
                 <div>{m.icon}</div>
                 <h3>{m.title}</h3>
                 <p>{m.body}</p>
-                <span>→</span>
+                <span>&rarr;</span>
               </article>
             ))}
           </div>
         </section>
 
-        {/* Events */}
         <section className="container events-grid">
           <div className="section-copy events-copy reveal">
-            <span className="eyebrow">Upcoming Events</span>
+            <span className="eyebrow-text">Upcoming Events</span>
             <h2>Bringing people<br />together.<br /><em>Creating impact.</em></h2>
-            <Link className="text-link" href="/events">View all events <span>→</span></Link>
+            <Link className="text-link" href="/events">View all events <span>&rarr;</span></Link>
           </div>
           <div className="event-cards reveal">
             {featured.map((e, i) => {
@@ -142,18 +104,17 @@ export default async function HomePage() {
                   <div className="date">{mon}<br /><b>{day}</b></div>
                   <small>{eventCategory(e.slug)}</small>
                   <h3>{e.title}</h3>
-                  <p>{time}{end ? ` to ${end}` : ""}<br />📍 {e.location}</p>
+                  <p>{time}{end ? ` to ${end}` : ""}<br />{e.location}</p>
                 </Link>
               );
             })}
           </div>
         </section>
 
-        {/* CTA band */}
         <section className="container cta-band reveal">
           <div className="seal"><Leaf width={30} height={30} strokeWidth={1.5} /><span>1939</span></div>
           <h2>Stronger together.<br />Better for <em>Toluca Lake.</em></h2>
-          <Link href="/membership/apply" className="primary light">Join the Chamber <span>→</span></Link>
+          <Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link>
         </section>
       </div>
     </div>

@@ -23,27 +23,28 @@ export default function DonatePage() {
         eyebrow="Support the Village"
         title="Your gift keeps Toluca Lake thriving"
         description="Every contribution helps fund the community programs, events, and advocacy that make the Village special."
-        hue={148}
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Donate" }]}
       />
-      <section className="py-12">
-        <Container className="grid gap-10 lg:grid-cols-2">
+      <section className="section">
+        <Container className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <h2 className="font-display text-2xl font-semibold text-brand-900">Where your donation goes</h2>
-            <div className="mt-6 space-y-4">
+            <h2 className="font-display text-3xl font-semibold text-brand-900 sm:text-4xl">Where your donation goes</h2>
+            <div className="mt-7 space-y-4">
               {uses.map((u) => (
-                <div key={u.title} className="flex items-start gap-4 rounded-2xl border border-line bg-surface p-5 shadow-sm">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-600"><u.icon className="h-5 w-5" /></div>
+                <div key={u.title} className="card-glass card-glass-lift flex items-start gap-5 rounded-3xl p-6">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5be2a1] to-[#00a76d] text-white shadow-emerald-soft"><u.icon className="h-5 w-5" strokeWidth={2.2} /></div>
                   <div>
-                    <h3 className="font-display font-semibold text-brand-900">{u.title}</h3>
-                    <p className="mt-1 text-sm text-ink-soft">{u.body}</p>
+                    <h3 className="font-display text-lg font-semibold text-brand-900">{u.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">{u.body}</p>
                   </div>
                 </div>
               ))}
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <DonateWidget />
+            <div className="card-glass rounded-3xl p-8">
+              <DonateWidget />
+            </div>
           </Reveal>
         </Container>
       </section>

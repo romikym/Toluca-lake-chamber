@@ -16,9 +16,10 @@ const tabs = [
 export function MobileTabBar() {
   const pathname = usePathname();
   if (pathname.startsWith("/portal") || pathname.startsWith("/admin")) return null;
+
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 lg:hidden">
-      <div className="glass mx-3 mb-3 flex items-center justify-around rounded-2xl border border-line/70 px-1 py-1.5 shadow-lg">
+    <nav className="fixed inset-x-0 bottom-0 z-40 pb-[max(env(safe-area-inset-bottom),0px)] lg:hidden">
+      <div className="glass-strong mx-3 mb-3 flex items-center justify-around rounded-3xl px-1.5 py-1.5 shadow-luxe">
         {tabs.map((t) => {
           const active = t.href === "/" ? pathname === "/" : pathname.startsWith(t.href);
           const Icon = t.icon;
@@ -26,12 +27,9 @@ export function MobileTabBar() {
             <Link
               key={t.href}
               href={t.href}
-              className={cn(
-                "flex flex-1 flex-col items-center gap-0.5 rounded-xl py-1.5 text-[10px] font-medium transition-colors",
-                active ? "text-brand-700" : "text-muted"
-              )}
+              className={cn("flex flex-1 flex-col items-center gap-0.5 rounded-2xl py-1.5 text-[10px] font-semibold transition-colors", active ? "text-brand-800" : "text-muted")}
             >
-              <span className={cn("flex h-8 w-8 items-center justify-center rounded-full transition-colors", active && "bg-brand-100")}>
+              <span className={cn("flex h-9 w-9 items-center justify-center rounded-full transition-all", active ? "btn-gradient text-white shadow-[0_8px_18px_-6px_rgba(0,167,109,0.55)]" : "bg-transparent")}>
                 <Icon className="h-5 w-5" />
               </span>
               {t.label}

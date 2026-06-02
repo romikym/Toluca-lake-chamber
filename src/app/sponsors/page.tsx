@@ -24,15 +24,14 @@ export default function SponsorsPage() {
         eyebrow="With gratitude"
         title="Our community sponsors"
         description="Our programs and events are made possible by the generous support of these local businesses and organizations."
-        hue={160}
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Sponsors" }]}
       />
-      <section className="py-16">
+      <section className="section">
         <Container>
           <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sponsors.map((s) => (
               <StaggerItem key={s.name}>
-                <div className="flex h-full flex-col items-center gap-4 rounded-2xl border border-line bg-surface p-8 text-center shadow-sm">
+                <div className="card-glass card-glass-lift flex h-full flex-col items-center gap-4 rounded-3xl p-8 text-center">
                   <GradientAvatar name={s.name} hue={s.hue} className="h-20 w-20 rounded-2xl text-xl" />
                   <div>
                     <h3 className="font-display text-lg font-semibold text-brand-900">{s.name}</h3>
@@ -43,9 +42,9 @@ export default function SponsorsPage() {
             ))}
           </Stagger>
 
-          <div className="mt-14 flex flex-col items-center gap-4 rounded-3xl border border-line bg-brand-50/60 p-10 text-center">
-            <h2 className="font-display text-2xl font-semibold text-brand-900">Become a sponsor</h2>
-            <p className="max-w-md text-sm text-ink-soft">Put your brand in front of the Village and support the programs that make Toluca Lake special.</p>
+          <div className="card-glass mt-16 flex flex-col items-center gap-5 rounded-3xl p-12 text-center">
+            <h2 className="font-display text-3xl font-semibold text-brand-900">Become a sponsor</h2>
+            <p className="max-w-md text-sm leading-relaxed text-ink-soft">Put your brand in front of the Village and support the programs that make Toluca Lake special.</p>
             <ButtonLink href="/contact">Get in touch <ArrowRight className="h-4 w-4" /></ButtonLink>
           </div>
         </Container>

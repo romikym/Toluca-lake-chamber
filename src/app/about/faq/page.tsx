@@ -10,7 +10,7 @@ import { getFaqs } from "@/server/queries";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Quick, clear answers about membership with the Toluca Lake Chamber of Commerce — joining, dues, renewals, and benefits.",
+    "Quick, clear answers about membership with the Toluca Lake Chamber of Commerce.",
 };
 
 export const dynamic = "force-dynamic";
@@ -22,20 +22,19 @@ export default async function FaqPage() {
       <PageHero
         eyebrow="Help center"
         title="Frequently asked questions"
-        description="Have questions about Chamber membership, events, sponsorships, or getting involved in the community? Our FAQ covers the most common questions about the Toluca Lake Chamber of Commerce — including membership benefits, account access, event participation, and more."
-        hue={160}
+        description="Have questions about Chamber membership, events, sponsorships, or getting involved in the community? Our FAQ covers the most common questions about the Toluca Lake Chamber of Commerce."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "FAQ" }]}
       />
 
-      <section className="py-20">
+      <section className="section">
         <Container className="max-w-3xl">
           <Reveal>
             <Accordion items={faqs} />
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-10 flex flex-col items-center gap-4 rounded-2xl border border-line bg-brand-50/60 p-8 text-center">
-              <h2 className="font-display text-xl font-semibold text-brand-900">Still have questions?</h2>
-              <p className="max-w-md text-sm text-ink-soft">
+            <div className="card-glass mt-12 flex flex-col items-center gap-4 rounded-3xl p-10 text-center">
+              <h2 className="font-display text-2xl font-semibold text-brand-900">Still have questions?</h2>
+              <p className="max-w-md text-sm leading-relaxed text-ink-soft">
                 Our team is happy to help you find the right membership and answer anything
                 about the Chamber.
               </p>

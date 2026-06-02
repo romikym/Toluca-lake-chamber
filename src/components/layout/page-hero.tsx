@@ -3,55 +3,76 @@ import { ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/section-header";
 import { Reveal } from "@/components/ui/reveal";
-import { gradientStyle } from "@/components/ui/gradient";
 
 export function PageHero({
   eyebrow,
   title,
   description,
-  hue = 150,
   breadcrumb,
   children,
 }: {
   eyebrow?: string;
-  title: string;
+  title: React.ReactNode;
   description?: string;
+  /** deprecated; ignored */
   hue?: number;
   breadcrumb?: { label: string; href?: string }[];
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden" style={gradientStyle(hue)}>
-      <div className="absolute inset-0 bg-grid opacity-20" />
-      <div className="absolute -right-16 -top-12 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-      <div className="absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-brand-900/20 blur-3xl" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
-      <Container className="relative py-20 sm:py-28">
+    <section className="relative isolate overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-32">
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{ background: "radial-gradient(110% 80% at 50% 0%, #00563f 0%, #003726 38%, #001d16 78%)" }}
+      />
+      <div className="aurora aurora-a animate-float-slow h-[420px] w-[420px] -top-32 -left-24" />
+      <div className="aurora aurora-b animate-float-slower h-[460px] w-[460px] top-10 -right-32" />
+      <div className="aurora aurora-c h-[260px] w-[260px] bottom-0 left-1/3 animate-pulse-glow" />
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-40 top-20 hidden h-[560px] w-[560px] rounded-full border border-white/10 lg:block"
+        style={{ background: "linear-gradient(110deg, rgba(255,255,255,0.05), rgba(255,255,255,0.0))" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-80 top-0 hidden h-[760px] w-[760px] rounded-full border border-white/8 lg:block"
+        style={{ background: "linear-gradient(110deg, rgba(186,242,209,0.06), rgba(255,255,255,0.0))" }}
+      />
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-32"
+        style={{ background: "linear-gradient(180deg, transparent, var(--color-canvas) 95%)" }}
+      />
+
+      <Container className="relative">
         {breadcrumb && (
-          <nav className="mb-5 flex items-center gap-1 text-xs text-white/70">
+          <nav className="mb-7 flex items-center gap-1.5 text-xs text-white/70">
             {breadcrumb.map((c, i) => (
-              <span key={i} className="flex items-center gap-1">
+              <span key={i} className="flex items-center gap-1.5">
                 {c.href ? (
-                  <Link href={c.href} className="hover:text-white">{c.label}</Link>
+                  <Link href={c.href} className="transition hover:text-white">{c.label}</Link>
                 ) : (
-                  <span className="text-white/90">{c.label}</span>
+                  <span className="text-white">{c.label}</span>
                 )}
-                {i < breadcrumb.length - 1 && <ChevronRight className="h-3 w-3" />}
+                {i < breadcrumb.length - 1 && <ChevronRight className="h-3 w-3 opacity-60" />}
               </span>
             ))}
           </nav>
         )}
         <Reveal>
-          {eyebrow && <Eyebrow className="text-white/80">{eyebrow}</Eyebrow>}
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold text-white sm:text-[3.4rem] sm:leading-[1.05] text-balance">
+          {eyebrow && <Eyebrow tone="dark">{eyebrow}</Eyebrow>}
+          <h1 className="mt-6 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance">
             {title}
           </h1>
           {description && (
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 text-balance">
+            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/85 text-balance">
               {description}
             </p>
           )}
-          {children && <div className="mt-7">{children}</div>}
+          {children && <div className="mt-9">{children}</div>}
         </Reveal>
       </Container>
     </section>

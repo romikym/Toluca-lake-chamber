@@ -30,11 +30,12 @@ export default function AboutPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
 
-      <section className="py-20">
-        <Container className="grid gap-12 lg:grid-cols-2">
+      <section className="section relative isolate">
+        <div className="aurora aurora-c h-[360px] w-[360px] -top-20 -right-20 opacity-30" />
+        <Container className="relative grid gap-14 lg:grid-cols-2 lg:gap-20">
           <SectionHeader
             eyebrow="Our mission"
-            title="Built for businesses and residents alike"
+            title={<>Built for businesses <span className="text-gradient-spring display-italic">and</span> residents alike</>}
             description="Since 1939, the Toluca Lake Chamber of Commerce has worked to support the local businesses, community relationships, and neighborhood character that make Toluca Lake unique."
           />
           <Reveal delay={0.1} className="space-y-5 text-[15px] leading-relaxed text-ink-soft">
@@ -55,24 +56,24 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="pb-20">
+      <section className="pb-24">
         <Container>
-          <Stagger className="grid gap-5 sm:grid-cols-2">
+          <Stagger className="grid gap-6 sm:grid-cols-2">
             {links.map((l) => (
               <StaggerItem key={l.href}>
                 <Link
                   href={l.href}
-                  className="group flex items-start gap-4 rounded-2xl border border-line bg-surface p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                  className="card-glass card-glass-lift group flex items-start gap-5 rounded-3xl p-7"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-100 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
-                    <l.icon className="h-6 w-6" />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5be2a1] to-[#00a76d] text-white shadow-emerald-soft transition-transform duration-500 group-hover:scale-110">
+                    <l.icon className="h-6 w-6" strokeWidth={2.2} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="flex items-center gap-1 font-display text-lg font-semibold text-brand-900">
+                    <h3 className="flex items-center gap-1 font-display text-xl font-semibold text-brand-900">
                       {l.title}
-                      <ArrowRight className="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                      <ArrowRight className="h-4 w-4 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
                     </h3>
-                    <p className="mt-1 text-sm text-muted">{l.body}</p>
+                    <p className="mt-2 text-[14px] leading-relaxed text-muted">{l.body}</p>
                   </div>
                 </Link>
               </StaggerItem>
