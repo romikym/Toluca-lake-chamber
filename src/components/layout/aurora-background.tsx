@@ -19,19 +19,19 @@ export function AuroraBackground() {
       {/* drifting orbs */}
       <div
         className="animate-float-slow absolute -left-[8vw] -top-[12vw] h-[46vw] w-[46vw] rounded-full"
-        style={{ background: "radial-gradient(circle, var(--color-spring-bright), transparent 70%)", opacity: 0.16, filter: "blur(90px)" }}
+        style={{ background: "radial-gradient(circle, var(--color-spring-bright), transparent 70%)", opacity: 0.26, filter: "blur(90px)" }}
       />
       <div
         className="animate-float-slower absolute -right-[10vw] top-[28vh] h-[42vw] w-[42vw] rounded-full"
-        style={{ background: "radial-gradient(circle, var(--color-lake-bright), transparent 70%)", opacity: 0.13, filter: "blur(90px)" }}
+        style={{ background: "radial-gradient(circle, var(--color-lake-bright), transparent 70%)", opacity: 0.2, filter: "blur(90px)" }}
       />
       <div
         className="animate-pulse-glow absolute bottom-[-10vw] left-[24vw] h-[36vw] w-[36vw] rounded-full"
-        style={{ background: "radial-gradient(circle, var(--color-emerald-bright), transparent 70%)", opacity: 0.12, filter: "blur(90px)" }}
+        style={{ background: "radial-gradient(circle, var(--color-emerald-bright), transparent 70%)", opacity: 0.2, filter: "blur(90px)" }}
       />
       <div
         className="animate-float-slow absolute right-[26vw] top-[52vh] h-[26vw] w-[26vw] rounded-full"
-        style={{ background: "radial-gradient(circle, var(--color-twilight-bright), transparent 70%)", opacity: 0.08, filter: "blur(90px)" }}
+        style={{ background: "radial-gradient(circle, var(--color-twilight-bright), transparent 70%)", opacity: 0.14, filter: "blur(90px)" }}
       />
       {/* faint dot grid for texture */}
       <div className="absolute inset-0 bg-grid opacity-50" />

@@ -76,9 +76,9 @@ export function DashboardShell({
   );
 
   return (
-    <div className="min-h-dvh bg-canvas">
+    <div className="min-h-dvh bg-canvas/50">
       {/* Desktop sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-line bg-surface lg:block">
+      <aside className="glass-strong fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-white/40 lg:block">
         {SideContent}
       </aside>
 
@@ -87,7 +87,7 @@ export function DashboardShell({
         {open && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 lg:hidden">
             <div className="absolute inset-0 bg-brand-900/30 backdrop-blur-sm" onClick={() => setOpen(false)} />
-            <motion.aside initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }} transition={{ type: "spring", stiffness: 300, damping: 30 }} className="absolute inset-y-0 left-0 w-64 bg-surface shadow-lg">
+            <motion.aside initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }} transition={{ type: "spring", stiffness: 300, damping: 30 }} className="glass-strong absolute inset-y-0 left-0 w-64 shadow-lg">
               {SideContent}
             </motion.aside>
           </motion.div>

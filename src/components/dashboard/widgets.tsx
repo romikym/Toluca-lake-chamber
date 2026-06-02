@@ -12,9 +12,9 @@ export function StatTile({
   delta?: string; deltaTone?: "up" | "down" | "flat"; raw?: boolean;
 }) {
   return (
-    <div className="group rounded-2xl border border-line bg-surface p-5 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-line-strong hover:shadow-md">
+    <div className="group glass-strong rounded-2xl p-5 shadow-md transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-lg">
       <div className="flex items-center justify-between">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
+        <div className="icon-emerald flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-[0_8px_18px_-6px_rgba(0,167,109,0.5)] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
           <Icon className="h-5 w-5" />
         </div>
         {delta && (
@@ -41,7 +41,7 @@ export function StatTile({
 export function BarChart({ data, label }: { data: { label: string; value: number }[]; label: string }) {
   const max = Math.max(...data.map((d) => d.value));
   return (
-    <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm">
+    <div className="glass-strong rounded-2xl p-6 shadow-md">
       <h3 className="font-display font-semibold text-brand-900">{label}</h3>
       <div className="mt-6 flex h-44 items-end gap-3">
         {data.map((d, i) => (
@@ -100,7 +100,7 @@ export function ProgressRing({
 
 export function Panel({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm">
+    <div className="glass-strong rounded-2xl p-6 shadow-md">
       <div className="mb-4 flex items-center justify-between">
         <h3 className="font-display font-semibold text-brand-900">{title}</h3>
         {action}
