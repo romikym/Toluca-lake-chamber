@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { MobileTabBar } from "@/components/layout/mobile-tab-bar";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { ScrollProgress } from "@/components/layout/scroll-progress";
+import { AuroraBackground } from "@/components/layout/aurora-background";
 import { AiLauncher } from "@/components/ai/ai-launcher";
 import { site } from "@/lib/site";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="min-h-dvh">
+        <AuroraBackground />
         <SmoothScroll />
         <ScrollProgress />
         <a
