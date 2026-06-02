@@ -51,15 +51,15 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Main bar — floating glass pill */}
+      {/* Main bar — floating dark-green glass pill (matches the home nav) */}
       <div className="px-3 pt-3 sm:px-5 sm:pt-4">
         <div
           className={cn(
-            "glass luxe-edge mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-2xl border border-white/50 px-4 py-2.5 transition-all duration-300 sm:px-5",
-            scrolled ? "shadow-glass" : "shadow-md"
+            "nav-pill mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-[26px] px-4 py-2.5 text-white transition-all duration-300 sm:px-5",
+            scrolled ? "shadow-glass" : ""
           )}
         >
-          <Logo />
+          <Logo variant="light" />
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex">
@@ -76,7 +76,7 @@ export function SiteHeader() {
                     href={item.href}
                     className={cn(
                       "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                      active ? "text-brand-700" : "text-ink-soft hover:text-brand-700"
+                      active ? "text-white" : "text-white/80 hover:text-white"
                     )}
                   >
                     {item.label}
@@ -117,20 +117,26 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <Link
               href="/directory"
-              className="hidden h-10 w-10 items-center justify-center rounded-full border border-line bg-surface/70 text-ink-soft transition hover:border-brand-300 hover:text-brand-700 sm:flex"
+              className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20 sm:flex"
               aria-label="Search the directory"
             >
               <Search className="h-[18px] w-[18px]" />
             </Link>
-            <ButtonLink href="/donate" variant="secondary" size="sm" className="hidden sm:inline-flex">
+            <Link
+              href="/donate"
+              className="hidden h-10 items-center rounded-full border border-white/35 bg-white/5 px-5 text-sm font-medium text-white transition hover:bg-white/15 sm:inline-flex"
+            >
               Donate
-            </ButtonLink>
-            <ButtonLink href="/membership/apply" size="sm" className="glow-emerald hidden sm:inline-flex">
+            </Link>
+            <Link
+              href="/membership/apply"
+              className="btn-gradient hidden h-10 items-center rounded-full px-5 text-sm font-semibold text-white shadow-[0_12px_28px_-8px_rgba(0,167,109,0.5)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-8px_rgba(0,167,109,0.6)] sm:inline-flex"
+            >
               Join the Chamber
-            </ButtonLink>
+            </Link>
             <button
               onClick={() => setOpen((v) => !v)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50 lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/10 lg:hidden"
               aria-label="Toggle menu"
               aria-expanded={open}
             >
