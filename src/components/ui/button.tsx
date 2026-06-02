@@ -18,7 +18,7 @@ const base =
   "disabled:opacity-50 disabled:pointer-events-none active:scale-[0.97] whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
-  primary: "btn-gradient text-white hover:-translate-y-0.5",
+  primary: "btn-gradient shimmer-on-hover text-white hover:-translate-y-0.5",
   secondary: "bg-white text-brand-900 ring-1 ring-line-strong hover:ring-brand-300 hover:-translate-y-0.5 shadow-sm hover:shadow-md",
   tertiary: "text-brand-700 hover:text-brand-800 hover:bg-brand-50",
   glass: "glass luxe-edge text-brand-900 hover:bg-white/75 hover:-translate-y-0.5 shadow-glass",

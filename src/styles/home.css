@@ -157,7 +157,8 @@
   font-size: 44px; line-height: 1; font-weight: 700;
   color: #003f30; letter-spacing: -0.04em;
 }
-.tlc-home .stat span { font-size: 13px; line-height: 1.35; font-weight: 600; color: #17352e; }
+.tlc-home .stat > span { font-size: 13px; line-height: 1.35; font-weight: 600; color: #17352e; }
+.tlc-home .stat strong span { font: inherit; letter-spacing: inherit; }
 
 /* ---------- Main content ---------- */
 .tlc-home .main-content {

@@ -1,7 +1,11 @@
 import Link from "next/link";
-import { Leaf } from "lucide-react";
+import {
+  Leaf, Users, CalendarDays, Clock, Tags,
+  TrendingUp, Network, Megaphone, ShieldCheck,
+} from "lucide-react";
 import { getEvents, getCategories } from "@/server/queries";
 import { Magnetic } from "@/components/ui/magnetic";
+import { Counter } from "@/components/ui/counter";
 import "@/styles/home.css";
 
 export const dynamic = "force-dynamic";
@@ -15,10 +19,10 @@ const EVENT_IMGS = [
 ];
 
 const mission = [
-  { icon: "+", title: "Grow", body: "Strategic programs and advocacy that support local business and sustainable growth." },
-  { icon: "*", title: "Connect", body: "Networking events and community gatherings that build relationships and opportunity." },
-  { icon: "~", title: "Promote", body: "Marketing exposure and visibility that showcases our members and the Village." },
-  { icon: "#", title: "Protect", body: "Advocacy and leadership that protect our local voice and the future of our community." },
+  { icon: TrendingUp, title: "Grow", body: "Strategic programs and advocacy that support local business and sustainable growth." },
+  { icon: Network, title: "Connect", body: "Networking events and community gatherings that build relationships and opportunity." },
+  { icon: Megaphone, title: "Promote", body: "Marketing exposure and visibility that showcases our members and the Village." },
+  { icon: ShieldCheck, title: "Protect", body: "Advocacy and leadership that protect our local voice and the future of our community." },
 ];
 
 function eventCategory(slug: string) {
@@ -60,10 +64,10 @@ export default async function HomePage() {
       </section>
 
       <section className="container stats-card reveal">
-        <div className="stat"><div className="stat-icon">B</div><strong>120+</strong><span>Member Businesses</span></div>
-        <div className="stat"><div className="stat-icon">E</div><strong>40+</strong><span>Community Events Each Year</span></div>
-        <div className="stat"><div className="stat-icon">Y</div><strong>{new Date().getFullYear() - 1939}</strong><span>Years Serving the Village</span></div>
-        <div className="stat"><div className="stat-icon">C</div><strong>{categories.length || 14}</strong><span>Industry Categories</span></div>
+        <div className="stat"><div className="stat-icon"><Users width={22} height={22} strokeWidth={2} /></div><strong><Counter value={120} suffix="+" /></strong><span>Member Businesses</span></div>
+        <div className="stat"><div className="stat-icon"><CalendarDays width={22} height={22} strokeWidth={2} /></div><strong><Counter value={40} suffix="+" /></strong><span>Community Events Each Year</span></div>
+        <div className="stat"><div className="stat-icon"><Clock width={22} height={22} strokeWidth={2} /></div><strong><Counter value={new Date().getFullYear() - 1939} /></strong><span>Years Serving the Village</span></div>
+        <div className="stat"><div className="stat-icon"><Tags width={22} height={22} strokeWidth={2} /></div><strong><Counter value={categories.length || 14} /></strong><span>Industry Categories</span></div>
       </section>
 
       <div className="main-content">
@@ -78,7 +82,7 @@ export default async function HomePage() {
           <div className="feature-grid reveal">
             {mission.map((m) => (
               <article key={m.title}>
-                <div>{m.icon}</div>
+                <div><m.icon width={24} height={24} strokeWidth={1.75} /></div>
                 <h3>{m.title}</h3>
                 <p>{m.body}</p>
                 <span>&rarr;</span>
