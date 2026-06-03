@@ -1,11 +1,7 @@
 import Link from "next/link";
-import {
-  Leaf, Users, CalendarDays, Clock, Tags,
-  TrendingUp, Network, Megaphone, ShieldCheck,
-} from "lucide-react";
-import { getEvents, getCategories } from "@/server/queries";
+import { Leaf, TrendingUp, Network, Megaphone, ShieldCheck } from "lucide-react";
+import { getEvents } from "@/server/queries";
 import { Magnetic } from "@/components/ui/magnetic";
-import { Counter } from "@/components/ui/counter";
 import "@/styles/home.css";
 
 export const dynamic = "force-dynamic";
@@ -32,7 +28,7 @@ function eventCategory(slug: string) {
 }
 
 export default async function HomePage() {
-  const [events, categories] = await Promise.all([getEvents(), getCategories()]);
+  const events = await getEvents();
   const featured = events.slice(0, 3);
 
   return (
@@ -61,13 +57,6 @@ export default async function HomePage() {
             <div className="image-glow" />
           </div>
         </div>
-      </section>
-
-      <section className="container stats-card reveal">
-        <div className="stat"><div className="stat-icon"><Users width={22} height={22} strokeWidth={2} /></div><strong><Counter value={120} suffix="+" /></strong><span>Member Businesses</span></div>
-        <div className="stat"><div className="stat-icon"><CalendarDays width={22} height={22} strokeWidth={2} /></div><strong><Counter value={40} suffix="+" /></strong><span>Community Events Each Year</span></div>
-        <div className="stat"><div className="stat-icon"><Clock width={22} height={22} strokeWidth={2} /></div><strong><Counter value={new Date().getFullYear() - 1939} /></strong><span>Years Serving the Village</span></div>
-        <div className="stat"><div className="stat-icon"><Tags width={22} height={22} strokeWidth={2} /></div><strong><Counter value={categories.length || 14} /></strong><span>Industry Categories</span></div>
       </section>
 
       <div className="main-content">

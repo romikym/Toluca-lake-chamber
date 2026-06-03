@@ -140,13 +140,13 @@ export function SiteHeader() {
                         {/* caret */}
                         <div className="absolute left-1/2 top-2.5 h-3 w-3 -translate-x-1/2 rotate-45 rounded-[3px] border-l border-t border-white/60 bg-white/80" />
                         <div className="overflow-hidden rounded-[26px] p-[1px] shadow-luxe" style={{ background: "linear-gradient(140deg, rgba(91,226,161,0.5), rgba(58,166,230,0.32) 50%, rgba(120,102,217,0.36))" }}>
-                          <div className="glass-strong rounded-[25px] p-2">
+                          <div className="rounded-[25px] bg-white/97 p-2 backdrop-blur-2xl">
                             <motion.div variants={gridVariants} className={cn("grid gap-1", wide && "grid-cols-2")}>
                               {item.children.map((child, i) => {
                                 const ChildIcon = NAV_ICONS[child.href] ?? Sparkles;
                                 return (
                                   <motion.div key={child.href} variants={itemVariants}>
-                                    <Link href={child.href} className="group/item flex items-center gap-3 rounded-2xl px-3 py-2.5 transition-colors hover:bg-brand-50">
+                                    <Link href={child.href} className="group/item flex items-center gap-3 rounded-2xl px-3 py-2.5 transition-colors hover:bg-brand-100">
                                       <span className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-white shadow-sm transition-transform duration-300 group-hover/item:scale-110 group-hover/item:-rotate-3", ICON_TINTS[i % ICON_TINTS.length])}>
                                         <ChildIcon className="h-[18px] w-[18px]" strokeWidth={2} />
                                       </span>
@@ -204,11 +204,11 @@ export function SiteHeader() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -12, opacity: 0 }}
               transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="relative mx-3 mt-3 max-h-[80dvh] overflow-y-auto rounded-3xl glass-strong p-3 shadow-luxe"
+              className="relative mx-3 mt-3 max-h-[80dvh] overflow-y-auto rounded-3xl bg-white/97 p-3 shadow-luxe backdrop-blur-2xl"
             >
               {mainNav.map((item) => (
                 <div key={item.label} className="border-b border-line/60 py-1 last:border-0">
-                  <Link href={item.href} className="block rounded-2xl px-4 py-3 font-semibold text-brand-900 transition hover:bg-brand-50">
+                  <Link href={item.href} className="block rounded-2xl px-4 py-3 font-semibold text-brand-900 transition hover:bg-brand-100">
                     {item.label}
                   </Link>
                   {item.children && (
@@ -216,7 +216,7 @@ export function SiteHeader() {
                       {item.children.slice(1).map((c, i) => {
                         const ChildIcon = NAV_ICONS[c.href] ?? Sparkles;
                         return (
-                          <Link key={c.href} href={c.href} className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-ink-soft transition hover:bg-brand-50 hover:text-brand-800">
+                          <Link key={c.href} href={c.href} className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-ink-soft transition hover:bg-brand-100 hover:text-brand-800">
                             <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-white", ICON_TINTS[i % ICON_TINTS.length])}>
                               <ChildIcon className="h-3.5 w-3.5" strokeWidth={2} />
                             </span>
