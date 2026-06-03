@@ -75,9 +75,9 @@
 .tlc-home .hero h1 {
   font-family: var(--serif);
   color: #fff;
-  font-size: clamp(40px, 6vw, 72px);
-  line-height: 1.04;
-  letter-spacing: -0.032em;
+  font-size: clamp(42px, 6.4vw, 80px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
   margin: 26px 0 0;
   text-shadow: 0 14px 36px rgba(0,0,0,0.28);
 }
@@ -330,8 +330,52 @@
   to { opacity: 1; transform: none; }
 }
 
+/* ---------- Editorial statement (cinematic Monocle moment) ---------- */
+.tlc-home .editorial {
+  position: relative;
+  padding: clamp(96px, 15vh, 200px) 0 clamp(48px, 7vh, 96px);
+}
+.tlc-home .editorial-kicker {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 3.4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--emerald);
+}
+.tlc-home .editorial-line {
+  font-family: var(--serif);
+  font-size: clamp(34px, 5.6vw, 80px);
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  max-width: 22ch;
+  margin: 26px 0 0;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.tlc-home .editorial-line em {
+  font-style: italic;
+  background: linear-gradient(120deg, #00a76d, #3aa6e6 55%, #7866d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.tlc-home .editorial-sub {
+  margin-top: 30px;
+  max-width: 52ch;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #2f3d37;
+}
+.dark .tlc-home .editorial-sub { color: #aebcb4; }
+
+/* Larger, more cinematic section headings */
+.tlc-home .section-copy h2 { font-size: clamp(32px, 4vw, 50px); }
+
 @media (max-width: 900px) {
   .tlc-home .hero { padding: 140px 0 80px; }
+  .tlc-home .editorial { padding: 70px 0 32px; }
+  .tlc-home .editorial-line { font-size: clamp(30px, 8vw, 44px); }
   .tlc-home .hero-grid, .tlc-home .mission-grid, .tlc-home .events-grid { grid-template-columns: 1fr; }
   .tlc-home .hero h1 { font-size: 42px; }
   .tlc-home .hero-image { height: 320px; }

@@ -59,6 +59,21 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Editorial statement — the cinematic Monocle moment */}
+      <section className="editorial reveal">
+        <div className="container">
+          <span className="editorial-kicker">The Village &middot; Est. 1939</span>
+          <h2 className="editorial-line">
+            A village <em>inside</em> a city &mdash; and a Chamber that keeps it that way.
+          </h2>
+          <p className="editorial-sub">
+            For more than eighty-five years we&rsquo;ve looked after Toluca Lake&rsquo;s
+            businesses, its neighbors, and the small-town character that makes one square mile
+            of Los Angeles feel like a town all its own.
+          </p>
+        </div>
+      </section>
+
       <div className="main-content">
         <section className="container mission-grid">
           <div className="section-copy reveal">
