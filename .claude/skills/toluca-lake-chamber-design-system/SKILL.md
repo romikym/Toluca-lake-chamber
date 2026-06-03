@@ -96,12 +96,21 @@ Rules:
 
 > Note on blue vs. gold: CTAs currently use lake blue (`#2A7FB8`, set in `.btn-gradient` in `globals.css`). Champagne gold is reserved for editorial accents. If the action color should ever become gold, it is a one-place change in `.btn-gradient`.
 
+### Dark / Light adaptive palette (Apple OS model)
+
+The site supports **both modes** with a single source of truth. Never hardcode light-only colors — use the adaptive tokens so both themes work for free.
+
+- **How it works:** neutral tokens (`--color-canvas`, `--color-surface`, `--color-ink`, `--color-ink-soft`, `--color-muted`, `--color-line`, `--heading`, glass vars) resolve through runtime CSS vars (`--c-*`) defined in `:root` (light) and overridden under `.dark` (in `globals.css`). A `.dark` class on `<html>` flips everything. The header has a toggle (`ThemeToggle`) + a no-flash init script in `layout.tsx` that respects the saved choice / `prefers-color-scheme`.
+- **Light:** warm-ivory canvas (`#f7faf8`), pure-white surfaces, charcoal-green ink. Green is the sharp contrast.
+- **Dark:** deep charcoal-green surfaces (`#0b1310` canvas, `#15201b` cards) — **never pure black** (`#000` only for true OLED bleed). Off-white ink (`#e9efea`). Green tint shifts **brighter / lower-saturation** for AAA contrast.
+- **Rules:** always use `bg-surface` / `text-ink` / `border-line` / `card-glass` / `glass-strong` (adaptive) rather than `bg-white` / `text-brand-900` (light-only). If you must use a literal-light class, add a `.dark` remap. Bespoke scoped CSS (e.g. `home.css`) needs explicit `.dark` overrides. Verify text on green meets **WCAG 4.5:1**.
+
 ---
 
-## 4. Typography
+## 4. Typography (hybrid — Apple body + editorial headlines)
 
 - **Headlines: Playfair Display** (serif, `--font-display`). Large, editorial, high-contrast. This is the voice of the brand.
-- **Body & UI: Inter** (`--font-sans`). Clean, neutral, quiet.
+- **Body & UI: SF Pro / Apple system stack** (`--font-sans` = `-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", var(--font-inter), system-ui`). Apple devices get SF Pro; everyone else falls back to Inter (SF-Pro-like). This is the apple.com-marketing model: Apple materials & UI type, editorial serif headlines.
 - **Italic accent:** A single italic word in a headline, in emerald/spring gradient (`.display-italic` + `.text-gradient-spring`), e.g. *"elevated."*, *"vitality."* — used as a signature flourish, sparingly.
 
 Rules:
@@ -117,8 +126,9 @@ Rules:
 
 Stack: **Framer Motion** (component animation), **Lenis** (smooth scroll), CSS for ambient loops.
 
-- **Signature easing:** `cubic-bezier(0.16, 1, 0.3, 1)` (a calm ease-out). Use it almost everywhere. Spring only for tactile micro-interactions (magnetic CTA, nav highlight).
-- **Durations:** 0.2–0.45s for UI; 0.6–0.9s for reveals. Nothing slow enough to wait on, nothing twitchy.
+- **Signature easing:** `cubic-bezier(0.16, 1, 0.3, 1)` (calm ease-out) or the Apple-OS curve `--ease-ios` = `cubic-bezier(0.25, 1, 0.5, 1)`. Use these almost everywhere. Spring only for tactile micro-interactions (magnetic CTA, nav highlight).
+- **Tactile press:** interactive elements scale down on press (`active:scale-[0.97]`/`0.98`) — the trackpad/haptic feel. Hover = a soft lift with a diffused shadow (`card-glass-lift`, `-translate-y-0.5`).
+- **Durations:** 0.2–0.35s for UI; 0.6–0.9s for reveals. Nothing slow enough to wait on, nothing twitchy.
 - **What's allowed:** scroll-reveal fade/rise, gentle hover lift (`-translate-y-1`), image zoom on hover, count-ups, soft ambient drift, page-transition fade, magnetic buttons, animated nav underline.
 - **What's banned:** bounce/elastic on entrances, spinning icons, parallax that fights scroll, anything that flashes, blinks, or demands attention. If you notice the animation, it's too much.
 - **Always** respect `prefers-reduced-motion` (the project disables animation globally under it; new motion must honor it too).
@@ -141,7 +151,9 @@ Stack: **Framer Motion** (component animation), **Lenis** (smooth scroll), CSS f
 Tahoe-style **liquid glass** + warm ivory + deep green.
 
 - **Glass surfaces:** `.glass`, `.glass-strong` (frosted, ~88% opaque — readable, content must not bleed through), `.nav-pill` (dark-green glass nav), `card-glass` + `card-glass-lift` (frosted cards with subtle 3D-tilt hover). Overlay menus/dropdowns should be **near-opaque** (`bg-white/95`+) so text behind never shows through.
-- **Cards:** large radii (`rounded-3xl`), hairline borders, soft layered shadows, gentle hover lift. Use `Card` (`src/components/ui/card.tsx`) with `tone="glass"` for frosted.
+- **Corner radii (Apple squircle scale):** cards/panels ≈ **16–24px** (continuous, soft); inputs/segmented controls ≈ 10–12px; primary CTAs stay **pill** (`rounded-full`, matching apple.com marketing) — that's the one sanctioned exception to the 12px-button rule. Generous, continuous curves everywhere; no hard geometric corners.
+- **Cards:** squircle radii, hairline (1px, low-opacity) borders, deep soft high-blur shadows for elevation, gentle hover lift. Use `Card` (`src/components/ui/card.tsx`) with `tone="glass"` for frosted.
+- **Native-style controls:** prefer minimalist switch toggles and clean segmented pickers over bulky dropdowns/checkboxes. SF-Symbols-style iconography (lucide), generous padding.
 - **Buttons:** `Button` (`src/components/ui/button.tsx`). Primary = solid action color via `.btn-gradient` + shimmer-on-hover. Pill shape (`rounded-full`). Secondary = white/hairline. Never invent a new button style inline; extend the component.
 - **Heroes:** `PageHero` (`src/components/layout/page-hero.tsx`) — photographic background under a left-weighted deep-green overlay, Playfair headline, emerald eyebrow, breadcrumb. Pass `image` per page. The home hero is bespoke in `src/styles/home.css` (scoped under `.tlc-home`).
 - **Header:** one fixed glass nav pill site-wide, with a mega-menu (icon tiles, descriptions, sliding highlight). In `src/components/layout/site-header.tsx`.
