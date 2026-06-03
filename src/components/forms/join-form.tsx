@@ -74,11 +74,11 @@ export function JoinForm({ initialPlan }: { initialPlan?: string }) {
       <div className="mb-8 flex items-center gap-2">
         {steps.map((s, i) => (
           <div key={s} className="flex flex-1 items-center gap-2">
-            <div className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold transition-colors", i <= step ? "bg-brand-500 text-white" : "bg-brand-50 text-muted")}>
+            <div className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold transition-colors", i <= step ? "bg-[#2a7fb8] text-white" : "bg-brand-50 text-muted")}>
               {i < step ? <Check className="h-4 w-4" /> : i + 1}
             </div>
             <span className={cn("hidden text-sm font-medium sm:block", i <= step ? "text-brand-800" : "text-muted")}>{s}</span>
-            {i < steps.length - 1 && <div className="h-0.5 flex-1 rounded bg-brand-100"><div className={cn("h-full rounded bg-brand-500 transition-all", i < step ? "w-full" : "w-0")} /></div>}
+            {i < steps.length - 1 && <div className="h-0.5 flex-1 rounded bg-brand-100"><div className={cn("h-full rounded bg-[#2a7fb8] transition-all", i < step ? "w-full" : "w-0")} /></div>}
           </div>
         ))}
       </div>
@@ -150,11 +150,11 @@ export function JoinForm({ initialPlan }: { initialPlan?: string }) {
           <ArrowLeft className="h-4 w-4" /> Back
         </button>
         {step < 2 ? (
-          <button onClick={() => setStep((s) => s + 1)} className="flex items-center gap-1.5 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-600">
+          <button onClick={() => setStep((s) => s + 1)} className="flex items-center gap-1.5 rounded-xl bg-[#2a7fb8] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#236d9f]">
             Continue <ArrowRight className="h-4 w-4" />
           </button>
         ) : (
-          <button onClick={submit} disabled={submitting} className="flex items-center gap-2 rounded-xl bg-brand-500 px-6 py-2.5 text-sm font-medium text-white hover:bg-brand-600 disabled:opacity-60">
+          <button onClick={submit} disabled={submitting} className="flex items-center gap-2 rounded-xl bg-[#2a7fb8] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#236d9f] disabled:opacity-60">
             {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Submit application"}
           </button>
         )}

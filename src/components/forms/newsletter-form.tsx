@@ -39,7 +39,7 @@ export function NewsletterForm({ tone = "light" }: { tone?: "light" | "dark" }) 
             dark ? "bg-white/10 text-white" : "bg-brand-50 text-brand-700"
           )}
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-500 text-white">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#2a7fb8] text-white">
             <Check className="h-3.5 w-3.5" />
           </span>
           You&apos;re subscribed. Welcome to the Village!
@@ -63,7 +63,7 @@ export function NewsletterForm({ tone = "light" }: { tone?: "light" | "dark" }) 
           <button
             type="submit"
             disabled={state === "loading"}
-            className="flex h-11 shrink-0 items-center gap-2 rounded-xl bg-brand-500 px-4 text-sm font-medium text-white transition hover:bg-brand-600 disabled:opacity-60"
+            className="flex h-11 shrink-0 items-center gap-2 rounded-xl bg-[#2a7fb8] px-4 text-sm font-medium text-white transition hover:bg-[#236d9f] disabled:opacity-60"
           >
             {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
           </button>

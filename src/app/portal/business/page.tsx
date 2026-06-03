@@ -27,7 +27,7 @@ export default async function PortalBusinessPage() {
             There&apos;s no business linked to your account yet. The Chamber office can connect your
             directory listing — reach out and we&apos;ll set it up.
           </p>
-          <Link href="/contact" className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-brand-600">Contact the Chamber</Link>
+          <Link href="/contact" className="rounded-full bg-[#2a7fb8] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#236d9f]">Contact the Chamber</Link>
         </div>
       </div>
     );

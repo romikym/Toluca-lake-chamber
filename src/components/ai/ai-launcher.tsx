@@ -62,7 +62,7 @@ export function AiLauncher() {
       <button
         onClick={() => setOpen(true)}
         className={cn(
-          "fixed bottom-24 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-lg transition hover:bg-brand-700 hover:scale-105 lg:bottom-6 lg:right-6",
+          "fixed bottom-24 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#2a7fb8] text-white shadow-lg transition hover:bg-[#1c5d87] hover:scale-105 lg:bottom-6 lg:right-6",
           open && "pointer-events-none opacity-0"
         )}
         aria-label="Open the Chamber AI assistant"
@@ -99,7 +99,7 @@ export function AiLauncher() {
                     className={cn(
                       "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed",
                       m.role === "user"
-                        ? "bg-brand-500 text-white"
+                        ? "bg-[#2a7fb8] text-white"
                         : "border border-line bg-surface text-ink-soft"
                     )}
                   >
@@ -145,7 +145,7 @@ export function AiLauncher() {
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-500 text-white transition hover:bg-brand-600 disabled:opacity-50"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#2a7fb8] text-white transition hover:bg-[#236d9f] disabled:opacity-50"
                 aria-label="Send"
               >
                 <Send className="h-4 w-4" />

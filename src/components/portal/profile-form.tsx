@@ -41,7 +41,7 @@ export function ProfileForm({
           <h1 className="font-display text-2xl font-bold text-brand-900">Profile</h1>
           <p className="text-sm text-muted">Your account details and preferences.</p>
         </div>
-        <button type="submit" disabled={busy} className="flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-brand-600 disabled:opacity-60">
+        <button type="submit" disabled={busy} className="flex items-center gap-2 rounded-full bg-[#2a7fb8] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-[#236d9f] disabled:opacity-60">
           {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : saved ? <Check className="h-4 w-4" /> : <Save className="h-4 w-4" />}
           {saved ? "Saved" : "Save"}
         </button>

@@ -46,7 +46,7 @@ export function BusinessForm({
         </div>
         <div className="flex gap-2">
           <a href={`/directory/${business.slug}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2.5 text-sm font-medium text-ink-soft transition hover:text-brand-600"><Eye className="h-4 w-4" /> Preview</a>
-          <button type="submit" disabled={busy} className="flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-brand-600 disabled:opacity-60">
+          <button type="submit" disabled={busy} className="flex items-center gap-2 rounded-full bg-[#2a7fb8] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-[#236d9f] disabled:opacity-60">
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : saved ? <Check className="h-4 w-4" /> : <Save className="h-4 w-4" />}
             {saved ? "Saved" : "Save changes"}
           </button>

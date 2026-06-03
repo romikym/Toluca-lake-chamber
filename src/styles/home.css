@@ -98,12 +98,12 @@
 }
 .tlc-home .hero-buttons .primary {
   color: #fff;
-  background: linear-gradient(135deg, #5be2a1 0%, #1cd693 30%, #00a76d 65%, #006a44 100%);
-  box-shadow: 0 16px 38px -10px rgba(0,167,109,0.55), inset 0 1px 0 rgba(255,255,255,0.36);
+  background: #2a7fb8;
+  box-shadow: 0 16px 38px -10px rgba(42,127,184,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 .tlc-home .hero-buttons .primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 22px 48px -10px rgba(0,167,109,0.7), inset 0 1px 0 rgba(255,255,255,0.4), 0 0 0 5px rgba(91,226,161,0.16);
+  box-shadow: 0 22px 48px -10px rgba(42,127,184,0.62), inset 0 1px 0 rgba(255,255,255,0.34), 0 0 0 5px rgba(58,166,230,0.16);
 }
 .tlc-home .hero-buttons .outline {
   color: #fff; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.38);
@@ -318,8 +318,8 @@
   color: #fff; text-decoration: none; font-weight: 700; font-size: 14px;
   display: inline-flex; align-items: center; gap: 10px;
   border-radius: 999px; padding: 16px 26px;
-  background: linear-gradient(135deg, #5be2a1 0%, #1cd693 30%, #00a76d 65%, #006a44 100%);
-  box-shadow: 0 16px 38px -10px rgba(0,167,109,0.55), inset 0 1px 0 rgba(255,255,255,0.36);
+  background: #2a7fb8;
+  box-shadow: 0 16px 38px -10px rgba(42,127,184,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
   transition: 0.22s cubic-bezier(0.16,1,0.3,1);
 }
 .tlc-home .cta-band .primary:hover { transform: translateY(-2px); }

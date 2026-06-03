@@ -54,7 +54,7 @@ export function RegistrationPanel({
         </div>
         <div className="mt-2 h-2 overflow-hidden rounded-full bg-brand-100">
           <motion.div
-            className="h-full rounded-full bg-brand-500"
+            className="h-full rounded-full bg-[#2a7fb8]"
             initial={{ width: 0 }}
             whileInView={{ width: `${pct}%` }}
             viewport={{ once: true }}
@@ -71,7 +71,7 @@ export function RegistrationPanel({
             animate={{ opacity: 1, y: 0 }}
             className="mt-5 flex items-center gap-2 rounded-xl bg-brand-50 px-4 py-3 text-sm font-medium text-brand-700"
           >
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-500 text-white">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#2a7fb8] text-white">
               <Check className="h-3.5 w-3.5" />
             </span>
             You&apos;re registered! Check your email for details.
@@ -81,7 +81,7 @@ export function RegistrationPanel({
             key="btn"
             onClick={register}
             disabled={state === "loading" || spotsLeft === 0}
-            className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand-500 font-medium text-white transition hover:bg-brand-600 disabled:opacity-60"
+            className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#2a7fb8] font-medium text-white transition hover:bg-[#236d9f] disabled:opacity-60"
           >
             {state === "loading" ? (
               <Loader2 className="h-5 w-5 animate-spin" />

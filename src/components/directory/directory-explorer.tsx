@@ -59,7 +59,7 @@ export function DirectoryExplorer({
               onClick={() => setActive(null)}
               className={cn(
                 "flex items-center justify-between rounded-xl px-3 py-2 text-sm transition-all",
-                !active ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(0,167,109,0.5)]" : "text-ink-soft hover:bg-white/70"
+                !active ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(42,127,184,0.5)]" : "text-ink-soft hover:bg-white/70"
               )}
             >
               All members <span className="text-xs opacity-70">{businesses.length}</span>
@@ -70,7 +70,7 @@ export function DirectoryExplorer({
                 onClick={() => setActive(c.key)}
                 className={cn(
                   "flex items-center justify-between gap-2 rounded-xl px-3 py-2 text-left text-sm transition-all",
-                  active === c.key ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(0,167,109,0.5)]" : "text-ink-soft hover:bg-white/70"
+                  active === c.key ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(42,127,184,0.5)]" : "text-ink-soft hover:bg-white/70"
                 )}
               >
                 <span className="flex items-center gap-2">

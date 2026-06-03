@@ -46,14 +46,14 @@ export default async function PortalBillingPage() {
                 {membership.autoRenew && <Badge tone="success"><CheckCircle2 className="h-3.5 w-3.5" /> Auto-renew on</Badge>}
               </div>
               <div className="mt-4">
-                <Link href="/membership" className="rounded-full bg-brand-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-600">Manage membership</Link>
+                <Link href="/membership" className="rounded-full bg-[#2a7fb8] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#236d9f]">Manage membership</Link>
               </div>
             </>
           ) : (
             <>
               <p className="text-sm text-muted">You don&apos;t have an active membership on file.</p>
               <div className="mt-4">
-                <Link href="/membership/apply" className="rounded-full bg-brand-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-600">Become a member</Link>
+                <Link href="/membership/apply" className="rounded-full bg-[#2a7fb8] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#236d9f]">Become a member</Link>
               </div>
             </>
           )}

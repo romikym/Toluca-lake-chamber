@@ -53,7 +53,7 @@ export function DashboardShell({
               onClick={() => setOpen(false)}
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
-                active ? "btn-gradient text-white shadow-[0_10px_24px_-8px_rgba(0,167,109,0.45)]" : "text-ink-soft hover:bg-brand-50"
+                active ? "btn-gradient text-white shadow-[0_10px_24px_-8px_rgba(42,127,184,0.45)]" : "text-ink-soft hover:bg-brand-50"
               )}
             >
               <Icon name={item.icon} className="h-[18px] w-[18px]" />

@@ -22,7 +22,7 @@ export function LoginForm() {
         <span className="mb-1.5 block text-sm font-medium text-ink-soft">Password</span>
         <input name="password" type="password" required autoComplete="current-password" className="h-11 w-full rounded-xl border border-line bg-canvas px-4 text-sm outline-none focus:border-brand-500" placeholder="••••••••" />
       </label>
-      <button type="submit" disabled={pending} className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-500 font-medium text-white transition hover:bg-brand-600 disabled:opacity-60">
+      <button type="submit" disabled={pending} className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#2a7fb8] font-medium text-white transition hover:bg-[#236d9f] disabled:opacity-60">
         {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : "Sign in"}
       </button>
     </form>

@@ -79,7 +79,7 @@ export function MembersManager({
           <h1 className="font-display text-2xl font-bold text-brand-900">Members</h1>
           <p className="text-sm text-muted">{businesses.length} businesses · {applications.length} pending application{applications.length === 1 ? "" : "s"}</p>
         </div>
-        <button onClick={openCreate} className="flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600"><Plus className="h-4 w-4" /> Add member</button>
+        <button onClick={openCreate} className="flex items-center gap-2 rounded-xl bg-[#2a7fb8] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#236d9f]"><Plus className="h-4 w-4" /> Add member</button>
       </div>
 
       {applications.length > 0 && (
@@ -172,7 +172,7 @@ export function MembersManager({
           {error && <p className="rounded-xl bg-danger-soft px-3 py-2 text-sm text-danger sm:col-span-2">{error}</p>}
           <div className="flex justify-end gap-2 sm:col-span-2">
             <button type="button" onClick={() => setOpen(false)} className="rounded-xl border border-line px-4 py-2 text-sm font-medium text-ink-soft hover:bg-brand-50">Cancel</button>
-            <button type="submit" disabled={busy} className="flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2 text-sm font-medium text-white hover:bg-brand-600 disabled:opacity-60">
+            <button type="submit" disabled={busy} className="flex items-center gap-2 rounded-xl bg-[#2a7fb8] px-5 py-2 text-sm font-medium text-white hover:bg-[#236d9f] disabled:opacity-60">
               {busy && <Loader2 className="h-4 w-4 animate-spin" />}{editing ? "Save changes" : "Add member"}
             </button>
           </div>

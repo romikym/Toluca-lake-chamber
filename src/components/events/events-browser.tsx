@@ -58,7 +58,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
       onClick={onClick}
       className={cn(
         "shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all",
-        active ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(0,167,109,0.5)]" : "glass-strong text-ink-soft hover:text-brand-700 hover:-translate-y-0.5"
+        active ? "btn-gradient text-white shadow-[0_8px_20px_-6px_rgba(42,127,184,0.5)]" : "glass-strong text-ink-soft hover:text-brand-700 hover:-translate-y-0.5"
       )}
     >
       {children}

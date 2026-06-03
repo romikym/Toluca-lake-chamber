@@ -78,7 +78,7 @@ export function DonateWidget() {
       </label>
 
       {error && <p className="mt-3 text-center text-sm text-danger">{error}</p>}
-      <button onClick={donate} disabled={state === "loading" || value <= 0} className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand-500 font-medium text-white transition hover:bg-brand-600 disabled:opacity-60">
+      <button onClick={donate} disabled={state === "loading" || value <= 0} className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#2a7fb8] font-medium text-white transition hover:bg-[#236d9f] disabled:opacity-60">
         {state === "loading" ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Donate {value > 0 ? formatCurrency(value) : ""}{recurring ? "/mo" : ""} <Heart className="h-4 w-4" /></>}
       </button>
       <p className="mt-3 text-center text-xs text-muted">Secure donation · Stripe-powered</p>

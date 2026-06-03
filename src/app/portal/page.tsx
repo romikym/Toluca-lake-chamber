@@ -50,7 +50,7 @@ export default async function PortalDashboard() {
             {data.upcoming.length === 0 ? (
               <div className="flex flex-col items-center gap-3 py-8 text-center">
                 <p className="text-sm text-muted">You have no upcoming events booked.</p>
-                <Link href="/events" className="rounded-full bg-brand-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-600">Browse events</Link>
+                <Link href="/events" className="rounded-full bg-[#2a7fb8] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#236d9f]">Browse events</Link>
               </div>
             ) : (
               <ul className="divide-y divide-line">
@@ -96,7 +96,7 @@ export default async function PortalDashboard() {
           ) : (
             <div className="space-y-3 py-2 text-sm text-muted">
               <p>No active membership on file.</p>
-              <Link href="/membership/apply" className="inline-flex rounded-full bg-brand-500 px-4 py-2 font-medium text-white transition hover:bg-brand-600">Become a member</Link>
+              <Link href="/membership/apply" className="inline-flex rounded-full bg-[#2a7fb8] px-4 py-2 font-medium text-white transition hover:bg-[#236d9f]">Become a member</Link>
             </div>
           )}
         </Panel>
