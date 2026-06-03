@@ -18,6 +18,7 @@ export default async function EventsPage() {
     <>
       <PageHero
         eyebrow="What's happening"
+        image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1900&q=80"
         title="Events that bring the Village together"
         description="Network, promote your business, or simply stay engaged. Some events are members-only or require reservations — check each listing for details."
         hue={165}

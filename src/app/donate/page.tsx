@@ -21,6 +21,7 @@ export default function DonatePage() {
     <>
       <PageHero
         eyebrow="Support the Village"
+        image="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1900&q=80"
         title="Your gift keeps Toluca Lake thriving"
         description="Every contribution helps fund the community programs, events, and advocacy that make the Village special."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Donate" }]}

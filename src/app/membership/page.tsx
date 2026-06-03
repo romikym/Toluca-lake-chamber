@@ -22,6 +22,7 @@ export default async function MembershipPage() {
     <>
       <PageHero
         eyebrow="Join the Chamber"
+        image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1900&q=80"
         title="Membership for every kind of neighbor"
         description="Joining the Toluca Lake Chamber of Commerce is an opportunity to become part of one of Los Angeles' most connected and community-driven business networks. Membership is open to businesses, professionals, and residents."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Membership" }]}

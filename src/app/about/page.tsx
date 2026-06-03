@@ -25,6 +25,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About the Chamber"
+        image="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1900&q=80"
         title="Preserving and enhancing the Village we love"
         description="Formed in 1939, the Toluca Lake Chamber of Commerce works to strengthen the competitive economic climate of our community."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}

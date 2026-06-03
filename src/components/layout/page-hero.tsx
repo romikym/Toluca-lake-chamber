@@ -4,17 +4,25 @@ import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/section-header";
 import { Reveal } from "@/components/ui/reveal";
 
+// Serene Toluca-Lake-evoking scenery. Drop a real photo into
+// /public/images/heroes/<name>.jpg and pass `image="/images/heroes/<name>.jpg"`
+// to override per page (local files take priority over the remote default).
+const DEFAULT_HERO =
+  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1900&q=80";
+
 export function PageHero({
   eyebrow,
   title,
   description,
   breadcrumb,
+  image = DEFAULT_HERO,
   children,
 }: {
   eyebrow?: string;
   title: React.ReactNode;
   description?: string;
   hue?: number;
+  image?: string;
   breadcrumb?: { label: string; href?: string }[];
   children?: React.ReactNode;
 }) {
@@ -22,8 +30,13 @@ export function PageHero({
     <section className="relative isolate overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-32">
       <div
         aria-hidden
-        className="absolute inset-0 -z-10"
-        style={{ background: "radial-gradient(110% 80% at 50% 0%, #00563f 0%, #003726 38%, #001d16 78%)" }}
+        className="absolute inset-0 -z-10 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "linear-gradient(110deg, rgba(0,18,13,0.93) 0%, rgba(0,42,30,0.78) 46%, rgba(0,30,22,0.5) 100%)," +
+            `url('${image}'),` +
+            "radial-gradient(110% 80% at 50% 0%, #00563f 0%, #003726 38%, #001d16 78%)",
+        }}
       />
       {/* Aurora orbs — mix of emerald, lake, and sunset for warmth + depth */}
       <div className="aurora aurora-a animate-float-slow h-[420px] w-[420px] -top-32 -left-24" />
