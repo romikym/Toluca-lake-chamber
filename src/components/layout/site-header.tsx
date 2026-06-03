@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { Magnetic } from "@/components/ui/magnetic";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { mainNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -177,6 +178,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle tone="dark" className="hidden sm:flex" />
             <Link href="/directory" className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/8 text-white transition hover:bg-white/16 sm:flex" aria-label="Search the directory">
               <Search className="h-[18px] w-[18px]" />
             </Link>

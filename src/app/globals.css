@@ -32,15 +32,16 @@
   --color-twilight: #7866d9;
   --color-twilight-bright: #9b8df2;
 
-  --color-canvas: #f7faf8;
-  --color-canvas-warm: #f8f7f3;
-  --color-surface: #ffffff;
-  --color-line: #e4ece7;
-  --color-line-strong: #cfdbd4;
-  --color-ink: #0d2922;
-  --color-ink-soft: #29453d;
-  --color-muted: #5d716b;
-  --color-faint: #94a39d;
+  /* Adaptive neutrals — resolve to light/dark runtime vars (see :root / .dark) */
+  --color-canvas: var(--c-canvas);
+  --color-canvas-warm: var(--c-canvas-warm);
+  --color-surface: var(--c-surface);
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+  --color-ink: var(--c-ink);
+  --color-ink-soft: var(--c-ink-soft);
+  --color-muted: var(--c-muted);
+  --color-faint: var(--c-faint);
 
   --color-success: #00a76d;
   --color-info: #3aa6e6;
@@ -68,7 +69,10 @@
   --shadow-lake: 0 14px 36px -12px rgba(58, 166, 230, 0.55);
   --shadow-twilight: 0 14px 36px -12px rgba(120, 102, 217, 0.55);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Hybrid type: Apple SF Pro system stack for UI/body (Inter as cross-platform
+     fallback), Playfair Display kept for editorial headlines. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
 
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -76,16 +80,61 @@
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-quiet: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Apple OS fluid easing (Master Prompt) */
+  --ease-ios: cubic-bezier(0.25, 1, 0.5, 1);
 
   --breakpoint-2xl: 96rem;
 }
 
 @layer base {
   :root {
+    color-scheme: light;
+    /* Light mode — warm ivory canvas, white surfaces, charcoal-green ink */
+    --c-canvas: #f7faf8;
+    --c-canvas-warm: #f8f7f3;
+    --c-surface: #ffffff;
+    --c-line: #e4ece7;
+    --c-line-strong: #cfdbd4;
+    --c-ink: #0d2922;
+    --c-ink-soft: #29453d;
+    --c-muted: #5d716b;
+    --c-faint: #94a39d;
+    --heading: var(--color-brand-900);
+
     --glass-bg: rgba(255, 255, 255, 0.58);
     --glass-border: rgba(255, 255, 255, 0.42);
+    --glass-strong-bg: rgba(255, 255, 255, 0.88);
+    --glass-strong-border: rgba(255, 255, 255, 0.65);
     --glass-dark-bg: rgba(0, 40, 30, 0.45);
     --glass-dark-border: rgba(255, 255, 255, 0.16);
+  }
+
+  /* Dark mode — deep charcoal-green surfaces (never pure black), off-white ink,
+     luminous low-saturation green tint. Toggled by .dark on <html>. */
+  .dark {
+    color-scheme: dark;
+    --c-canvas: #0b1310;
+    --c-canvas-warm: #0e1714;
+    --c-surface: #15201b;
+    --c-line: rgba(255, 255, 255, 0.10);
+    --c-line-strong: rgba(255, 255, 255, 0.17);
+    --c-ink: #e9efea;
+    --c-ink-soft: #aebcb4;
+    --c-muted: #85978e;
+    --c-faint: #5f6f68;
+    --heading: #eef4ef;
+
+    --glass-bg: rgba(20, 30, 25, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.10);
+    --glass-strong-bg: rgba(21, 32, 27, 0.86);
+    --glass-strong-border: rgba(255, 255, 255, 0.10);
+    --glass-dark-bg: rgba(6, 13, 10, 0.55);
+    --glass-dark-border: rgba(255, 255, 255, 0.09);
+
+    /* Luminous green tint for dark mode (AAA-friendly) */
+    --color-brand-400: #3ddc97;
+    --color-brand-500: #2bd08a;
+    --color-spring: #5be2a1;
   }
 
   * { border-color: var(--color-line); }
@@ -107,7 +156,7 @@
     font-family: var(--font-display);
     font-weight: 600;
     letter-spacing: -0.018em;
-    color: var(--color-brand-900);
+    color: var(--heading);
     font-feature-settings: "kern", "liga";
   }
   h1 { letter-spacing: -0.028em; line-height: 1.04; }
@@ -133,10 +182,10 @@
     border: 1px solid var(--glass-border);
   }
   .glass-strong {
-    background: rgba(255, 255, 255, 0.88);
+    background: var(--glass-strong-bg);
     backdrop-filter: blur(36px) saturate(200%);
     -webkit-backdrop-filter: blur(36px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.65);
+    border: 1px solid var(--glass-strong-border);
   }
   .glass-dark {
     background: var(--glass-dark-bg);
@@ -396,3 +445,28 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ============================================================
+   Dark-mode remaps — for utilities that hard-code light values.
+   Unlayered so they win over Tailwind utilities. Token-driven
+   classes (bg-surface, text-ink, border-line, glass) adapt on
+   their own; these cover the common literal-light classes.
+   ============================================================ */
+.dark .bg-white { background-color: var(--c-surface); }
+.dark .bg-white\/97, .dark .bg-white\/95, .dark .bg-white\/90 { background-color: rgba(21, 32, 27, 0.95); }
+.dark .bg-white\/80, .dark .bg-white\/75, .dark .bg-white\/70, .dark .bg-white\/65, .dark .bg-white\/60 { background-color: rgba(21, 32, 27, 0.6); }
+.dark .bg-white\/10, .dark .bg-white\/8, .dark .bg-white\/5 { background-color: rgba(255, 255, 255, 0.06); }
+
+.dark .bg-brand-50 { background-color: rgba(45, 208, 138, 0.10); }
+.dark .bg-brand-50\/60, .dark .bg-brand-50\/40 { background-color: rgba(45, 208, 138, 0.06); }
+.dark .bg-brand-100 { background-color: rgba(45, 208, 138, 0.16); }
+.dark .hover\:bg-brand-50:hover, .dark .hover\:bg-brand-100:hover { background-color: rgba(45, 208, 138, 0.14); }
+
+.dark .text-brand-900, .dark .text-brand-800 { color: var(--c-ink); }
+.dark .text-brand-700 { color: #bfe6d3; }
+.dark .text-brand-600 { color: #8fdcb9; }
+
+.dark .border-brand-100, .dark .border-brand-200, .dark .border-line { border-color: rgba(255, 255, 255, 0.10); }
+
+/* Eyebrow chip reads on dark surfaces */
+.dark .eyebrow { color: #d6efe2; background: linear-gradient(120deg, rgba(0,167,109,0.22), rgba(255,255,255,0.04)); border-color: rgba(91,226,161,0.28); }

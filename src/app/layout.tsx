@@ -7,6 +7,7 @@ import { MobileTabBar } from "@/components/layout/mobile-tab-bar";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { ScrollProgress } from "@/components/layout/scroll-progress";
 import { AuroraBackground } from "@/components/layout/aurora-background";
+import { THEME_INIT } from "@/components/layout/theme-toggle";
 import { AiLauncher } from "@/components/ai/ai-launcher";
 import { site } from "@/lib/site";
 
@@ -43,8 +44,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable}`}>
       <body className="min-h-dvh">
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
         <AuroraBackground />
         <SmoothScroll />
         <ScrollProgress />
