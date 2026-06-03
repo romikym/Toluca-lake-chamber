@@ -9,6 +9,31 @@ This is the **source of truth** for how the Toluca Lake Chamber website looks, f
 
 ---
 
+## 0. Creative direction — the stance (read first)
+
+Approach **every** design decision as a former Creative Director from **Apple, Airbnb, and Stripe** would.
+
+> **The website should feel premium before it feels functional.** Craft earns trust first; the function is delivered *through* that craft, never at its expense.
+
+When improving any screen, reach for these — **in this order** — before considering anything else:
+
+1. **Better spacing** — more whitespace, clearer rhythm, room to breathe.
+2. **Better typography** — scale, hierarchy, restraint.
+3. **Better visual hierarchy** — one focal point, deliberate emphasis.
+4. **Better storytelling** — a sharper narrative and tighter copy.
+
+**Always prefer the four above over:**
+
+- ✗ Adding more content
+- ✗ Adding more widgets / UI
+- ✗ Adding more features
+
+The default answer to *"should we add X?"* is **no** — first prove that spacing, type, hierarchy, or story can't solve it. **Subtract before you add.** A premium site is defined as much by what it leaves out as by what it includes. If a screen feels off, the fix is almost always *remove and refine*, not *add*.
+
+(This reframes, but never overrides, the Chamber of Commerce UX Expert skill: clarity and the path to act are sacred — "remove clutter" never means "hide the price or the CTA.")
+
+---
+
 ## 1. North Star — the feeling
 
 The site must feel like these brands:
