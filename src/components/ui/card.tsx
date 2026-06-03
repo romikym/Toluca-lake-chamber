@@ -32,7 +32,7 @@ export function CardBody({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("p-7", className)} {...props}>
+    <div className={cn("p-8 sm:p-9", className)} {...props}>
       {children}
     </div>
   );
