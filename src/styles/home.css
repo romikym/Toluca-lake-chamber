@@ -25,40 +25,29 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 180px 0 120px;
+  min-height: min(94vh, 960px);
+  display: flex;
+  align-items: flex-end;
+  padding: 190px 0 clamp(76px, 12vh, 140px);
   color: #fff;
+}
+/* full-bleed photograph */
+.tlc-home .hero-bg {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 42%;
+  transform: scale(1.05);
+  filter: saturate(1.06) contrast(1.02);
+}
+/* deep-green cinematic scrim — readable on the left, fades to canvas at the base */
+.tlc-home .hero-scrim {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background:
-    radial-gradient(120% 90% at 18% 12%, #0b6a4c 0%, transparent 55%),
-    radial-gradient(80% 70% at 92% 78%, rgba(53,208,138,0.30), transparent 60%),
-    linear-gradient(180deg, #001d16 0%, #003726 45%, #00563f 100%);
+    linear-gradient(84deg, rgba(0,18,13,0.94) 0%, rgba(0,28,20,0.8) 28%, rgba(0,28,20,0.34) 60%, rgba(0,28,20,0.06) 100%),
+    linear-gradient(180deg, rgba(0,18,13,0.5) 0%, transparent 24%, transparent 48%, rgba(0,20,14,0.55) 80%, var(--color-canvas) 100%);
 }
-.tlc-home .hero::after {
-  content: "";
-  position: absolute; left: 0; right: 0; bottom: 0; height: 140px;
-  background: linear-gradient(180deg, transparent, var(--color-canvas) 96%);
-  pointer-events: none; z-index: 1;
-}
-.tlc-home .hero-aurora {
-  position: absolute; border-radius: 999px; filter: blur(90px); pointer-events: none; z-index: 0;
-}
-.tlc-home .hero-aurora.a { width: 480px; height: 480px; top: -160px; left: -120px; background: radial-gradient(circle, #5be2a1, transparent 70%); opacity: 0.55; animation: drift 14s ease-in-out infinite; }
-.tlc-home .hero-aurora.b { width: 560px; height: 560px; right: -200px; top: 100px; background: radial-gradient(circle, #6cc4f0, transparent 70%); opacity: 0.32; animation: drift 22s ease-in-out infinite reverse; }
-.tlc-home .hero-aurora.c { width: 320px; height: 320px; right: 30%; bottom: 80px; background: radial-gradient(circle, #1cd693, transparent 70%); opacity: 0.45; animation: pulse-glow 4s ease-in-out infinite; }
-.tlc-home .hero-aurora.d { width: 280px; height: 280px; left: 35%; top: 30%; background: radial-gradient(circle, #ff8e72, transparent 70%); opacity: 0.22; animation: drift 18s ease-in-out infinite; }
-.tlc-home .hero-aurora.e { width: 260px; height: 260px; right: 8%; bottom: -50px; background: radial-gradient(circle, #9b8df2, transparent 70%); opacity: 0.28; animation: drift 24s ease-in-out infinite reverse; }
-
-.tlc-home .glass-arc {
-  position: absolute; border: 1px solid rgba(255,255,255,0.22); border-radius: 50%;
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  z-index: 2; pointer-events: none;
-}
-.tlc-home .arc-one { width: 720px; height: 720px; right: 240px; top: 40px; background: linear-gradient(110deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)); }
-.tlc-home .arc-two { width: 500px; height: 500px; right: 460px; top: 110px; background: linear-gradient(110deg, rgba(186,242,209,0.14), rgba(255,255,255,0.02)); }
-
-.tlc-home .hero-grid {
-  position: relative; z-index: 3;
-  display: grid; grid-template-columns: 46% 54%; align-items: center; gap: 40px;
-}
+.tlc-home .hero-inner { position: relative; z-index: 2; width: 100%; }
+.tlc-home .hero-copy { max-width: 60ch; }
 
 .tlc-home .pill {
   display: inline-flex; align-items: center; gap: 10px; padding: 7px 16px 7px 9px;
@@ -75,11 +64,12 @@
 .tlc-home .hero h1 {
   font-family: var(--serif);
   color: #fff;
-  font-size: clamp(42px, 6.4vw, 80px);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  margin: 26px 0 0;
-  text-shadow: 0 14px 36px rgba(0,0,0,0.28);
+  font-size: clamp(46px, 7.2vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  margin: 28px 0 0;
+  max-width: 15ch;
+  text-shadow: 0 20px 60px rgba(0,0,0,0.42);
 }
 .tlc-home .hero em {
   font-style: italic; font-weight: 500;
@@ -87,8 +77,9 @@
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .tlc-home .hero p {
-  color: rgba(255,255,255,0.86); font-size: 17px; line-height: 1.78;
-  max-width: 520px; margin: 26px 0 32px;
+  color: rgba(255,255,255,0.9); font-size: clamp(16px, 1.35vw, 19px); line-height: 1.72;
+  max-width: 46ch; margin: 26px 0 36px;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.35);
 }
 .tlc-home .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
 .tlc-home .hero-buttons a {
@@ -111,19 +102,7 @@
 }
 .tlc-home .hero-buttons .outline:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
 
-.tlc-home .hero-image { position: relative; height: 560px; z-index: 3; }
-.tlc-home .hero-image img {
-  position: absolute; right: -140px; top: -10px; width: 850px; height: 560px;
-  object-fit: cover; border-radius: 48% 0 0 48%;
-  box-shadow: 0 50px 110px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.5);
-  filter: saturate(1.13) contrast(1.05);
-  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
-}
-.tlc-home .hero-image:hover img { transform: scale(1.02); }
-.tlc-home .image-glow {
-  position: absolute; right: 160px; bottom: 30px; width: 250px; height: 120px;
-  background: linear-gradient(90deg, #5be2a1, #6cc4f0 50%, #ff8e72); filter: blur(56px); opacity: 0.42;
-}
+/* (legacy split-image hero removed — now a full-bleed cinematic hero) */
 
 /* ---------- Stats card ---------- */
 .tlc-home .stats-card {

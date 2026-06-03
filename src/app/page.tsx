@@ -34,27 +34,18 @@ export default async function HomePage() {
   return (
     <div className="tlc-home">
       <section className="hero">
-        <div className="hero-aurora a" />
-        <div className="hero-aurora b" />
-        <div className="hero-aurora c" />
-        <div className="hero-aurora d" />
-        <div className="hero-aurora e" />
-        <div className="glass-arc arc-one" />
-        <div className="glass-arc arc-two" />
-        <div className="container hero-grid">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="hero-bg" src={HERO_IMG} alt="" aria-hidden="true" />
+        <div className="hero-scrim" />
+        <div className="container hero-inner">
           <div className="hero-copy reveal">
-            <div className="pill"><span />Serving Toluca Lake since 1939</div>
-            <h1>The village<br />business community,<br /><em>elevated.</em></h1>
-            <p>Connecting Toluca Lake businesses, residents, and leaders through advocacy, events, and meaningful local relationships.</p>
+            <div className="pill"><span />Serving the Village since 1939</div>
+            <h1>The village business community,<br /><em>elevated.</em></h1>
+            <p>Connecting Toluca Lake&rsquo;s businesses, residents, and leaders &mdash; through advocacy, events, and the relationships that keep the neighborhood thriving.</p>
             <div className="hero-buttons">
               <Magnetic><Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link></Magnetic>
               <Link href="/directory" className="outline">Explore Members <span>&rarr;</span></Link>
             </div>
-          </div>
-          <div className="hero-image reveal">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={HERO_IMG} alt="Toluca Lake lakeside village" />
-            <div className="image-glow" />
           </div>
         </div>
       </section>
