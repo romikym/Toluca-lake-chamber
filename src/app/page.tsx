@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Leaf, TrendingUp, Network, Megaphone, ShieldCheck } from "lucide-react";
+import { Leaf, TrendingUp, Network, Megaphone, ShieldCheck, Store, CalendarDays, BadgeCheck, Mail } from "lucide-react";
 import { getEvents } from "@/server/queries";
 import { Magnetic } from "@/components/ui/magnetic";
 import "@/styles/home.css";
@@ -38,7 +38,7 @@ export default async function HomePage() {
         <img className="hero-bg" src={HERO_IMG} alt="" aria-hidden="true" />
         <div className="hero-scrim" />
         <div className="container hero-inner">
-          <div className="hero-copy reveal">
+          <div className="hero-panel reveal">
             <div className="pill"><span />Serving the Village since 1939</div>
             <h1>The village business community,<br /><em>elevated.</em></h1>
             <p>Connecting Toluca Lake&rsquo;s businesses, residents, and leaders &mdash; through advocacy, events, and the relationships that keep the neighborhood thriving.</p>
@@ -46,6 +46,12 @@ export default async function HomePage() {
               <Magnetic><Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link></Magnetic>
               <Link href="/directory" className="outline">Explore Members <span>&rarr;</span></Link>
             </div>
+          </div>
+          <div className="hero-tiles reveal">
+            <Link href="/directory" className="hero-tile"><Store /><span>Directory</span></Link>
+            <Link href="/events" className="hero-tile"><CalendarDays /><span>Events</span></Link>
+            <Link href="/membership" className="hero-tile"><BadgeCheck /><span>Membership</span></Link>
+            <Link href="/contact" className="hero-tile"><Mail /><span>Contact</span></Link>
           </div>
         </div>
       </section>
