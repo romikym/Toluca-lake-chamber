@@ -72,6 +72,33 @@ export async function POST(req: Request) {
         }
       }
 
+      if (kind === "renewal") {
+        const email = (s.metadata?.email || s.customer_email || "").toLowerCase();
+        const planKey = s.metadata?.planKey ?? "";
+        if (email && planKey) {
+          const user = await db.user.upsert({
+            where: { email }, update: {}, create: { email, role: "MEMBER" },
+          });
+          const existing = await db.membership.findFirst({ where: { userId: user.id }, orderBy: { createdAt: "desc" } });
+          const base = existing?.expiresAt && existing.expiresAt > new Date() ? existing.expiresAt : new Date();
+          const expiresAt = new Date(base.getTime() + 365 * 24 * 60 * 60 * 1000);
+          if (existing) {
+            await db.membership.update({ where: { id: existing.id }, data: { status: "ACTIVE", planKey, expiresAt, autoRenew: true } });
+          } else {
+            await db.membership.create({ data: { userId: user.id, planKey, status: "ACTIVE", startedAt: new Date(), expiresAt, autoRenew: true } });
+          }
+          const plan = plans.find((p) => p.key === planKey);
+          const label = plan ? `${plan.name}${plan.eligibility ? ` — ${plan.eligibility}` : ""}` : planKey;
+          const t = templates.membershipActive(label);
+          await sendEmail({ to: email, subject: t.subject, html: t.html });
+          await notifyAdmins("membership", "Membership renewed", `${email} — ${label}`, "/admin/members");
+        }
+      }
+
+      if (kind === "store") {
+        await notifyAdmins("store", "New store order", formatCurrency(s.amount_total ?? 0), "/admin");
+      }
+
       if (kind === "event") {
         const slug = s.metadata?.slug ?? "";
         const email = s.metadata?.email || s.customer_email || null;
