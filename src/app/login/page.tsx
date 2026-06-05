@@ -22,10 +22,20 @@ export default function LoginPage() {
       />
       <div className="aurora aurora-a animate-float-slow h-[420px] w-[420px] -top-32 -left-24" />
       <div className="aurora aurora-b animate-float-slower h-[460px] w-[460px] top-10 -right-32" />
+      <div
+        aria-hidden
+        className="aurora animate-float-slower h-[280px] w-[280px] bottom-0 left-1/3 opacity-[0.16]"
+        style={{ background: "radial-gradient(circle, var(--color-gold) 0%, transparent 70%)" }}
+      />
       <Container className="relative max-w-md">
         <div className="glass-strong rounded-[36px] p-9 shadow-luxe">
           <div className="flex justify-center"><Logo /></div>
           <h1 className="mt-7 text-center font-display text-3xl font-bold text-brand-900">Welcome back</h1>
+          <div
+            aria-hidden
+            className="mx-auto mt-4 h-px w-16 rounded-full"
+            style={{ background: "linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent)" }}
+          />
           <p className="mt-2 text-center text-sm leading-relaxed text-muted">
             Manage your Chamber membership all in one place. Update your business
             information, manage your directory listing, upload photos, and stay

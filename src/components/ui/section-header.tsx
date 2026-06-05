@@ -38,6 +38,12 @@ export function SectionHeader({
       <h2 className={cn("mt-5 text-[2.1rem] sm:text-[2.6rem] lg:text-[3rem] leading-[1.05] text-balance", tone === "dark" && "text-white")}>
         {title}
       </h2>
+      {/* Champagne-gold hairline flourish — the members-club detail */}
+      <div
+        aria-hidden
+        className={cn("mt-6 h-px w-16 rounded-full", align === "center" && "mx-auto")}
+        style={{ background: "linear-gradient(90deg, var(--color-gold), var(--color-copper) 70%, transparent)" }}
+      />
       {description && (
         <p className={cn("mt-5 text-lg leading-relaxed text-balance", tone === "dark" ? "text-white/80" : "text-ink-soft")}>
           {description}

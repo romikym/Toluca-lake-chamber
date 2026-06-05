@@ -244,14 +244,17 @@
     backdrop-filter: blur(20px) saturate(170%);
     -webkit-backdrop-filter: blur(20px) saturate(170%);
     border: 1px solid rgba(255, 255, 255, 0.9);
-    box-shadow: 0 14px 38px -12px rgba(0, 55, 38, 0.10);
+    box-shadow:
+      0 14px 38px -12px rgba(0, 55, 38, 0.10),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -16px 32px -22px rgba(0, 55, 38, 0.08);
     transform-style: preserve-3d;
   }
   .card-glass-lift {
     transition:
-      transform 0.32s var(--ease-spring),
-      box-shadow 0.32s var(--ease-spring),
-      border-color 0.32s var(--ease-spring);
+      transform 0.36s var(--ease-ios),
+      box-shadow 0.36s var(--ease-ios),
+      border-color 0.36s var(--ease-ios);
     will-change: transform;
   }
   .card-glass-lift:hover {
@@ -260,8 +263,10 @@
     box-shadow:
       0 28px 64px -18px rgba(0, 86, 63, 0.22),
       0 0 0 1px rgba(53, 208, 138, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
       0 0 38px -10px rgba(91, 226, 161, 0.32),
-      0 0 32px -8px rgba(58, 166, 230, 0.18);
+      0 1px 0 rgba(199, 168, 103, 0.35),
+      0 0 30px -10px rgba(199, 168, 103, 0.22);
   }
 
   /* Gradient text */

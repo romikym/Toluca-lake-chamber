@@ -44,6 +44,12 @@ export function PageHero({
       <div className="aurora aurora-c h-[260px] w-[260px] bottom-0 left-1/3 animate-pulse-glow" />
       <div className="aurora aurora-sunset h-[300px] w-[300px] top-1/2 left-1/2 animate-float-slow opacity-25" />
       <div className="aurora aurora-twilight h-[220px] w-[220px] -bottom-10 right-1/4 animate-float-slower" />
+      {/* Champagne-copper warmth — the gold accent in the ambient field */}
+      <div
+        aria-hidden
+        className="aurora animate-float-slower h-[280px] w-[280px] bottom-6 left-1/4 opacity-[0.18]"
+        style={{ background: "radial-gradient(circle, var(--color-gold) 0%, transparent 70%)" }}
+      />
 
       {/* Glass arcs */}
       <div
@@ -80,7 +86,13 @@ export function PageHero({
         )}
         <Reveal>
           {eyebrow && <Eyebrow tone="dark">{eyebrow}</Eyebrow>}
-          <h1 className="mt-6 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance">
+          {/* Champagne-gold hairline flourish — the members-club detail */}
+          <div
+            aria-hidden
+            className="mt-6 h-px w-20 rounded-full"
+            style={{ background: "linear-gradient(90deg, var(--color-gold-bright), var(--color-copper) 60%, transparent)" }}
+          />
+          <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance">
             {title}
           </h1>
           {description && (

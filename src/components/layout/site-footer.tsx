@@ -22,6 +22,7 @@ export function SiteFooter() {
       <div className="aurora aurora-lake h-[300px] w-[300px] top-1/2 left-1/3 animate-float-slower opacity-30" />
       <div className="aurora aurora-twilight h-[260px] w-[260px] bottom-20 left-10 animate-float-slow opacity-25" />
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-spring/40 to-transparent" />
+      <div className="absolute inset-x-0 top-px h-px bg-gradient-to-r from-transparent via-[#c7a867]/35 to-transparent" />
 
       <Container className="relative py-20">
         <div className="grid gap-12 lg:grid-cols-12">
@@ -92,7 +93,8 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/55 sm:flex-row">
+        <div className="mt-16 h-px w-full bg-gradient-to-r from-transparent via-[#c7a867]/30 to-transparent" />
+        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-white/55 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <p>Built for the community of Toluca Lake.</p>
         </div>
