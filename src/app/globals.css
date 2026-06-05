@@ -22,6 +22,14 @@
   --color-jade: #1eb6a4;
   --color-aurora: #75f2c4;
 
+  /* Editorial flourish — champagne gold + warm copper (used sparingly: hairlines,
+     numerals, small dividers, members-club detail). Never large fills or buttons. */
+  --color-gold: #c7a867;
+  --color-gold-bright: #ddc48c;
+  --color-gold-soft: #f1e7cf;
+  --color-copper: #b87a52;
+  --color-copper-bright: #d39a74;
+
   /* Complementary accents — sunset, lake, twilight */
   --color-sunset: #ff8e72;
   --color-sunset-bright: #ffb89e;
@@ -293,6 +301,20 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+  /* Champagne-gold editorial flourish — for numerals, kickers, members-club detail. */
+  .text-gradient-gold {
+    background: linear-gradient(120deg, var(--color-copper) 0%, var(--color-gold) 45%, var(--color-gold-bright) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Thin gold hairline rule — a single members-club divider, never a block. */
+  .rule-gold {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, transparent, var(--color-gold) 18%, var(--color-gold) 82%, transparent);
+    opacity: 0.65;
   }
 
   /* Glows */

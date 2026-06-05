@@ -8,6 +8,7 @@ import {
   ChevronDown, ChevronRight, Menu, X, Search, Instagram, Facebook, User, ArrowRight,
   Info, Users, Landmark, Sparkles, HelpCircle, CalendarDays, Leaf, Network,
   Palette, Moon, HeartPulse, Gift, Utensils, Tag, BadgeCheck, UserPlus,
+  Images, Newspaper, ShoppingBag, RefreshCw, Percent, Award,
   type LucideIcon,
 } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
@@ -34,6 +35,12 @@ const NAV_ICONS: Record<string, LucideIcon> = {
   "/membership": Tag,
   "/membership/benefits": BadgeCheck,
   "/membership/apply": UserPlus,
+  "/membership/renew": RefreshCw,
+  "/membership/perks": Percent,
+  "/gallery": Images,
+  "/newsletter": Newspaper,
+  "/sponsors": Award,
+  "/store": ShoppingBag,
 };
 
 const ICON_TINTS = ["icon-emerald", "icon-lake", "icon-sunset", "icon-twilight"];
