@@ -1,7 +1,12 @@
 import Link from "next/link";
-import { Leaf, TrendingUp, Network, Megaphone, ShieldCheck, Store, CalendarDays, BadgeCheck, Mail } from "lucide-react";
+import { Leaf, TrendingUp, Network, Megaphone, ShieldCheck, Store, CalendarDays, BadgeCheck, Mail, ArrowRight, Quote } from "lucide-react";
 import { getEvents } from "@/server/queries";
+import { categories } from "@/lib/data";
+import { homeStats, memberSpotlight, legacyMilestones } from "@/lib/content";
 import { Magnetic } from "@/components/ui/magnetic";
+import { Counter } from "@/components/ui/counter";
+import { Icon } from "@/components/ui/icon";
+import { NewsletterForm } from "@/components/forms/newsletter-form";
 import "@/styles/home.css";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +26,9 @@ const mission = [
   { icon: ShieldCheck, title: "Protect", body: "Advocacy and leadership that protect our local voice and the future of our community." },
 ];
 
+// A curated taste of the directory — eight industries that define the Village.
+const previewCategories = ["restaurant", "realestate", "health", "arts", "retail", "finance", "home", "pet"];
+
 function eventCategory(slug: string) {
   if (/network|mixer/.test(slug)) return "Networking";
   if (/state|board|leader/.test(slug)) return "Leadership";
@@ -30,6 +38,9 @@ function eventCategory(slug: string) {
 export default async function HomePage() {
   const events = await getEvents();
   const featured = events.slice(0, 3);
+  const cats = previewCategories
+    .map((key) => categories.find((c) => c.key === key))
+    .filter((c): c is NonNullable<typeof c> => Boolean(c));
 
   return (
     <div className="tlc-home">
@@ -71,6 +82,19 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Social proof — the trust strip */}
+      <section className="container stat-strip reveal">
+        {homeStats.map((s) => (
+          <div key={s.label} className="stat-cell">
+            <strong>
+              <Counter value={s.value} prefix={s.prefix} suffix={s.suffix} />
+            </strong>
+            <span className="stat-label">{s.label}</span>
+            <span className="stat-detail">{s.detail}</span>
+          </div>
+        ))}
+      </section>
+
       <div className="main-content">
         <section className="container mission-grid">
           <div className="section-copy reveal">
@@ -88,6 +112,26 @@ export default async function HomePage() {
                 <p>{m.body}</p>
                 <span>&rarr;</span>
               </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Directory preview — discovery, delightful */}
+        <section className="container directory-preview reveal">
+          <div className="directory-head">
+            <div>
+              <span className="eyebrow-text">The Business Directory</span>
+              <h2>Discover the Village,<br /><em>one business at a time.</em></h2>
+            </div>
+            <Link className="text-link" href="/directory">Browse all members <span>&rarr;</span></Link>
+          </div>
+          <div className="cat-grid">
+            {cats.map((c) => (
+              <Link key={c.key} href={`/directory?category=${c.key}`} className="cat-tile">
+                <span className="cat-icon"><Icon name={c.icon} className="h-6 w-6" /></span>
+                <span className="cat-name">{c.name}</span>
+                <ArrowRight className="cat-arrow h-4 w-4" />
+              </Link>
             ))}
           </div>
         </section>
@@ -119,12 +163,71 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Member spotlight — the editorial member story */}
+        <section className="container spotlight reveal">
+          <div className="spotlight-media">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={memberSpotlight.image} alt={memberSpotlight.business} />
+            <span className="spotlight-since">{memberSpotlight.since}</span>
+          </div>
+          <div className="spotlight-copy">
+            <span className="eyebrow-text">Member Spotlight</span>
+            <Quote className="spotlight-quote-mark" />
+            <blockquote>{memberSpotlight.quote}</blockquote>
+            <div className="spotlight-attr">
+              <strong>{memberSpotlight.person}</strong>
+              <span>{memberSpotlight.role}</span>
+              <span className="spotlight-biz">{memberSpotlight.business} &middot; {memberSpotlight.category}</span>
+            </div>
+            <Link className="text-link" href={`/directory/${memberSpotlight.slug}`}>Read their story <span>&rarr;</span></Link>
+          </div>
+        </section>
+
+        {/* 85-year legacy — quiet, cinematic */}
+        <section className="legacy reveal">
+          <div className="container">
+            <div className="legacy-head">
+              <span className="legacy-numeral text-gradient-gold">85</span>
+              <div>
+                <span className="eyebrow-text">Our Legacy</span>
+                <h2>Eighty-five years of<br /><em>looking after the Village.</em></h2>
+              </div>
+            </div>
+            <hr className="rule-gold legacy-rule" />
+            <ol className="legacy-timeline">
+              {legacyMilestones.map((m) => (
+                <li key={m.year}>
+                  <span className="legacy-year">{m.year}</span>
+                  <h3>{m.title}</h3>
+                  <p>{m.body}</p>
+                </li>
+              ))}
+            </ol>
+            <Link className="text-link" href="/about/legacy">Explore the full history <span>&rarr;</span></Link>
+          </div>
+        </section>
+
         <section className="container cta-band reveal">
           <div className="seal"><Leaf width={30} height={30} strokeWidth={1.5} /><span>1939</span></div>
           <h2>Stronger together.<br />Better for <em>Toluca Lake.</em></h2>
+          <p className="cta-sub">Membership that pays for itself &mdash; exposure, referrals, and a seat at the table for the future of the Village.</p>
           <Magnetic><Link href="/membership/apply" className="primary">Join the Chamber <span>&rarr;</span></Link></Magnetic>
         </section>
       </div>
+
+      {/* Newsletter capture — the low-friction next step */}
+      <section className="home-newsletter">
+        <div className="container home-newsletter-inner">
+          <div className="home-newsletter-copy">
+            <span className="eyebrow-text">Stay Connected</span>
+            <h2>The Village, <em>in your inbox.</em></h2>
+            <p>Community news, member spotlights, and the events worth showing up for &mdash; once a month, never more.</p>
+          </div>
+          <div className="home-newsletter-form">
+            <NewsletterForm />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
