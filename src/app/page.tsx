@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Leaf, TrendingUp, Network, Megaphone, ShieldCheck, Store, CalendarDays, BadgeCheck, Mail, ArrowRight, Quote } from "lucide-react";
 import { getEvents } from "@/server/queries";
-import { categories } from "@/lib/data";
+import { categories, board } from "@/lib/data";
 import { homeStats, memberSpotlight, legacyMilestones } from "@/lib/content";
 import { Magnetic } from "@/components/ui/magnetic";
 import { Counter } from "@/components/ui/counter";
 import { Icon } from "@/components/ui/icon";
+import { TextReveal } from "@/components/ui/text-reveal";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import "@/styles/home.css";
 
@@ -41,6 +42,7 @@ export default async function HomePage() {
   const cats = previewCategories
     .map((key) => categories.find((c) => c.key === key))
     .filter((c): c is NonNullable<typeof c> => Boolean(c));
+  const president = board.find((m) => m.role === "President") ?? board[0];
 
   return (
     <div className="tlc-home">
@@ -65,16 +67,21 @@ export default async function HomePage() {
             <Link href="/contact" className="hero-tile"><Mail /><span>Contact</span></Link>
           </div>
         </div>
+        <div className="scroll-cue" aria-hidden>
+          <span>Scroll</span>
+          <span className="scroll-line" />
+        </div>
       </section>
 
-      {/* Editorial statement — the cinematic Monocle moment */}
-      <section className="editorial reveal">
+      {/* Manifesto — one confident idea, kinetic Apple-style type */}
+      <section className="manifesto">
         <div className="container">
           <span className="editorial-kicker">The Village &middot; Est. 1939</span>
-          <h2 className="editorial-line">
-            A village <em>inside</em> a city &mdash; and a Chamber that keeps it that way.
+          <h2 className="manifesto-line">
+            <TextReveal as="span" text="A village inside a city —" />{" "}
+            <TextReveal as="span" className="manifesto-accent" text="and a Chamber that keeps it that way." delay={0.18} />
           </h2>
-          <p className="editorial-sub">
+          <p className="manifesto-sub reveal">
             For more than eighty-five years we&rsquo;ve looked after Toluca Lake&rsquo;s
             businesses, its neighbors, and the small-town character that makes one square mile
             of Los Angeles feel like a town all its own.
@@ -204,6 +211,27 @@ export default async function HomePage() {
               ))}
             </ol>
             <Link className="text-link" href="/about/legacy">Explore the full history <span>&rarr;</span></Link>
+          </div>
+        </section>
+
+        {/* Personal touch — a signed note from the President */}
+        <section className="container president reveal">
+          <div className="president-portrait" style={{ backgroundImage: `linear-gradient(150deg, hsl(${president.hue} 60% 30%), hsl(${(president.hue + 20) % 360} 66% 18%))` }}>
+            <span aria-hidden>{president.name.split(" ").map((w) => w[0]).slice(0, 2).join("")}</span>
+            <span className="president-badge">Since 1939</span>
+          </div>
+          <div className="president-copy">
+            <span className="eyebrow-text">A note from our President</span>
+            <p className="president-note">
+              &ldquo;Toluca Lake has always felt like a small town wrapped inside a big city &mdash;
+              and that&rsquo;s no accident. It&rsquo;s the neighbors who show up, the shop owners
+              who know your name, and the businesses that lean on one another.{" "}
+              <strong>That&rsquo;s what we protect. That&rsquo;s what we&rsquo;re inviting you into.</strong>&rdquo;
+            </p>
+            <div className="president-sign">
+              <span className="president-signature">{president.name}</span>
+              <span className="president-role">{president.role}{president.company ? ` · ${president.company}` : ""}</span>
+            </div>
           </div>
         </section>
 

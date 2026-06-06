@@ -716,3 +716,165 @@
   .tlc-home .cat-grid { grid-template-columns: 1fr; }
   .tlc-home .legacy-timeline { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   Athletic + Apple elevation — kinetic manifesto, scroll cue,
+   bigger stats, and the personal "From the President" moment
+   ============================================================ */
+
+/* Scroll cue under the hero */
+.tlc-home .scroll-cue {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 3;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.tlc-home .scroll-line {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45), transparent);
+}
+.tlc-home .scroll-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 45%;
+  background: var(--aurora);
+  animation: tlc-scroll-fall 2.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes tlc-scroll-fall {
+  0% { transform: translateY(-110%); opacity: 0; }
+  35% { opacity: 1; }
+  100% { transform: translateY(320%); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tlc-home .scroll-line::after { animation: none; }
+}
+
+/* Kinetic manifesto */
+.tlc-home .manifesto {
+  position: relative;
+  padding: clamp(110px, 17vh, 230px) 0 clamp(56px, 8vh, 110px);
+}
+.tlc-home .manifesto-line {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(40px, 6.6vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.038em;
+  max-width: 17ch;
+  margin: 28px 0 0;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.tlc-home .manifesto-accent { font-style: italic; color: var(--emerald); }
+.dark .tlc-home .manifesto-accent { color: var(--aurora); }
+.tlc-home .manifesto-sub {
+  margin-top: 34px;
+  max-width: 50ch;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.75;
+  color: #2f3d37;
+}
+.dark .tlc-home .manifesto-sub { color: #aebcb4; }
+
+/* More athletic stat numerals */
+.tlc-home .stat-cell strong { font-size: clamp(46px, 5.8vw, 74px); }
+
+/* Personal touch — From the President */
+.tlc-home .president {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: clamp(28px, 5vw, 68px);
+  align-items: center;
+  padding: clamp(60px, 10vh, 130px) 0;
+}
+.tlc-home .president-portrait {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 34px;
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 60px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 40px 90px -38px rgba(0, 55, 38, 0.55);
+  overflow: hidden;
+}
+.tlc-home .president-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 80% at 28% 14%, rgba(255, 255, 255, 0.2), transparent 56%);
+}
+.tlc-home .president-badge {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: rgba(0, 30, 22, 0.5);
+  border: 1px solid rgba(199, 168, 103, 0.45);
+  backdrop-filter: blur(8px);
+}
+.tlc-home .president-note {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 33px);
+  line-height: 1.42;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 16px 0 28px;
+  text-wrap: pretty;
+}
+.tlc-home .president-note strong {
+  font-weight: 600;
+  background: linear-gradient(120deg, #00a76d, #1eb6a4 60%, #3aa6e6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dark .tlc-home .president-note { color: #e9efea; }
+.tlc-home .president-signature {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--green);
+}
+.dark .tlc-home .president-signature { color: var(--aurora); }
+.tlc-home .president-role {
+  display: block;
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #5a6b64;
+}
+.dark .tlc-home .president-role { color: #9fb0a8; }
+
+@media (max-width: 760px) {
+  .tlc-home .president { grid-template-columns: 1fr; }
+  .tlc-home .president-portrait { width: 170px; }
+}
