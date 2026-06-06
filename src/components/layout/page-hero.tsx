@@ -17,6 +17,7 @@ export function PageHero({
   description,
   breadcrumb,
   image = DEFAULT_HERO,
+  size = "default",
   children,
 }: {
   eyebrow?: string;
@@ -24,12 +25,19 @@ export function PageHero({
   description?: string;
   hue?: number;
   image?: string;
+  size?: "default" | "tall";
   breadcrumb?: { label: string; href?: string }[];
   children?: React.ReactNode;
 }) {
+  const tall = size === "tall";
   return (
-    <section className="relative isolate overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-32">
-      <div
+    <section
+      className={
+        tall
+          ? "relative isolate flex min-h-[82vh] items-end overflow-hidden pt-36 pb-16 sm:pb-20 lg:min-h-[88vh] lg:pb-28"
+          : "relative isolate overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-32"
+      }
+    >      <div
         aria-hidden
         className="hero-kenburns absolute inset-0 -z-10 bg-cover bg-center"
         style={{
@@ -97,7 +105,11 @@ export function PageHero({
             <TextReveal
               as="h1"
               text={title}
-              className="mt-5 block max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance"
+              className={
+                tall
+                  ? "mt-5 block max-w-5xl font-display text-[3rem] font-semibold leading-[1.02] tracking-[-0.03em] text-white sm:text-[4.2rem] lg:text-[5.4rem] text-balance"
+                  : "mt-5 block max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance"
+              }
             />
           ) : (
             <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance">

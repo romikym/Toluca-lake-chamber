@@ -18,11 +18,18 @@ export default async function DirectoryPage() {
     <>
       <PageHero
         eyebrow="Business directory"
+        size="tall"
+        image="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1900&q=80"
         title="Discover the businesses of the Village"
-        description="Discover trusted local businesses, professionals, and community partners that help make Toluca Lake such a vibrant and connected community. Our searchable directory makes it easy to find Chamber members by business type, category, or service — a great place to start supporting local."
-        hue={150}
+        description="Trusted local businesses, professionals, and community partners — the people who make Toluca Lake feel like a town all its own. Search by name, category, or service, and start shopping local."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Directory" }]}
-      />
+      >
+        <div className="flex flex-wrap items-center gap-x-7 gap-y-2 text-sm text-white/80">
+          <span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-spring" /> {businesses.length || "120"}+ member businesses</span>
+          <span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-spring" /> {categories.length} categories</span>
+          <span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-spring" /> One square mile, fully local</span>
+        </div>
+      </PageHero>
       <section className="py-12">
         <Container>
           <DirectoryExplorer businesses={businesses} categories={categories} />
