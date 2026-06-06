@@ -7,8 +7,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "", "/about", "/about/board", "/about/legacy", "/about/spotlight", "/about/faq",
     "/directory", "/events", "/membership", "/membership/benefits", "/membership/apply",
+    "/membership/renew", "/membership/perks", "/gallery", "/newsletter", "/store",
     "/contact", "/donate", "/sponsors", "/privacy", "/terms", "/login",
-  ].map((path) => ({ url: `${base}${path}`, lastModified: new Date("2026-05-30") }));
+  ].map((path) => ({ url: `${base}${path}`, lastModified: new Date("2026-06-05") }));
 
   let dynamicPaths: string[] = [];
   try {

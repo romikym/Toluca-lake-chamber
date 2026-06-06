@@ -7,22 +7,17 @@ import { Badge } from "@/components/ui/badge";
 import { GradientCover, gradientStyle } from "@/components/ui/gradient";
 import { Reveal } from "@/components/ui/reveal";
 import { RegistrationPanel } from "@/components/events/registration-panel";
-import { getEvent, getEvents, getProgram } from "@/server/queries";
+import { getEvent, getProgram } from "@/server/queries";
 import { formatDate } from "@/lib/utils";
 
-export async function generateStaticParams() {
-  try {
-    const events = await getEvents();
-    return events.map((e) => ({ slug: e.slug }));
-  } catch {
-    return []; // DB not reachable at build — render on demand instead
-  }
-}
+// Rendered on demand from the database so content stays fresh and unknown slugs
+// return a true 404 (avoids the SSG soft-404 where notFound() resolved as 200).
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const e = await getEvent(slug);
-  if (!e) return { title: "Event not found" };
+  if (!e) notFound();
   return { title: e.title, description: e.summary };
 }
 
@@ -44,6 +39,7 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
             {e.price === 0 ? <Badge tone="brand" className="bg-white/90">Free</Badge> : null}
           </div>
           <h1 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">{e.title}</h1>
+          <div aria-hidden className="mt-4 h-px w-16 rounded-full" style={{ background: "linear-gradient(90deg, var(--color-gold-bright), var(--color-copper) 60%, transparent)" }} />
         </Container>
       </GradientCover>
 

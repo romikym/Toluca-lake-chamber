@@ -71,17 +71,27 @@ export default function LegacyPage() {
             </p>
           </Reveal>
 
-          <div className="relative mt-12 ml-3 border-l-2 border-brand-100 pl-8">
-            {timeline.map((t, i) => (
-              <Reveal key={i} delay={i * 0.04} className="relative pb-10 last:pb-0">
-                <span className="absolute -left-[42px] flex h-7 w-7 items-center justify-center rounded-full border-2 border-brand-200 bg-surface">
-                  <span className="h-2.5 w-2.5 rounded-full bg-brand-500" />
-                </span>
-                <span className="font-display text-sm font-bold uppercase tracking-wide text-brand-500">{t.year}</span>
-                <h3 className="mt-1 font-display text-xl font-semibold text-brand-900">{t.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{t.body}</p>
-              </Reveal>
-            ))}
+          <div className="relative mt-14">
+            {/* Emerald-to-gold rail */}
+            <div
+              aria-hidden
+              className="absolute left-4 top-3 bottom-3 w-px"
+              style={{ background: "linear-gradient(180deg, var(--color-emerald), var(--color-gold) 52%, var(--color-copper))", opacity: 0.55 }}
+            />
+            <div className="space-y-5">
+              {timeline.map((t, i) => (
+                <Reveal key={i} delay={i * 0.04} className="relative pl-14">
+                  <span className="absolute left-0 top-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-surface shadow-sm ring-1 ring-[#c7a867]/45">
+                    <span className="h-2.5 w-2.5 rounded-full" style={{ background: "linear-gradient(135deg, var(--color-spring), var(--color-emerald))" }} />
+                  </span>
+                  <div className="card-glass card-glass-lift rounded-3xl p-6 sm:p-7">
+                    <span className="font-display text-base font-bold uppercase tracking-wide text-gradient-gold">{t.year}</span>
+                    <h3 className="mt-1 font-display text-xl font-semibold text-brand-900">{t.title}</h3>
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{t.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </Container>
       </section>

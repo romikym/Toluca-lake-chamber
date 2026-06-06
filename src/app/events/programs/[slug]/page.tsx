@@ -7,21 +7,15 @@ import { Container } from "@/components/ui/container";
 import { Stagger, StaggerItem } from "@/components/ui/reveal";
 import { EventCard } from "@/components/cards/event-card";
 import { Icon } from "@/components/ui/icon";
-import { getProgram, getPrograms, getEventsForProgram } from "@/server/queries";
+import { getProgram, getEventsForProgram } from "@/server/queries";
 
-export async function generateStaticParams() {
-  try {
-    const programs = await getPrograms();
-    return programs.map((p) => ({ slug: p.slug }));
-  } catch {
-    return []; // DB not reachable at build — render on demand instead
-  }
-}
+// Rendered on demand so unknown program slugs return a true 404.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = await getProgram(slug);
-  if (!p) return { title: "Program not found" };
+  if (!p) notFound();
   return { title: p.name, description: p.blurb };
 }
 

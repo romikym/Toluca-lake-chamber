@@ -11,22 +11,17 @@ import { BusinessCard } from "@/components/cards/business-card";
 import { BusinessMap } from "@/components/directory/business-map";
 import { Reveal } from "@/components/ui/reveal";
 import { categoryName } from "@/lib/data";
-import { getBusiness, getBusinesses, getRelatedBusinesses } from "@/server/queries";
+import { getBusiness, getRelatedBusinesses } from "@/server/queries";
 import { site } from "@/lib/site";
 
-export async function generateStaticParams() {
-  try {
-    const businesses = await getBusinesses();
-    return businesses.map((b) => ({ slug: b.slug }));
-  } catch {
-    return []; // DB not reachable at build — render on demand instead
-  }
-}
+// Rendered on demand from the database so listings stay fresh and unknown slugs
+// return a true 404 (avoids the SSG soft-404 where notFound() resolved as 200).
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const b = await getBusiness(slug);
-  if (!b) return { title: "Member not found" };
+  if (!b) notFound();
   return { title: b.name, description: b.tagline };
 }
 
@@ -52,11 +47,12 @@ export default async function BusinessProfile({ params }: { params: Promise<{ sl
               </div>
               <h1 className="mt-2 font-display text-3xl font-bold text-brand-900">{b.name}</h1>
               <p className="text-sm text-muted">{categoryName(b.category)}</p>
+              <div aria-hidden className="mt-3 h-px w-12 rounded-full" style={{ background: "linear-gradient(90deg, var(--color-gold), var(--color-copper) 70%, transparent)" }} />
             </div>
           </div>
           <div className="flex gap-2 pb-2">
-            <button className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-surface text-muted hover:text-brand-600" aria-label="Save"><Heart className="h-5 w-5" /></button>
-            <button className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-surface text-muted hover:text-brand-600" aria-label="Share"><Share2 className="h-5 w-5" /></button>
+            <button className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-muted transition hover:text-brand-600 active:scale-95" aria-label="Save"><Heart className="h-5 w-5" /></button>
+            <button className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-muted transition hover:text-brand-600 active:scale-95" aria-label="Share"><Share2 className="h-5 w-5" /></button>
           </div>
         </div>
 
@@ -82,7 +78,7 @@ export default async function BusinessProfile({ params }: { params: Promise<{ sl
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm lg:sticky lg:top-28">
+            <div className="card-glass rounded-3xl p-6 lg:sticky lg:top-28">
               <h3 className="font-display font-semibold text-brand-900">Contact</h3>
               <ul className="mt-4 space-y-3 text-sm">
                 <li className="flex items-start gap-3 text-ink-soft"><MapPin className="mt-0.5 h-4 w-4 text-brand-500" /> {b.address}</li>

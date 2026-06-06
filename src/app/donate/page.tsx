@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HandHeart, Sprout, Users } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { DonateWidget } from "@/components/forms/donate-widget";
@@ -21,7 +22,7 @@ export default function DonatePage() {
     <>
       <PageHero
         eyebrow="Support the Village"
-        image="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.donate}
         title="Your gift keeps Toluca Lake thriving"
         description="Every contribution helps fund the community programs, events, and advocacy that make the Village special."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Donate" }]}

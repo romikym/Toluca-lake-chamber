@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowRight, Megaphone, HeartHandshake, Users, Check, Award } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { SectionHeader, Eyebrow } from "@/components/ui/section-header";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
@@ -50,7 +51,7 @@ export default function SponsorsPage() {
     <>
       <PageHero
         eyebrow="Partner with the Chamber"
-        image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.sponsors}
         title="Put your brand at the heart of the Village"
         description="Chamber sponsors power the events, programs, and advocacy that keep Toluca Lake thriving — and earn lasting visibility and goodwill in return."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Sponsorship" }]}

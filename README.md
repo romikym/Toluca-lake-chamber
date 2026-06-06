@@ -9,10 +9,25 @@ refined green-only design system.
 
 ## Quick start
 
+**Fastest — see the whole site, no database setup:**
+
 ```bash
-npm install            # also runs `prisma generate`
-npm run db:push        # create the local SQLite database
-npm run db:seed        # load Phase 1 data + demo accounts
+npm install
+npm run preview        # → http://localhost:3000
+```
+
+`npm run preview` spins up a throwaway local **SQLite** database, seeds demo content
+(members, events, board, plans), and starts the dev server — no Supabase/Postgres or
+`.env` required. Stop with `Ctrl+C`. (It regenerates the Prisma client for SQLite; to
+switch back to your real Postgres setup, run `npx prisma generate`.)
+
+**Real setup — Postgres (Supabase) for production-like data:**
+
+```bash
+npm install
+# add DATABASE_URL + DIRECT_URL (Supabase) and AUTH_SECRET to .env  (see .env.example)
+npm run db:push        # create tables
+npm run db:seed        # load content + demo accounts
 npm run dev            # http://localhost:3000
 ```
 
@@ -23,11 +38,11 @@ npm run build
 npm start
 ```
 
-> Runs out of the box on a local **SQLite** database (`prisma/dev.db`). Authentication,
-> the directory, events, membership, and the contact/newsletter/join forms are **wired
-> to the real database**. Stripe payments and transactional email are the remaining
-> integrations (stubbed in the UI). For real Claude responses, set `ANTHROPIC_API_KEY`
-> in `.env.local`.
+> The app is a full Next.js 15 server app (SSR, server actions, Prisma). The directory,
+> events, membership, and the contact/newsletter/join forms are **wired to the database**.
+> Stripe checkout (membership, renewal, events, donations, **store**) and transactional
+> email activate when their keys are set, with graceful keyless fallbacks otherwise. For
+> real Claude responses, set `ANTHROPIC_API_KEY` in `.env.local`.
 
 ### Demo accounts
 
