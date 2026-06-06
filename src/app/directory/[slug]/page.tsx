@@ -11,17 +11,12 @@ import { BusinessCard } from "@/components/cards/business-card";
 import { BusinessMap } from "@/components/directory/business-map";
 import { Reveal } from "@/components/ui/reveal";
 import { categoryName } from "@/lib/data";
-import { getBusiness, getBusinesses, getRelatedBusinesses } from "@/server/queries";
+import { getBusiness, getRelatedBusinesses } from "@/server/queries";
 import { site } from "@/lib/site";
 
-export async function generateStaticParams() {
-  try {
-    const businesses = await getBusinesses();
-    return businesses.map((b) => ({ slug: b.slug }));
-  } catch {
-    return []; // DB not reachable at build — render on demand instead
-  }
-}
+// Rendered on demand from the database so listings stay fresh and unknown slugs
+// return a true 404 (avoids the SSG soft-404 where notFound() resolved as 200).
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

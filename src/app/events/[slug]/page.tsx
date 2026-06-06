@@ -7,17 +7,12 @@ import { Badge } from "@/components/ui/badge";
 import { GradientCover, gradientStyle } from "@/components/ui/gradient";
 import { Reveal } from "@/components/ui/reveal";
 import { RegistrationPanel } from "@/components/events/registration-panel";
-import { getEvent, getEvents, getProgram } from "@/server/queries";
+import { getEvent, getProgram } from "@/server/queries";
 import { formatDate } from "@/lib/utils";
 
-export async function generateStaticParams() {
-  try {
-    const events = await getEvents();
-    return events.map((e) => ({ slug: e.slug }));
-  } catch {
-    return []; // DB not reachable at build — render on demand instead
-  }
-}
+// Rendered on demand from the database so content stays fresh and unknown slugs
+// return a true 404 (avoids the SSG soft-404 where notFound() resolved as 200).
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
