@@ -44,6 +44,7 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
             {e.price === 0 ? <Badge tone="brand" className="bg-white/90">Free</Badge> : null}
           </div>
           <h1 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">{e.title}</h1>
+          <div aria-hidden className="mt-4 h-px w-16 rounded-full" style={{ background: "linear-gradient(90deg, var(--color-gold-bright), var(--color-copper) 60%, transparent)" }} />
         </Container>
       </GradientCover>
 
