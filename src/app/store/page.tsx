@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Check, AlertCircle, Heart, Leaf } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { StoreFront } from "@/components/store/store-front";
 import { products } from "@/lib/store";
@@ -22,7 +23,7 @@ export default async function StorePage({
     <>
       <PageHero
         eyebrow="Wear the Village"
-        image="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.store}
         title="The Chamber Store"
         description="Toluca Lake apparel, accessories, and gifts — designed in the Village, made to last. Every purchase helps fund the programs and events that keep our community thriving."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Store" }]}

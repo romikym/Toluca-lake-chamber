@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Tag, Ticket, Megaphone, Users, Percent, Store } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { SectionHeader, Eyebrow } from "@/components/ui/section-header";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
@@ -26,7 +27,7 @@ export default function PerksPage() {
     <>
       <PageHero
         eyebrow="Membership that pays for itself"
-        image="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.perks}
         title="Perks, discounts & offers"
         description="Belonging to the Chamber comes with real, redeemable value — exclusive member deals from local businesses, plus the exposure and connections that grow your bottom line."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Membership", href: "/membership" }, { label: "Perks" }]}

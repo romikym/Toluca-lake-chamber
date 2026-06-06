@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowUpRight, Mail, Check } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
@@ -27,7 +28,7 @@ export default function NewsletterPage() {
     <>
       <PageHero
         eyebrow="Stay connected"
-        image="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.newsletter}
         title="The Village, in your inbox"
         description="Once a month, never more — community news, member spotlights, and the gatherings that bring Toluca Lake together."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Community" }, { label: "Newsletter" }]}

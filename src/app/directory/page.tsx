@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { DirectoryExplorer } from "@/components/directory/directory-explorer";
 import { getBusinesses, getCategories } from "@/server/queries";
@@ -19,7 +20,7 @@ export default async function DirectoryPage() {
       <PageHero
         eyebrow="Business directory"
         size="tall"
-        image="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.directory}
         title="Discover the businesses of the Village"
         description="Trusted local businesses, professionals, and community partners — the people who make Toluca Lake feel like a town all its own. Search by name, category, or service, and start shopping local."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Directory" }]}

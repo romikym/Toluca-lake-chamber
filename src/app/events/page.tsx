@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { EventsBrowser } from "@/components/events/events-browser";
 import { getEvents, getPrograms } from "@/server/queries";
@@ -23,7 +24,7 @@ export default async function EventsPage() {
       <PageHero
         eyebrow="What's happening"
         size="tall"
-        image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.events}
         title="Events that bring the Village together"
         description="Network, promote your business, or simply show up for your neighbors. Some events are members-only or need a reservation — check each listing for details."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Events" }]}

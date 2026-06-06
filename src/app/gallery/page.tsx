@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Camera } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { GalleryExplorer } from "@/components/gallery/gallery-explorer";
@@ -19,7 +20,7 @@ export default function GalleryPage() {
     <>
       <PageHero
         eyebrow="The Village, in pictures"
-        image="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.gallery}
         title="Moments from Toluca Lake"
         description="Clean-ups, mixers, the Art Fair, and the Holiday Open House — a look at the people and places that make the Village feel like home."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Community" }, { label: "Gallery" }]}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ShieldCheck, Clock, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { RenewPanel } from "@/components/forms/renew-panel";
@@ -27,7 +28,7 @@ export default async function RenewPage({
     <>
       <PageHero
         eyebrow="Welcome back"
-        image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.renew}
         title="Renew your spot in the Village"
         description="Thank you for another year of building Toluca Lake together. Renewing keeps your directory listing, member pricing, and perks running without interruption."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Membership", href: "/membership" }, { label: "Renew" }]}

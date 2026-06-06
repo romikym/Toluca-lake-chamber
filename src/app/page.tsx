@@ -8,18 +8,13 @@ import { Counter } from "@/components/ui/counter";
 import { Icon } from "@/components/ui/icon";
 import { TextReveal } from "@/components/ui/text-reveal";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
+import { eventImages } from "@/lib/images";
 import "@/styles/home.css";
 
 export const dynamic = "force-dynamic";
 
 const HERO_IMG =
   "https://static.wixstatic.com/media/824d26_9e779a2e8be74bb390e4202007c2096f~mv2.png";
-const EVENT_IMGS = [
-  "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=85",
-  "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=85",
-  "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=900&q=85",
-];
-
 const mission = [
   { icon: TrendingUp, title: "Grow", body: "Strategic programs and advocacy that support local business and sustainable growth." },
   { icon: Network, title: "Connect", body: "Networking events and community gatherings that build relationships and opportunity." },
@@ -159,7 +154,7 @@ export default async function HomePage() {
               return (
                 <Link key={e.slug} href={`/events/${e.slug}`} className="event-card">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={EVENT_IMGS[i % EVENT_IMGS.length]} alt={e.title} />
+                  <img src={eventImages[i % eventImages.length]} alt={e.title} />
                   <div className="date">{mon}<br /><b>{day}</b></div>
                   <small>{eventCategory(e.slug)}</small>
                   <h3>{e.title}</h3>
