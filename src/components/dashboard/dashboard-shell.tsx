@@ -42,6 +42,11 @@ export function DashboardShell({
       </div>
       <div className="px-3">
         <span className="ml-2 text-[11px] font-semibold uppercase tracking-wider text-brand-400">{badge}</span>
+        <div
+          aria-hidden
+          className="ml-2 mt-2 h-px w-10 rounded-full"
+          style={{ background: "linear-gradient(90deg, var(--color-gold), var(--color-copper) 70%, transparent)" }}
+        />
       </div>
       <nav className="mt-2 flex-1 space-y-1 px-3">
         {nav.map((item) => {
@@ -76,7 +81,17 @@ export function DashboardShell({
   );
 
   return (
-    <div className="min-h-dvh bg-canvas/50">
+    <div className="relative min-h-dvh bg-canvas/50">
+      {/* Whisper-faint emerald + gold ambient warmth behind the dashboard */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(58% 48% at 100% 0%, rgba(0,167,109,0.07), transparent 60%)," +
+            "radial-gradient(48% 40% at 0% 100%, rgba(199,168,103,0.06), transparent 62%)",
+        }}
+      />
       {/* Desktop sidebar */}
       <aside className="glass-strong fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-white/40 lg:block">
         {SideContent}

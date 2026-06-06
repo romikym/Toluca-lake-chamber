@@ -12,7 +12,7 @@ export function StatTile({
   delta?: string; deltaTone?: "up" | "down" | "flat"; raw?: boolean;
 }) {
   return (
-    <div className="group glass-strong rounded-2xl p-5 shadow-md transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-lg">
+    <div className="group glass-strong rounded-2xl p-5 shadow-md ring-1 ring-transparent transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-lg hover:ring-[#c7a867]/30">
       <div className="flex items-center justify-between">
         <div className="icon-emerald flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-[0_8px_18px_-6px_rgba(0,167,109,0.5)] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
           <Icon className="h-5 w-5" />
