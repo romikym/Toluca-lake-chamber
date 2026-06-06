@@ -3,6 +3,7 @@ import { ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/section-header";
 import { Reveal } from "@/components/ui/reveal";
+import { TextReveal } from "@/components/ui/text-reveal";
 
 // Serene Toluca-Lake-evoking scenery. Drop a real photo into
 // /public/images/heroes/<name>.jpg and pass `image="/images/heroes/<name>.jpg"`
@@ -30,7 +31,7 @@ export function PageHero({
     <section className="relative isolate overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-32">
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-cover bg-center"
+        className="hero-kenburns absolute inset-0 -z-10 bg-cover bg-center"
         style={{
           backgroundImage:
             "linear-gradient(110deg, rgba(0,18,13,0.93) 0%, rgba(0,42,30,0.78) 46%, rgba(0,30,22,0.5) 100%)," +
@@ -92,9 +93,17 @@ export function PageHero({
             className="mt-6 h-px w-20 rounded-full"
             style={{ background: "linear-gradient(90deg, var(--color-gold-bright), var(--color-copper) 60%, transparent)" }}
           />
-          <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance">
-            {title}
-          </h1>
+          {typeof title === "string" ? (
+            <TextReveal
+              as="h1"
+              text={title}
+              className="mt-5 block max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance"
+            />
+          ) : (
+            <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] text-white sm:text-[3.4rem] lg:text-[4.2rem] text-balance">
+              {title}
+            </h1>
+          )}
           {description && (
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/85 text-balance">
               {description}

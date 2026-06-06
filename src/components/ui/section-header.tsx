@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
+import { TextReveal } from "./text-reveal";
 
 export function Eyebrow({
   children,
@@ -35,9 +36,17 @@ export function SectionHeader({
   return (
     <Reveal className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
-      <h2 className={cn("mt-5 text-[2.1rem] sm:text-[2.6rem] lg:text-[3rem] leading-[1.05] text-balance", tone === "dark" && "text-white")}>
-        {title}
-      </h2>
+      {typeof title === "string" ? (
+        <TextReveal
+          as="h2"
+          text={title}
+          className={cn("mt-5 block text-[2.1rem] sm:text-[2.6rem] lg:text-[3rem] leading-[1.05] text-balance", tone === "dark" && "text-white")}
+        />
+      ) : (
+        <h2 className={cn("mt-5 text-[2.1rem] sm:text-[2.6rem] lg:text-[3rem] leading-[1.05] text-balance", tone === "dark" && "text-white")}>
+          {title}
+        </h2>
+      )}
       {/* Champagne-gold hairline flourish — the members-club detail */}
       <div
         aria-hidden

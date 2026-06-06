@@ -369,6 +369,17 @@
     box-shadow: 0 0 18px var(--color-spring-bright);
   }
 
+  /* Cinematic hero — slow Ken Burns push-in on the photographic backdrop */
+  .hero-kenburns {
+    animation: hero-kenburns 20s var(--ease-quiet) forwards;
+    transform-origin: 50% 40%;
+    will-change: transform;
+  }
+  @keyframes hero-kenburns {
+    from { transform: scale(1.02); }
+    to { transform: scale(1.1); }
+  }
+
   /* Aurora orbs — now with multi-color variants */
   .aurora { position: absolute; border-radius: 999px; filter: blur(80px); pointer-events: none; }
   .aurora-a { background: radial-gradient(circle, var(--color-spring-bright) 0%, transparent 70%); opacity: 0.5; }

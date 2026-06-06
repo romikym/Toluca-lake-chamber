@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -52,9 +53,12 @@ export function TextReveal({
       aria-label={text}
     >
       {words.map((w, i) => (
-        <motion.span key={i} variants={word} className="inline-block whitespace-pre" aria-hidden>
-          {i < words.length - 1 ? w + " " : w}
-        </motion.span>
+        <Fragment key={i}>
+          <motion.span variants={word} className="inline-block" aria-hidden>
+            {w}
+          </motion.span>
+          {i < words.length - 1 ? " " : ""}
+        </Fragment>
       ))}
     </MotionTag>
   );
