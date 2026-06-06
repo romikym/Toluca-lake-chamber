@@ -109,7 +109,7 @@ export function SiteHeader() {
         >
           <Logo variant="light" />
 
-          <nav className="hidden items-center gap-0.5 lg:flex" onMouseLeave={() => { setHovered(null); setOpenMenu(null); }}>
+          <nav className="hidden items-center gap-0.5 xl:flex" onMouseLeave={() => { setHovered(null); setOpenMenu(null); }}>
             {mainNav.map((item) => {
               const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
               const showHi = hovered === item.label || (hovered === null && active);
@@ -198,7 +198,7 @@ export function SiteHeader() {
                 Join the Chamber
               </Link>
             </Magnetic>
-            <button onClick={() => setOpen((v) => !v)} className="flex h-10 w-10 items-center justify-center rounded-full text-white transition hover:bg-white/10 lg:hidden" aria-label="Toggle menu" aria-expanded={open}>
+            <button onClick={() => setOpen((v) => !v)} className="flex h-10 w-10 items-center justify-center rounded-full text-white transition hover:bg-white/10 xl:hidden" aria-label="Toggle menu" aria-expanded={open}>
               {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
@@ -207,7 +207,7 @@ export function SiteHeader() {
 
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pointer-events-auto fixed inset-0 top-[68px] lg:hidden">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pointer-events-auto fixed inset-0 top-[68px] xl:hidden">
             <div className="absolute inset-0 bg-brand-950/40 backdrop-blur-md" onClick={() => setOpen(false)} />
             <motion.nav
               initial={{ y: -16, opacity: 0 }}
