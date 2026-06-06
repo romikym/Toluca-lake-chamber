@@ -55,6 +55,30 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} ${dancingScript.variable}`}>
       <body className="min-h-dvh">
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": ["Organization", "LocalBusiness"],
+              name: site.name,
+              description: site.description,
+              foundingDate: String(site.founded),
+              url: "https://tolucalakechamber.com",
+              email: site.email,
+              telephone: site.phone,
+              address: {
+                "@type": "PostalAddress",
+                postOfficeBoxNumber: site.address.line1,
+                addressLocality: site.address.city,
+                addressRegion: site.address.state,
+                postalCode: site.address.zip,
+                addressCountry: "US",
+              },
+              sameAs: [site.social.instagram, site.social.facebook],
+            }),
+          }}
+        />
         <AuroraBackground />
         <SmoothScroll />
         <ScrollProgress />
