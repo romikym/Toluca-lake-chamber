@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -24,6 +24,14 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
 });
 
+// Signature script — used sparingly for the personal "From the President" note.
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-signature",
+  display: "swap",
+  weight: ["600", "700"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://tolucalakechamber.com"),
   title: {
@@ -44,7 +52,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} ${dancingScript.variable}`}>
       <body className="min-h-dvh">
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
         <AuroraBackground />

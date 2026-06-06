@@ -858,9 +858,9 @@
 .dark .tlc-home .president-note { color: #e9efea; }
 .tlc-home .president-signature {
   display: block;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 32px;
+  font-family: var(--font-signature), var(--serif);
+  font-weight: 700;
+  font-size: 46px;
   line-height: 1;
   color: var(--green);
 }
