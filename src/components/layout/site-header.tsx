@@ -43,7 +43,8 @@ const NAV_ICONS: Record<string, LucideIcon> = {
   "/store": ShoppingBag,
 };
 
-const ICON_TINTS = ["icon-emerald", "icon-lake", "icon-sunset", "icon-twilight"];
+// Flat, unified emerald icon tiles — consistent and premium (no rainbow).
+const ICON_TINTS = ["icon-emerald", "icon-emerald", "icon-emerald", "icon-emerald"];
 
 const dropdownVariants = {
   hidden: { opacity: 0, y: 10, scale: 0.97 },

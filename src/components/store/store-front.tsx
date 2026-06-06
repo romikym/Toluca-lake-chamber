@@ -64,7 +64,7 @@ export function StoreFront({ products }: { products: Product[] }) {
       {/* Sticky cart button */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-brand-800 px-5 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-brand-900 active:scale-[0.97]"
+        className="fixed bottom-24 left-4 z-40 flex items-center gap-2 rounded-full bg-brand-800 px-5 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-brand-900 active:scale-[0.97] lg:bottom-6 lg:left-6"
         aria-label="Open cart"
       >
         <ShoppingBag className="h-5 w-5" />

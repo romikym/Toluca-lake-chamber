@@ -238,17 +238,13 @@
     0 0 38px -10px rgba(91,226,161,0.32);
 }
 .tlc-home .feature-grid article > div {
-  width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
-  color: #fff; font-weight: 800;
-  box-shadow: 0 14px 28px rgba(0,86,63,0.32), inset 0 1px 0 rgba(255,255,255,0.34);
-  transition: transform 0.32s cubic-bezier(0.16,1,0.3,1);
+  width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center;
+  color: #fff;
+  background: linear-gradient(140deg, #00a76d, #006a44);
+  box-shadow: 0 10px 24px -10px rgba(0,86,63,0.4);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
 }
-.tlc-home .feature-grid article:hover > div { transform: scale(1.1) rotate(-4deg); }
-/* Each feature gets its own accent color */
-.tlc-home .feature-grid article:nth-child(1) > div { background: linear-gradient(135deg, #5be2a1, #00a76d 60%, #006a44); }
-.tlc-home .feature-grid article:nth-child(2) > div { background: linear-gradient(135deg, #6cc4f0, #3aa6e6 55%, #1f7eb8); box-shadow: 0 14px 28px rgba(31,126,184,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
-.tlc-home .feature-grid article:nth-child(3) > div { background: linear-gradient(135deg, #ffb89e, #ff8e72 55%, #d96b4d); box-shadow: 0 14px 28px rgba(217,107,77,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
-.tlc-home .feature-grid article:nth-child(4) > div { background: linear-gradient(135deg, #9b8df2, #7866d9 55%, #4f3fb0); box-shadow: 0 14px 28px rgba(79,63,176,0.32), inset 0 1px 0 rgba(255,255,255,0.34); }
+.tlc-home .feature-grid article:hover > div { transform: scale(1.06); }
 
 .tlc-home .feature-grid h3 {
   font-family: var(--serif); font-size: 22px; margin: 20px 0 8px; color: var(--ink);
@@ -557,8 +553,8 @@
   width: 46px; height: 46px; flex-shrink: 0;
   border-radius: 14px;
   color: #fff;
-  background: linear-gradient(135deg, #5be2a1, #00a76d 60%, #006a44);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 8px 18px -8px rgba(0,167,109,0.5);
+  background: linear-gradient(140deg, #00a76d, #006a44);
+  box-shadow: 0 8px 18px -8px rgba(0,167,109,0.4);
 }
 .tlc-home .cat-name { font-size: 14px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 .tlc-home .cat-arrow { margin-left: auto; color: #b9c6c0; flex-shrink: 0; transition: transform 0.3s, color 0.3s; }
