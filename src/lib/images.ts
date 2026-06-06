@@ -26,6 +26,7 @@ export const heroImages = {
   donate: unsplash("1500534314209-a25ddb2bd429"), // hands / community
   about: unsplash("1480714378408-67cf0d13bc1b"), // leafy city / village
   legacy: unsplash("1518495973542-4542c06a5843"), // golden-hour trees
+  membership: unsplash("1475721027785-f74eccf877e2"), // welcoming, communal
 } as const;
 
 /** Rotating imagery for the home page featured-event cards. */

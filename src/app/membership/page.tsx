@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { heroImages } from "@/lib/images";
 import { Container } from "@/components/ui/container";
 import { SectionHeader, Eyebrow } from "@/components/ui/section-header";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
@@ -25,7 +26,7 @@ export default async function MembershipPage() {
     <>
       <PageHero
         eyebrow="Join the Chamber"
-        image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1900&q=80"
+        image={heroImages.membership}
         title="Membership that pays for itself"
         description="More customers, real connections, marketing exposure, and a unified voice — for businesses, professionals, and residents alike."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Membership" }]}
