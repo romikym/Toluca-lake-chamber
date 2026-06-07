@@ -35,49 +35,107 @@ const {
     <Footer />
 
     <script>
+      import Lenis from "lenis";
+
       const header = document.getElementById("siteHeader");
       const glow = document.querySelector<HTMLElement>(".cursor-glow");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      window.addEventListener("scroll", () => {
-        header?.classList.toggle("scrolled", window.scrollY > 24);
-      });
+      // Defined before updateOnScroll runs (fixes the original's reference-before-init).
+      const parallaxElements = document.querySelectorAll<HTMLElement>(
+        ".hero-orb, .hero-card, .stats-panel, .image-frame, .final-glow"
+      );
 
-      if (glow) {
-        window.addEventListener("pointermove", (event) => {
-          glow.style.left = `${event.clientX}px`;
-          glow.style.top = `${event.clientY}px`;
+      // Smooth scroll (Lenis) — bundled, not a CDN global.
+      if (!prefersReducedMotion) {
+        const lenis = new Lenis({
+          duration: 1.25,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          wheelMultiplier: 0.88,
+          touchMultiplier: 1.15,
+          lerp: 0.08,
         });
+        const raf = (time: number) => { lenis.raf(time); requestAnimationFrame(raf); };
+        requestAnimationFrame(raf);
       }
 
+      let ticking = false;
+      function updateOnScroll() {
+        const y = window.scrollY;
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            header?.classList.toggle("scrolled", y > 24);
+            if (!prefersReducedMotion) {
+              parallaxElements.forEach((el, i) => {
+                el.style.transform = `translate3d(0, ${y * (0.025 + i * 0.008)}px, 0)`;
+              });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener("scroll", updateOnScroll, { passive: true });
+      updateOnScroll();
+
+      // Cursor glow — eased follow.
+      if (glow && !prefersReducedMotion) {
+        let px = innerWidth / 2, py = innerHeight / 2, gx = px, gy = py;
+        window.addEventListener("pointermove", (e) => { px = e.clientX; py = e.clientY; }, { passive: true });
+        const animateGlow = () => {
+          gx += (px - gx) * 0.12; gy += (py - gy) * 0.12;
+          glow.style.transform = `translate3d(${gx}px, ${gy}px, 0) translate(-50%, -50%)`;
+          requestAnimationFrame(animateGlow);
+        };
+        requestAnimationFrame(animateGlow);
+      }
+
+      // Scroll-reveal with staggered delay.
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) entry.target.classList.add("visible");
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
           });
         },
-        { threshold: 0.14 }
+        { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
       );
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      document.querySelectorAll<HTMLElement>(".reveal").forEach((el, i) => {
+        el.style.setProperty("--reveal-delay", `${Math.min(i * 55, 360)}ms`);
+        observer.observe(el);
+      });
 
+      // Alternating slide-in direction for card grids.
+      document.querySelectorAll(".impact-card, .event-card, .benefit-card, .spot-card, .leader-card, .feature-card, .tier, .listing")
+        .forEach((card, i) => card.classList.add(i % 2 === 0 ? "slide-in-left" : "slide-in-right"));
+
+      // Magnetic buttons — eased.
       document.querySelectorAll<HTMLElement>(".magnetic").forEach((item) => {
-        item.addEventListener("mousemove", (event) => {
-          const rect = item.getBoundingClientRect();
-          const x = event.clientX - rect.left - rect.width / 2;
-          const y = event.clientY - rect.top - rect.height / 2;
-          item.style.transform = `translate(${x * 0.12}px, ${y * 0.18}px)`;
+        let active = false, tx = 0, ty = 0, cx = 0, cy = 0;
+        item.addEventListener("mousemove", (e) => {
+          const r = item.getBoundingClientRect();
+          tx = (e.clientX - r.left - r.width / 2) * 0.12;
+          ty = (e.clientY - r.top - r.height / 2) * 0.18;
+          active = true;
         });
-        item.addEventListener("mouseleave", () => {
-          item.style.transform = "translate(0, 0)";
-        });
+        item.addEventListener("mouseleave", () => { tx = 0; ty = 0; active = false; });
+        const animate = () => {
+          cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
+          item.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+          if (active || Math.abs(cx) > 0.01 || Math.abs(cy) > 0.01) requestAnimationFrame(animate);
+        };
+        item.addEventListener("mouseenter", () => requestAnimationFrame(animate));
       });
 
-      const parallax = document.querySelectorAll<HTMLElement>(".hero-orb, .hero-card, .stats-panel");
-      window.addEventListener("scroll", () => {
-        const y = window.scrollY;
-        parallax.forEach((el, i) => {
-          el.style.translate = `0 ${y * (0.035 + i * 0.012)}px`;
+      // Title flourish — duplicate text into the gold/copper ghost layer.
+      if (!prefersReducedMotion) {
+        document.querySelectorAll<HTMLElement>(".title-feature").forEach((t) => {
+          t.setAttribute("data-title", (t.textContent || "").trim());
         });
-      });
+      }
     </script>
   </body>
 </html>
