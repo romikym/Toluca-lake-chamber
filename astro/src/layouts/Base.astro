@@ -1,0 +1,83 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "Toluca Lake Chamber of Commerce",
+  description = "Connecting leaders, elevating local businesses, and shaping a more influential future for Toluca Lake.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <Header />
+    <main id="top"><slot /></main>
+    <Footer />
+
+    <script>
+      const header = document.getElementById("siteHeader");
+      const glow = document.querySelector<HTMLElement>(".cursor-glow");
+
+      window.addEventListener("scroll", () => {
+        header?.classList.toggle("scrolled", window.scrollY > 24);
+      });
+
+      if (glow) {
+        window.addEventListener("pointermove", (event) => {
+          glow.style.left = `${event.clientX}px`;
+          glow.style.top = `${event.clientY}px`;
+        });
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.14 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      document.querySelectorAll<HTMLElement>(".magnetic").forEach((item) => {
+        item.addEventListener("mousemove", (event) => {
+          const rect = item.getBoundingClientRect();
+          const x = event.clientX - rect.left - rect.width / 2;
+          const y = event.clientY - rect.top - rect.height / 2;
+          item.style.transform = `translate(${x * 0.12}px, ${y * 0.18}px)`;
+        });
+        item.addEventListener("mouseleave", () => {
+          item.style.transform = "translate(0, 0)";
+        });
+      });
+
+      const parallax = document.querySelectorAll<HTMLElement>(".hero-orb, .hero-card, .stats-panel");
+      window.addEventListener("scroll", () => {
+        const y = window.scrollY;
+        parallax.forEach((el, i) => {
+          el.style.translate = `0 ${y * (0.035 + i * 0.012)}px`;
+        });
+      });
+    </script>
+  </body>
+</html>

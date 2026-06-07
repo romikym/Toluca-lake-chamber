@@ -1,0 +1,148 @@
+---
+import Base from "../layouts/Base.astro";
+
+const events = [
+  { mon: "Jul", day: "15", kicker: "Chamber Mixer", title: "Connections at Golden Hour", copy: "Small bites, drinks, and high-value introductions with Toluca Lake business leaders.", cta: "Register" },
+  { mon: "Aug", day: "08", kicker: "Business Forum", title: "Growth, Visibility, and Community Influence", copy: "An editorial-style leadership session for members ready to scale their local presence.", cta: "Learn More" },
+  { mon: "Sep", day: "12", kicker: "Member Showcase", title: "The Best of Toluca Lake", copy: "A curated evening spotlighting local restaurants, shops, studios, and service leaders.", cta: "Attend" },
+];
+
+const impact = [
+  { n: "01", title: "Advocacy", copy: "A trusted voice for local business priorities, economic vitality, and smart community growth." },
+  { n: "02", title: "Networking", copy: "Elegant events designed to turn introductions into partnerships, referrals, and opportunity." },
+  { n: "03", title: "Visibility", copy: "Modern storytelling that helps members stand out across digital, social, and community channels." },
+  { n: "04", title: "Leadership", copy: "A platform for business owners to connect with civic leaders and shape what comes next." },
+];
+---
+<Base>
+  <!-- Hero -->
+  <section class="hero section" aria-label="Hero">
+    <div class="hero-orb hero-orb-one"></div>
+    <div class="hero-orb hero-orb-two"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content reveal">
+      <p class="eyebrow">The future of local business leadership</p>
+      <h1>Where Business Thrives.</h1>
+      <p class="hero-copy">Connecting leaders, elevating local businesses, and shaping a more influential future for Toluca Lake.</p>
+      <div class="hero-actions">
+        <a class="button primary magnetic" href="#join">Become a Member</a>
+        <a class="button secondary magnetic" href="#events">Explore Events</a>
+      </div>
+    </div>
+
+    <div class="hero-card glass reveal delay-one">
+      <p>Member Network</p>
+      <strong>Connected. Visible. Influential.</strong>
+      <span>A premium ecosystem for business owners, civic leaders, and community builders.</span>
+    </div>
+
+    <div class="stats-panel glass reveal delay-two" aria-label="Chamber highlights">
+      <div><strong>75+</strong><span>Years of local leadership</span></div>
+      <div><strong>100+</strong><span>Events and programs</span></div>
+      <div><strong>1K+</strong><span>Community connections</span></div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section class="section impact" id="impact">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Community Impact</p>
+      <h2>Built for businesses that shape the neighborhood.</h2>
+      <p>The Chamber gives local businesses visibility, relationships, advocacy, and a stronger platform for growth.</p>
+    </div>
+    <div class="impact-layout">
+      <div class="impact-visual reveal">
+        <div class="image-frame"></div>
+        <div class="floating-badge glass">Local momentum starts here</div>
+      </div>
+      <div class="impact-cards">
+        {impact.map((c) => (
+          <article class="impact-card glass reveal"><span>{c.n}</span><h3>{c.title}</h3><p>{c.copy}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section class="section events" id="events">
+    <div class="section-heading reveal center">
+      <p class="eyebrow">Featured Events</p>
+      <h2>Not just events. Signature business experiences.</h2>
+    </div>
+    <div class="event-stack">
+      {events.map((e) => (
+        <article class="event-card reveal">
+          <div class="event-date"><span>{e.mon}</span><strong>{e.day}</strong></div>
+          <div><p class="eyebrow">{e.kicker}</p><h3>{e.title}</h3><p>{e.copy}</p></div>
+          <a href="#join">{e.cta}</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Membership -->
+  <section class="section membership" id="membership">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Membership Benefits</p>
+      <h2>Membership that works beautifully.</h2>
+    </div>
+    <div class="benefit-grid">
+      <article class="benefit-card large reveal"><h3>Visibility</h3><p>Business spotlights, digital promotion, referrals, and elevated member storytelling.</p></article>
+      <article class="benefit-card reveal"><h3>Connections</h3><p>Premium networking with people who move the community forward.</p></article>
+      <article class="benefit-card reveal"><h3>Credibility</h3><p>Association with a trusted local institution and respected business network.</p></article>
+      <article class="benefit-card wide reveal"><h3>Growth Resources</h3><p>Workshops, introductions, community intelligence, and opportunities to lead.</p></article>
+    </div>
+  </section>
+
+  <!-- Spotlight -->
+  <section class="section spotlight" id="spotlight">
+    <div class="section-heading reveal center">
+      <p class="eyebrow">Business Spotlight</p>
+      <h2>A premium stage for local businesses.</h2>
+    </div>
+    <div class="spotlight-grid">
+      <article class="spot-card reveal"><div></div><h3>Dining & Hospitality</h3><p>Restaurants, cafes, hotels, and destination experiences.</p></article>
+      <article class="spot-card tall reveal"><div></div><h3>Creative Studios</h3><p>Production, design, media, wellness, and professional services.</p></article>
+      <article class="spot-card reveal"><div></div><h3>Local Retail</h3><p>Neighborhood brands with personality, story, and loyal customers.</p></article>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="section testimonials">
+    <div class="testimonial glass reveal">
+      <p class="eyebrow">Success Story</p>
+      <blockquote>“The Chamber gives our business more than exposure. It gives us connection, credibility, and a real place in the future of Toluca Lake.”</blockquote>
+      <span>Member Business Owner</span>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section class="section leadership" id="leadership">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Chamber Leadership</p>
+      <h2>Approachable leaders. Serious influence.</h2>
+      <p>A modern presentation for the board, ambassadors, committees, and civic partners shaping the Chamber’s direction.</p>
+    </div>
+    <div class="leader-row">
+      <article class="leader-card glass reveal"><div class="avatar"></div><h3>Board Leadership</h3><p>Strategic vision and governance.</p></article>
+      <article class="leader-card glass reveal"><div class="avatar"></div><h3>Ambassadors</h3><p>Member connection and hospitality.</p></article>
+      <article class="leader-card glass reveal"><div class="avatar"></div><h3>Community Partners</h3><p>Civic collaboration and impact.</p></article>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta section" id="join">
+    <div class="final-glow"></div>
+    <div class="final-content reveal">
+      <p class="eyebrow">Join the Chamber</p>
+      <h2>Build something bigger than business.</h2>
+      <p>Become part of the network shaping opportunity, prosperity, and community leadership in Toluca Lake.</p>
+      <div class="hero-actions center-actions">
+        <a class="button primary light magnetic" href="mailto:info@tolucalakechamber.com">Become a Member</a>
+        <a class="button secondary dark magnetic" href="mailto:info@tolucalakechamber.com">Connect With Us</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,20 @@
+---
+const nav = [
+  { label: "Impact", href: "#impact" },
+  { label: "Events", href: "#events" },
+  { label: "Membership", href: "#membership" },
+  { label: "Spotlight", href: "#spotlight" },
+  { label: "Leadership", href: "#leadership" },
+];
+---
+<header class="site-header" id="siteHeader">
+  <a class="brand" href="#top" aria-label="Toluca Lake Chamber home">
+    <span class="brand-mark">TL</span>
+    <span class="brand-text">Toluca Lake<br />Chamber</span>
+  </a>
+  <nav class="main-nav" aria-label="Primary navigation">
+    {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <a class="nav-cta" href="#join">Become a Member</a>
+  <button class="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
+</header>
