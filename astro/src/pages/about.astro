@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { board } from "../data/content.ts";
+
+const pillars = [
+  { num: "01", title: "Advocacy", copy: "A trusted voice for local business priorities, economic vitality, and smart community growth." },
+  { num: "02", title: "Connection", copy: "Relationships that turn neighbors into partners, referrals, and lifelong collaborators." },
+  { num: "03", title: "Stewardship", copy: "Protecting the village character that makes one square mile of Los Angeles feel like home." },
+];
+---
+<Base title="About — Toluca Lake Chamber of Commerce" description="For more than 85 years, the Toluca Lake Chamber has connected local businesses, residents, and civic leaders.">
+  <PageHero
+    eyebrow="Since 1939"
+    title="A village inside a city."
+    copy="For more than eighty-five years, the Chamber has connected local businesses, residents, and civic leaders to keep Toluca Lake thriving."
+    crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
+  />
+
+  <section class="section">
+    <div class="content-narrow">
+      <p class="eyebrow reveal">Our mission</p>
+      <h2 class="reveal" style="font-size:clamp(34px,5vw,64px)">A driving force behind the community's vitality.</h2>
+      <div class="prose reveal" style="margin-top:28px">
+        <p>The Toluca Lake Chamber of Commerce brings together local businesses, residents, and community leaders to support the neighborhood we all care about. From events and networking to advocacy and partnerships, the Chamber plays an active role in preserving the character of Toluca Lake while helping it grow and thrive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="content">
+      <div class="card-grid">
+        {pillars.map((p) => (
+          <article class="feature-card reveal"><span class="num">{p.num}</span><h3>{p.title}</h3><p>{p.copy}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:linear-gradient(180deg,var(--warm-ivory),#edf5ef)">
+    <div class="content">
+      <div class="section-heading center reveal">
+        <p class="eyebrow">Chamber leadership</p>
+        <h2 style="font-size:clamp(34px,5vw,64px)">Approachable leaders. Serious influence.</h2>
+      </div>
+      <div class="card-grid two reveal" style="grid-template-columns:repeat(4,1fr)">
+        {board.map((m) => (
+          <article class="feature-card"><div class="avatar" style="border-radius:20px;margin-bottom:16px"></div><h3 style="font-size:20px">{m.name}</h3><p style="font-weight:800;color:var(--vibrant-emerald);margin:0">{m.role}</p><p style="margin-top:4px">{m.org}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

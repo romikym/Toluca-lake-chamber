@@ -1,0 +1,30 @@
+---
+interface Crumb { label: string; href?: string }
+interface Props {
+  eyebrow: string;
+  title: string;
+  copy?: string;
+  crumbs?: Crumb[];
+}
+const { eyebrow, title, copy, crumbs = [] } = Astro.props;
+---
+<section class="page-hero">
+  <div class="hero-orb hero-orb-one"></div>
+  <div class="hero-orb hero-orb-two"></div>
+  <div class="page-hero-inner reveal">
+    {crumbs.length > 0 && (
+      <nav class="crumbs" aria-label="Breadcrumb">
+        {crumbs.map((c, i) => (
+          <>
+            {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+            {i < crumbs.length - 1 && <span> / </span>}
+          </>
+        ))}
+      </nav>
+    )}
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    {copy && <p>{copy}</p>}
+    <slot />
+  </div>
+</section>

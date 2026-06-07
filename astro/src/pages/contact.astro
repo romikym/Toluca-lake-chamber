@@ -1,0 +1,38 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/content.ts";
+---
+<Base title="Contact — Toluca Lake Chamber of Commerce" description="Have questions or want to get involved? Reach out — we're here to help and connect.">
+  <PageHero
+    eyebrow="Get in touch"
+    title="Let's connect."
+    copy="Questions about membership, events, or partnering with the Chamber? We'd love to hear from you."
+    crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+  />
+
+  <section class="section">
+    <div class="contact-grid">
+      <form class="feature-card reveal" style="padding:36px" action={`mailto:${site.email}`} method="post" enctype="text/plain">
+        <h3 style="font-size:24px;margin-top:0">Send us a message</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <label class="field"><span>First name</span><input name="first" type="text" required /></label>
+          <label class="field"><span>Last name</span><input name="last" type="text" /></label>
+        </div>
+        <label class="field"><span>Email</span><input name="email" type="email" required /></label>
+        <label class="field"><span>How can we help?</span><textarea name="message" rows="5" required></textarea></label>
+        <button class="button primary magnetic" type="submit" style="width:100%">Send message</button>
+      </form>
+
+      <aside class="feature-card reveal" style="padding:32px;align-self:start">
+        <h3 style="font-size:20px;margin-top:0">Chamber office</h3>
+        <p style="font-weight:800;margin:14px 0 4px">Email</p>
+        <a href={`mailto:${site.email}`} style="color:var(--vibrant-emerald);font-weight:700">{site.email}</a>
+        <p style="font-weight:800;margin:18px 0 4px">Phone</p>
+        <a href={`tel:${site.phone}`} style="color:var(--vibrant-emerald);font-weight:700">{site.phone}</a>
+        <p style="font-weight:800;margin:18px 0 4px">Serving</p>
+        <p style="margin:0;color:rgba(26,26,26,.64)">Toluca Lake & the greater Los Angeles area since {site.founded}.</p>
+      </aside>
+    </div>
+  </section>
+</Base>

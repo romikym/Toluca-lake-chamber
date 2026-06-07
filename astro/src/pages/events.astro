@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { events } from "../data/content.ts";
+---
+<Base title="Events — Toluca Lake Chamber of Commerce" description="Signature business experiences: mixers, forums, member showcases, and community traditions.">
+  <PageHero
+    eyebrow="What's happening"
+    title="Signature business experiences."
+    copy="Not just events — curated moments that turn introductions into partnerships and keep the Village connected."
+    crumbs={[{ label: "Home", href: "/" }, { label: "Events" }]}
+  />
+
+  <section class="section events">
+    <div class="event-stack">
+      {events.map((e) => (
+        <article class="event-card reveal">
+          <div class="event-date"><span>{e.mon}</span><strong>{e.day}</strong></div>
+          <div><p class="eyebrow">{e.kicker}</p><h3>{e.title}</h3><p>{e.copy}</p></div>
+          <a href="/membership">{e.cta}</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="final-cta section" style="min-height:520px">
+    <div class="final-glow"></div>
+    <div class="final-content reveal">
+      <p class="eyebrow">Members save on every event</p>
+      <h2 style="font-size:clamp(40px,6vw,80px)">Show up. Stand out.</h2>
+      <p>Join the Chamber for member pricing, early access, and a front-row seat in the community.</p>
+      <div class="hero-actions center-actions">
+        <a class="button primary light magnetic" href="/membership">Become a Member</a>
+      </div>
+    </div>
+  </section>
+</Base>

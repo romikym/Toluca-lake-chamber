@@ -1,20 +1,24 @@
 ---
 const nav = [
-  { label: "Impact", href: "#impact" },
-  { label: "Events", href: "#events" },
-  { label: "Membership", href: "#membership" },
-  { label: "Spotlight", href: "#spotlight" },
-  { label: "Leadership", href: "#leadership" },
+  { label: "About", href: "/about" },
+  { label: "Events", href: "/events" },
+  { label: "Directory", href: "/directory" },
+  { label: "Membership", href: "/membership" },
+  { label: "Contact", href: "/contact" },
 ];
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || (href !== "/" && path.startsWith(href));
 ---
 <header class="site-header" id="siteHeader">
-  <a class="brand" href="#top" aria-label="Toluca Lake Chamber home">
+  <a class="brand" href="/" aria-label="Toluca Lake Chamber home">
     <span class="brand-mark">TL</span>
     <span class="brand-text">Toluca Lake<br />Chamber</span>
   </a>
   <nav class="main-nav" aria-label="Primary navigation">
-    {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    {nav.map((item) => (
+      <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined} style={isActive(item.href) ? "color:var(--deep-emerald)" : undefined}>{item.label}</a>
+    ))}
   </nav>
-  <a class="nav-cta" href="#join">Become a Member</a>
+  <a class="nav-cta" href="/membership">Become a Member</a>
   <button class="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
 </header>

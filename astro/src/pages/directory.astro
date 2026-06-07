@@ -1,0 +1,44 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { businesses, categories } from "../data/content.ts";
+---
+<Base title="Business Directory — Toluca Lake Chamber" description="Discover trusted local businesses, professionals, and community partners across Toluca Lake.">
+  <PageHero
+    eyebrow="Business directory"
+    title="Discover the Village."
+    copy="Trusted local businesses, professionals, and community partners — the people who make Toluca Lake feel like a town all its own."
+    crumbs={[{ label: "Home", href: "/" }, { label: "Directory" }]}
+  />
+
+  <section class="section">
+    <div class="content">
+      <div class="filter-row reveal">
+        {categories.map((c, i) => <span class={`chip${i === 0 ? " active" : ""}`}>{c}</span>)}
+      </div>
+      <div class="listing-grid">
+        {businesses.map((b) => (
+          <article class="listing reveal">
+            <div class="cover"></div>
+            <div class="body">
+              <span class="cat">{b.cat}</span>
+              <h3>{b.name}</h3>
+              <p>{b.blurb}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="content-narrow" style="text-align:center">
+      <div class="feature-card reveal" style="padding:48px">
+        <p class="eyebrow">List your business</p>
+        <h2 style="font-size:clamp(30px,4vw,52px)">Get found. Get chosen.</h2>
+        <p style="max-width:520px;margin:16px auto 24px">A rich directory profile puts your business in front of neighbors searching to shop local.</p>
+        <a class="button primary magnetic" href="/membership">Join the Chamber</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,51 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { plans } from "../data/content.ts";
+---
+<Base title="Membership — Toluca Lake Chamber of Commerce" description="Membership that pays for itself: visibility, connections, credibility, and growth for local businesses.">
+  <PageHero
+    eyebrow="Membership"
+    title="Membership that pays for itself."
+    copy="More customers, real connections, marketing exposure, and a unified voice — for businesses, professionals, and residents alike."
+    crumbs={[{ label: "Home", href: "/" }, { label: "Membership" }]}
+  />
+
+  <section class="section">
+    <div class="content">
+      <div class="section-heading center reveal">
+        <p class="eyebrow">Choose your plan</p>
+        <h2 style="font-size:clamp(34px,5vw,64px)">Find one that works for you.</h2>
+        <p>Open to everyone — you don't need to be located in Toluca Lake to join.</p>
+      </div>
+      <div class="tier-grid">
+        {plans.map((t) => (
+          <article class={`tier reveal${t.popular ? " popular" : ""}`}>
+            {t.popular && <span class="pill-tag">Most popular</span>}
+            <h3 style="font-size:24px">{t.name}</h3>
+            <p style={t.popular ? "opacity:.8;margin:0" : "color:rgba(26,26,26,.6);margin:0"}>{t.audience}</p>
+            <div class="price">{t.price}<span> / year</span></div>
+            <ul>{t.benefits.map((b) => <li>{b}</li>)}</ul>
+            <a class="button primary magnetic" href="/contact">Get started</a>
+          </article>
+        ))}
+      </div>
+      <p class="reveal" style="text-align:center;margin-top:36px;color:rgba(26,26,26,.6);font-weight:700">
+        Every application is reviewed by our volunteer board — you're never charged until you're approved.
+      </p>
+    </div>
+  </section>
+
+  <section class="final-cta section" style="min-height:560px">
+    <div class="final-glow"></div>
+    <div class="final-content reveal">
+      <p class="eyebrow">Join the Chamber</p>
+      <h2 style="font-size:clamp(40px,6vw,84px)">Build something bigger than business.</h2>
+      <p>Become part of the network shaping opportunity and leadership in Toluca Lake.</p>
+      <div class="hero-actions center-actions">
+        <a class="button primary light magnetic" href="/contact">Become a Member</a>
+        <a class="button secondary dark magnetic" href="/contact">Ask a Question</a>
+      </div>
+    </div>
+  </section>
+</Base>
